@@ -7099,7 +7099,7 @@ p i {
 	position: relative;
 	display: block;
 	padding: 48px 0;
-	background: #333333;
+	background: #333333 !important;
 	color: #ececec;
 	font-size: 14px;
 }
