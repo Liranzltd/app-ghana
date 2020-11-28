@@ -1,0 +1,32 @@
+AppBundle\Entity\CompanyRequestDocument:
+  type: entity
+  table:  company_request_documents
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+    file:
+      type: string
+      length: 255
+    originalFileName:
+      type: string
+      length: 255
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    response:
+      targetEntity: CompanyRequest
+      inversedBy: documents
+      joinColumn:
+        company_request_id:
+          referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

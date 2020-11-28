@@ -1,0 +1,52 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block verification %}
+    <ul>
+    {% for item in object.verification%}
+        <li>{{ item.status }}</li>
+    {% endfor %}
+    </ul>
+{% endblock verification %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+      $(document).ready(function() {
+
+      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+          localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+
+        if (activeTab && activeTab.substring(0, 4) == '#tab')
+        {
+          $('.nav-tabs-custom a[href="' + activeTab.substring(0, 5) + '{{ admin.uniqid }}_'+ activeTab.split("_").pop()).trigger('click');
+        }
+        // $('.disabled').closest('.sonata-ba-collapsed-fields').css('pointer-events','none');
+
+        $('.crb').on('click',function(e)
+        {
+          e.preventDefault();
+          $.ajax(
+          {
+            url: '/admin/get-crb-report',
+            data: {company: $(this).data('id')},
+            success: function(response)
+            {
+              $('.modal-body').html(response);
+              $('#modal-info').modal();
+            }
+          });
+        })
+
+        $('.generateInvoice').on("click",function(e){
+          e.preventDefault();
+          $.ajax{
+            url:  '{{ path('generateInvoice') }}',
+            data: [id: $(this).data('id')]
+          }
+        })
+      });
+    </script>
+{% endblock %}

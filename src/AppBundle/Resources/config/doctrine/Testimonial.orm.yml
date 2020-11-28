@@ -1,0 +1,33 @@
+AppBundle\Entity\Testimonial:
+  type: entity
+  table:  testimonials
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    attribution:
+      type: string
+      length: 100
+    company:
+      type: string
+      length: 100
+    testimony:
+      type: text
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    isPublished:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    photo:
+      type:   string
+      length: 255
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue, lifecycleFileUpload ]
+      preUpdate:    [ refreshUpdated,lifecycleFileUpload ]

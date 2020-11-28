@@ -1,0 +1,24 @@
+AppBundle\Entity\Task:
+  type: entity
+  table:  tasks
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    subject:
+      type: string
+      length: 100
+    status:
+      type: string
+      length: 50
+    dueDate:
+      type: datetime
+  manyToOne:
+    staff:
+      targetEntity: Staff
+      inversedBy: tasks
+      joinColumn:
+        staff_id:
+          referencedColumnName: id

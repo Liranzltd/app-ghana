@@ -1,0 +1,75 @@
+AppBundle\Entity\BusinessGrowthHub:
+  type: entity
+  table:  business_growth_hub
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      length: 255
+    summary:
+      type: text
+      nullable: true
+    contentType:
+      type: text
+      length: 10
+    content:
+      type: text
+      nullable: true
+    author:
+      length: 100
+      nullable: true
+    isPublished:
+      type: boolean
+      options:
+        default:  false
+    isPremiumContent:
+      type: boolean
+      options:
+        default:  false
+    filename:
+      type: string
+      length: 255
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    clicks:
+      type: integer
+      nullable: true
+    externalLink:
+      type: string
+      length: 300
+      nullable: true
+    slug:
+      type: string
+      length: 255
+      nullable: true
+  manyToMany:
+    categories:
+      targetEntity: ContentCategory
+      inversedBy: growthub
+      joinTable:
+        name: ujuzi_hub_categories
+        joinColumns:
+          content_id:
+            referencedColumnName: id
+        inversedJoinColumns:
+          category_id:
+            referencedColumnName: id
+  manyToOne:
+    buyer:
+      targetEntity: Buyer
+      inversedBy: resources
+      joinColumn:
+        buyer_id:
+          referencedColumnName:id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue, lifecycleFileUpload ]
+      preUpdate:    [ lifecycleFileUpload ]

@@ -1,0 +1,71 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block pagetitle %}Requests{% endblock %}
+{% block crumbtitle %}This page lists all procurement requests you are able to bid for {% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="card">
+        <div class="card-content">
+          {% if requests|length >= 1 %}
+            <div class="tb">
+                <!--Here you can write extra buttons/actions for the toolbar-->
+            </div>
+            <table id="bootstrap-table" class="table">
+                <thead>
+                    <tr>
+                      <th data-field="details">Details</th>
+                      <th data-field="buyer">Buyer</th>
+                      <th data-field="publishDate" data-sortable="true">Publish Date</th>
+                      <th data-field="deadline" data-sortable="true">Deadline</th>
+                      <th data-field="status" data-sortable="true">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for request in requests %}
+                    <tr>
+                      <td class="td-product">
+                        <a href="{{ path('tenda',{ slug: request.slug}) }}">
+                          <strong>{{ request.name }}</strong><br/>
+                        </a>
+                        <p><small>
+                        {{ request.requestType }}<br/>{{ memberRepo.inRequests(member.id,request) ? 'Response Submitted' : 'Not Responded' }}</small></p>
+                      </td>
+                      <td>{{ request.buyer }}</td>
+                      <td>
+                          {{ request.publishDate|date('d/m/Y h:i') }}
+                      </td>
+                      <td>
+                          {{ request.deadline|date('d/m/Y h:i') }}
+                      </td>
+                      <td>
+                        {% set latest = request.updates.last %}
+                          {% if not request.isPublished %}
+                            <button class="btn btn-default btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                          {% elseif request.status == 'Published' %}
+                            <button class="btn btn-success btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                          {% elseif request.status == 'Under Review' %}
+                            <button class="btn btn-info btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                          {% elseif request.status == 'Awarded' %}
+                            <button class="btn btn-primary btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                          {% else %}
+                            <button class="btn btn-danger btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                          {% endif %}
+
+                      </td>
+                    </tr>
+                {% endfor %}
+                  </tbody>
+                </table>
+            {% else %}
+              <h4>No requests posted yet</h4>
+            {% endif %}
+          </div>
+          </div><!--  end card  -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

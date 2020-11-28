@@ -1,0 +1,760 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .carousel-control i {
+            position: absolute;
+            top: 50%;
+            z-index: 1000;
+        }
+
+
+        .carousel-inner.vertical {
+            height: 100%; /*Note: set specific height here if not, there will be some issues with IE browser*/
+        }
+
+        .carousel-inner.vertical > .item {
+            -webkit-transition: .6s ease-in-out top;
+            -o-transition: .6s ease-in-out top;
+            transition: .6s ease-in-out top;
+        }
+
+        @media all and (transform-3d),
+        (-webkit-transform-3d) {
+            .carousel-inner.vertical > .item {
+                -webkit-transition: -webkit-transform .6s ease-in-out;
+                -o-transition: -o-transform .6s ease-in-out;
+                transition: transform .6s ease-in-out;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-perspective: 1000;
+                perspective: 1000;
+            }
+
+            .carousel-inner.vertical > .item.next,
+            .carousel-inner.vertical > .item.active.right {
+                -webkit-transform: translate3d(0, 33.33%, 0);
+                transform: translate3d(0, 33.33%, 0);
+                top: 0;
+            }
+
+            .carousel-inner.vertical > .item.prev,
+            .carousel-inner.vertical > .item.active.left {
+                -webkit-transform: translate3d(0, -33.33%, 0);
+                transform: translate3d(0, -33.33%, 0);
+                top: 0;
+            }
+
+            .carousel-inner.vertical > .item.next.left,
+            .carousel-inner.vertical > .item.prev.right,
+            .carousel-inner.vertical > .item.active {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                top: 0;
+            }
+        }
+
+        .carousel-inner.vertical > .active {
+            top: 0;
+        }
+
+        .carousel-inner.vertical > .next,
+        .carousel-inner.vertical > .prev {
+            top: 0;
+            height: 100%;
+            width: auto;
+        }
+
+        .carousel-inner.vertical > .next {
+            left: 0;
+            top: 33.33%;
+            right: 0;
+        }
+
+        .carousel-inner.vertical > .prev {
+            left: 0;
+            top: -33.33%;
+            right: 0;
+        }
+
+        .carousel-inner.vertical > .next.left,
+        .carousel-inner.vertical > .prev.right {
+            top: 0;
+        }
+
+        .carousel-inner.vertical > .active.left {
+            left: 0;
+            top: -33.33%;
+            right: 0;
+        }
+
+        .carousel-inner.vertical > .active.right {
+            left: 0;
+            top: 33.33%;
+            right: 0;
+        }
+
+        #carousel-pager .carousel-control.left {
+            bottom: initial;
+            width: 100%;
+        }
+
+        #carousel-pager .carousel-control.right {
+            top: initial;
+            width: 100%;
+        }
+
+        .btn.btn-square {
+            border-radius: 0 !important;
+            border: none !important;
+
+
+
+        .blink{
+            width:200px;
+            height: 50px;
+            background-color: magenta;
+            padding: 15px;
+            text-align: center;
+            line-height: 50px;
+        }
+        span{
+            font-size: 25px;
+            font-family: cursive;
+            color: white;
+            animation: blink 1s linear infinite;
+        }
+        @keyframes blink{
+            0%{opacity: 0;}
+            50%{opacity: .5;}
+            100%{opacity: 1;}
+
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    {#Advertisement slides at top#}
+    <section style="margin-bottom:10px;">
+        <div class="home-pro" style="">
+            <div class="ad" style="overflow: hidden;z-index:-100;">
+                <ul class="slides">
+                    <li style="position: relative;">
+                        <a href="https://www.mtnmessenger.com/login" target="_new"><img class="img-responsive"
+                                                                                        src="/uploads/ads/eagle.jpg"/></a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="http://www.south-westernpacificinternational.com" target="_new"><img
+                                    class="autofitdiv-image" src="/uploads/ads/swestern.jpg"/></a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="mailto:nesconadvertisement@gmail.com" target="_new"><img class="autofitdiv-image"
+                                                                                          src="/uploads/ads/nescon.jpg"/></a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="https://www.landmarksecurity.org" target="_new"><img class="autofitdiv-image"
+                                                                                      src="/uploads/ads/xassist.jpg"/></a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="https://www.ad-presicion.net" target="_new"><img class="autofitdiv-image"
+                                                                                  src="/uploads/ads/adpres.jpg"/></a>
+                    </li>
+
+                    {# <li style="position: relative;">
+                      <a href="http://www.multisoftgh.com" target="_new"><img src="/uploads/ads/multisoft.jpg" /></a>
+                    </li> #}
+                </ul>
+            </div>
+            <!-- Banner/Slider -->
+
+            <!-- #end Banner/Slider -->
+        </div>
+    </section>
+
+    {#slider banners for the main page#}
+    <section>
+        <div id="slider" class="banner banner-slider carousel slide carousel-fade" style="overflow: hidden;">
+            <!-- Wrapper for Slides -->
+            <div class="carousel-inner">
+
+                <div class="item active">
+                    <!-- Set the first background image using inline CSS below. -->
+                    <div class="fill"
+                         style="background-image:url('{{ asset('bundles/app/images/banners/app_web-banner-1.jpg') }}');">
+                        <div class="banner-content">
+                            <div class="container">
+                                <div style="margin-top: -60px; margin-left: -150px" class="row col-md-6 left">
+                                    <div class="banner-text  ">
+                                        <div class="animated fadeInRight">
+                                            <div class="banner-cta">
+                                                <a class="btn mb20 btn-medium btn-transparent-primary"
+                                                   href="/how-it-works">Learn More</a>
+                                                <a class="btn mb20 btn-medium btn-primary"
+                                                   href="/get-started">Register</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <!-- Set the second background image using inline CSS below. -->
+                    <div class="fill"
+                         style="background-image:url('{{ asset('bundles/app/images/banners/app_web-banner-3.jpg') }}');">
+                        <div class="banner-content">
+                            <div class="container">
+                                <div style="margin-top: -60px; margin-left: -150px" class="row col-md-6 left">
+                                    <div class="banner-text  ">
+                                        <div class="animated fadeInRight">
+                                            <div class="banner-cta">
+                                                <a class="btn mb20 btn-medium btn-transparent-primary"
+                                                   href="/meet-the-buyers">Learn More</a>
+                                                <a class="btn mb20 btn-medium btn-primary"
+                                                   href="/get-started">Register</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <!-- Set the third background image using inline CSS below. -->
+                    <div class="fill"
+                         style="background-image:url('{{ asset('bundles/app/images/banners/app_web-banner-2.jpg') }}');">
+                        <div class="banner-content">
+                            <div class="container">
+                                <div style="margin-top: -60px; margin-left: -150px" class="row col-md-6 left">
+                                    <div class="banner-text  ">
+                                        <div class="animated fadeInRight">
+                                            <div class="banner-cta">
+                                                <a class="btn mb20 btn-medium btn-transparent-primary"
+                                                   href="/services">Learn More</a>
+                                                <a class="btn mb20 btn-medium btn-primary"
+                                                   href="/get-started">Register</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Set the third background image using inline CSS below. -->
+                    <div class="fill"
+                         style="background-image:url('{{ asset('bundles/app/images/banners/app_web-banner-4.jpg') }}');">
+                        <div class="banner-content">
+                            <div class="container">
+                                <div style="margin-top: -60px; margin-left: -150px" class="row col-md-6 left">
+                                    <div class="banner-text  ">
+                                        <div class="animated fadeInRight">
+                                            <div class="banner-cta">
+                                                <a class="btn mb20 btn-medium btn-transparent-primary"
+                                                   href="/network-hub">Learn More</a>
+                                                <a class="btn mb20 btn-medium btn-primary"
+                                                   href="/get-started">Register</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Set the third background image using inline CSS below. -->
+                    <div class="fill"
+                         style="background-image:url('{{ asset('bundles/app/images/banners/app_web-banner-5.jpg') }}');">
+                        <div class="banner-content">
+                            <div class="container">
+                                <div style="margin-top: -60px; margin-left: -150px" class="row col-md-6 left">
+                                    <div class="banner-text  ">
+                                        <div class="animated fadeInRight">
+                                            <div class="banner-cta">
+                                                <a class="btn mb20 btn-medium btn-transparent-primary"
+                                                   href="/business-growth-hub">Learn More</a>
+                                                <a class="btn mb20 btn-medium btn-primary"
+                                                   href="/get-started">Register</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Left and right controls -->
+            <a style="margin-left: -100px" class="left carousel-control " href="#slider" role="button"
+               data-slide="prev">
+                <i class="fas fa-3x fa-chevron-left"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a style="margin-right: -60px" class="right carousel-control" href="#slider" role="button"
+               data-slide="next">
+                <i class="fas fa-3x fa-chevron-right"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+
+                    {#live tender#}
+                    <div class="row">
+                        <div style="margin-left: -50px; margin-right: -10px" class="col-sm-12">
+                            <div class="">
+                        <h5 style="border-radius: 0;" class="title-blog color-title btn btn-squared btn-primary">
+                        <span class="panel-heading">
+                            <span style="color: greenyellow" id="tender1" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true">  </span>
+                                <span  id="tender"> LIVE TENDERS</span>
+                        </span>
+                        </h5>
+                        <div style="background: #1b73b3; height: 4px; margin-right: -55px"></div>
+                        {% if tenders|length > 0 %}
+                        <div class="panel-group mt10">
+                            {% for request in tenders %}
+                                <div class="panel " style="border: 1px solid grey; margin-right: -55px">
+                                    <div class="text-primary" style="margin-left: 10px; margin-bottom: -25px;">
+                                        <h4><b>{{ request.name }}</b></h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>{{ request.summary|split('</p>')|first|raw }}</p>
+                                        <div class="row container">
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <h5><span class="glyphicon glyphicon-calendar"
+                                                              aria-hidden="true"></span>
+                                                        <span class="text-primary">Deadline</span>: {{ request.deadline|date('F d, Y') }}
+                                                    </h5>
+                                                </div>
+                                                <div class="row">
+                                                    <h5><span class="glyphicon glyphicon-th-large"
+                                                              aria-hidden="true"></span>
+                                                        <span class="text-primary">Category</span></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 ">
+                                                <a style="margin-right: -120px" class="btn btn-info pull-right mt40"
+                                                   href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}"
+                                                   title="{{ request.name }}">View Request
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="panel panel-default">
+                            </div>
+                            {% endif %}
+                            {#<div style="float:right">
+                                <a class="btn btn-primary" href="/tenderspace" title="View all Requests"><b>View More
+                                        Requests</b></a>
+                            </div>#}
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {#news and media#}
+                    <div class="row">
+                        <div style="margin-left: -80px ;" class="col-sm-12">
+                            <div style="" class="container">
+                                <section >
+                                    <div class="container">
+                                        <div style="margin-bottom: 20px; margin-left: -5px; margin-top: 20px" class="row">
+                                            <h5 style="border-radius: 0;"
+                                                class="title-blog color-title btn btn-squared btn-primary">
+                                                <span class="panel-heading">
+                                                    <span> NEWS & EVENTS</span>
+                                                </span>
+                                            </h5>
+                                            <div style="background: #1b73b3; height: 4px; width: 78%"></div>
+                                        </div>
+
+                                        <div style="margin-bottom: 20px; margin-right: 20px" class="row">
+                                            {% for item in articles %}
+                                                <div style="height:300px; background: whitesmoke; margin:10px;"
+                                                     class="col-sm-3 boxshadow equal">
+                                                    <div class="card card-price">
+                                                        <div class="card-img">
+                                                            <a {{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}>
+                                                                <img src="{{ item.media }}" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="card-title text-center text-primary">
+                                                                <p><b>{{ item.publishDate|date('F') }}
+                                                                        | {{ item.publishDate|date('d') }}</b></p>
+                                                            </div>
+                                                            <p>
+                                                                {{ viewVars['BergyUtils'].limitText(item.title, 70) }}
+                                                            </p>
+
+                                                            <p class="text-primary text-center">
+                                                                <a {{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}>Read
+                                                                    More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    {#testimonials#}
+                    <div class="row">
+                        <div style="margin-top:-10px;margin-left: -80px" class="col-sm-12">
+                            <div class="container">
+                                <section>
+                                    <div class="container">
+                                        <div style=" margin-top: 20px ; margin-left: -5px" class="row">
+                                            <h5 style="border-radius: 0;"
+                                                class="title-blog color-title btn btn-squared btn-primary">
+                                                <span class="panel-heading">
+                                                    <span> STORIES AND STUDIES </span>
+                                                </span>
+                                            </h5>
+                                            <div style="background: #1b73b3; height: 4px; width: 78%"></div>
+                                        </div>
+
+                                        <div style="margin-right: 20px; margin-bottom: 20px" class="row">
+
+                                                <div style="height:300px; background: whitesmoke; margin:10px;" class="col-sm-3 boxshadow equal">
+                                                    <div class="card card-price">
+                                                        <div  class="card-img">
+                                                            <a href="https://thebftonline.com/2019/lifestylesports/lifesense-with-terry-mante-when-passion-meets-opportunity-thelma-kusi-and-the-colour-zone-journey/" target="_new">
+                                                                <img style='height: 150px; object-fit: contain'
+                                                                      src="/uploads/stories/1.jpg" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div style='height: 100px; object-fit: contain' class="card-body">
+                                                            <div class="card-title text-center text-primary">
+                                                                <p><b>LifeSense with Terry Mante</b></p>
+                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                            </div>
+                                                            <article class="show-read-more" >
+                                                                When passion meets opportunity – Thelma Kusi and the Colour Zone journey
+                                                            </article>
+                                                            <p class="text-primary text-center">
+                                                                <a href="https://thebftonline.com/2019/lifestylesports/lifesense-with-terry-mante-when-passion-meets-opportunity-thelma-kusi-and-the-colour-zone-journey/">Read
+                                                                    More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="height:300px; background: whitesmoke; margin:10px;" class="col-sm-3 boxshadow equal">
+                                                    <div class="card card-price">
+                                                        <div  class="card-img">
+                                                            <a href="https://thebftonline.com/2020/features/georgette-barnes-seizing-opportunities-when-it-matters/" target="_new">
+                                                                <img style='height: 150px; object-fit: contain'
+                                                                      src="/uploads/stories/2.jpg" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div style='height: 100px; object-fit: contain' class="card-body">
+                                                            <div class="card-title text-center text-primary">
+                                                                <p><b>Georgette Barnes</b></p>
+                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                            </div>
+                                                            <article class="show-read-more" >
+                                                                Seizing opportunities when it matters
+                                                            </article>
+                                                            <p class="text-primary text-center">
+                                                                <a href="https://thebftonline.com/2020/features/georgette-barnes-seizing-opportunities-when-it-matters/">Read
+                                                                    More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="height:300px; background: whitesmoke; margin:10px;" class="col-sm-3 boxshadow equal">
+                                                    <div class="card card-price">
+                                                        <div  class="card-img">
+                                                            <a href="https://thebftonline.com/2019/lifestylesports/forward-and-upward-trials-triumphs-and-prospects-of-akate-farms/" target="_new">
+                                                                <img style='height: 150px; object-fit: contain'
+                                                                      src="/uploads/stories/3.jpg" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div style='height: 100px; object-fit: contain' class="card-body">
+                                                            <div class="card-title text-center text-primary">
+                                                                <p><b>Forward and Upward: Trials</b></p>
+                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                            </div>
+                                                            <article class="show-read-more" >
+                                                                Triumphs and Prospects of Akate Farms
+                                                            </article>
+                                                            <p class="text-primary text-center">
+                                                                <a href="https://thebftonline.com/2019/lifestylesports/forward-and-upward-trials-triumphs-and-prospects-of-akate-farms/">Read
+                                                                    More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+
+                                        {#<div class="row">
+                                            <div class="">
+                                                {% for testimonial in testimonies %}
+                                                    <div style="height:300px; background: whitesmoke; margin:10px;"
+                                                         class="col-sm-3 boxshadow equal">
+                                                        <div class="card">
+                                                            <div style="margin-left: 30%; margin-top: 5px"  class="card-img ">
+                                                                <img style="position: absolute" src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
+                                                                     />
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="col-sm">
+                                                                    {{ testimonial.testimony }}<br><br>
+                                                                    <span class="text-primary">{{ testimonial.attribution }}</span><br>
+                                                                    <span class="text-primary">{{ testimonial.company }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+
+                                        </div>#}
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    {#<div class="row">
+                        <div style="margin-left: -80px" class="col-sm-12">
+                            <div class="container">
+                                <section>
+                                    <div class="container">
+                                        <div style=" margin-top: 20px ; margin-left: -5px" class="row">
+                                            <h5 style="border-radius: 0;"
+                                                class="title-blog color-title btn btn-squared btn-primary">
+                                                <span class="panel-heading">
+                                                    <span> SME STORIES AND STUDIES </span>
+                                                </span>
+                                            </h5>
+                                            <div style="background: #1b73b3; height: 4px; width: 79%"></div>
+                                        </div>
+
+                                        <div style="margin-bottom: 20px" class="row">
+                                            {% for testimonial in testimonies %}
+                                                <div style="height:300px; background: whitesmoke; margin:10px;"
+                                                     class="col-sm-3 boxshadow equal">
+                                                    <div class="card card-price">
+                                                        <div  class="card-img">
+                                                            <a {{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}>
+                                                                <img style='height: 150px; object-fit: contain'
+                                                                      src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div style='height: 100px; object-fit: contain' class="card-body">
+                                                            <div class="card-title text-center text-primary">
+                                                                <p><b>{{ testimonial.attribution }}</b></p>
+                                                                <p style="margin-top: -20px">{{ testimonial.company }}</p>
+                                                            </div>
+                                                            <article class="show-read-more" style="margin-top: -15px">
+                                                                {{ testimonial.testimony }}
+                                                            </article>
+                                                            <p class="text-primary text-center">
+                                                                <a href="#">Read
+                                                                    More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+                    </div>#}
+
+                    {#current buyers#}
+                    <div class="row">
+                        <div style="margin-left: -73px" class="col-sm-12">
+                            <div class="container">
+                                <div>
+                                    <div class="flat-row">
+                                        <div class="">
+                                            <div style=" margin-top: -40px ; margin-left: -2px" class="row">
+                                                <h5 style="border-radius: 0;"
+                                                    class="title-blog color-title btn btn-squared btn-primary">
+                                                <span class="panel-heading">
+                                                    <span> CURRENT BUYERS </span>
+                                                </span>
+                                                </h5>
+                                                <div style="background: #1b73b3; height: 4px; width: 78%"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="flat-clients slides owl-carousel">
+                                                        {% for buyer in buyers %}
+                                                            <div class="client-featured">
+                                                                <img src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}" alt="{{ buyer.name }}"/>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div><!-- /.flat-clients -->
+                                                </div><!-- /.col-md-12 -->
+                                            </div><!-- /.row -->
+                                        </div><!-- /.container -->
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div  style="margin-top: -20px; height: 1870px" class="col-sm-3">
+                    {#videos#}
+                    <div class="row">
+                        <div style="margin-left: -45px" class="col-sm-12">
+                            <div class="container">
+                                <section>
+                                    <div class="container">
+                                        <div style="margin-bottom: 20px; margin-left: 1px; margin-top: 20px" class="row">
+
+                                        </div>
+
+                                        <div style="margin-bottom: 20px" class="row">
+                                            <div class="col-sm-12">
+                                                <iframe width="290" height="200" src="https://www.youtube.com/embed/videoseries?list=PLe23eeD0_yjyaUUWjxrOKwSQeyclyPKxL" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div   id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+                            <!-- Carousel items -->
+                            <div style="height: 800px" class="carousel-inner">
+                                <div class="active item">
+                                    <a href="http://phoenixtad.com/" target="_new"><img src="/uploads/ads/phoenix.jpg"
+                                                                                        class=" img-responsive"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://www.digicraft.gh.com" target="_new"><img
+                                                src="/uploads/ads/digicraft.jpg" class=" img-responsive"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://www.solartail.com" target="_new"><img src="/uploads/ads/solartail_b.jpg"
+                                                                                          class=" img-responsive"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://www.landmarksecurity.org" target="_new"><img
+                                                src="/uploads/ads/landmark2.jpg" class=" img-responsive"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://www.landmarksecurity.org" target="_new"><img
+                                                src="/uploads/ads/eagle-event-2.jpg" class=" img-responsive"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 800px" class="row">
+                        <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+                            <!-- Carousel items -->
+                            <div style="height: 800px"  class="carousel-inner">
+                                <div class="active item">
+                                    <a href="#" target="_new"><img src="/uploads/ads/1.jpg"
+                                                                   class=" img-responsive"></a>
+                                </div>
+                                <div class="item">
+                                    <a href="https://hrbureaugh.com/" target="_new"><img
+                                                src="/uploads/ads/2.jpg" class=" img-responsive"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Partners -->
+
+    <!-- END Partners -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            var maxLength = 170;
+            $(".show-read-more").each(function(){
+                var myStr = $(this).text();
+                if($.trim(myStr).length > maxLength){
+                    var newStr = myStr.substring(0, maxLength);
+                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                    $(this).empty().html(newStr);
+
+                    $(this).append('<span class="more-text">' + removedStr + '</span>');
+                }
+            });
+            $(".read-more").click(function(){
+                $(this).siblings(".more-text").contents().unwrap();
+                $(this).remove();
+            });
+        });
+    </script>
+
+
+
+
+
+    <script>
+        function blinker() {
+            $('#tender').fadeOut(500);
+            $('#tender').fadeIn(500);
+        }
+        setInterval(blinker, 2000);
+
+        function blinker1() {
+            $('#tender1').fadeOut(500);
+            $('#tender1').fadeIn(500);
+        }
+        setInterval(blinker1, 1000);
+
+        var $slider = $('#slider');
+        if ($slider.length > 0) {
+            $slider.carousel({interval: 4000, pause: 'null'});
+        }
+    </script>
+{% endblock %}

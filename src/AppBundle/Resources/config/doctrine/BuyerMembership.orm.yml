@@ -1,0 +1,42 @@
+AppBundle\Entity\BuyerMembership:
+  type: entity
+  table:  buyer_membership
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    isAdmin:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+    isDisabled:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    member:
+      targetEntity: Member
+      inversedBy: buyerMembership
+      joinColumn:
+        member_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    buyer:
+      targetEntity: Buyer
+      inversedBy: teamMembers
+      joinColumn:
+        buyer_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue ]
+      preUpdate:    [ setUpdatedAtValue ]

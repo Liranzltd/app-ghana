@@ -1,0 +1,49 @@
+{{ include('email/header.html.twig') }}
+<!-- section-7 -->
+<table class="table_full editable-bg-color bg_color_ffffff editable-bg-image" bgcolor="#ffffff" width="100%" align="center"  mc:repeatable="castellab" mc:variant="Header" cellspacing="0" cellpadding="0" border="0"  style="border-bottom: 1px solid #e1e1e1;background-image: url(#); background-position: top center; background-repeat: no-repeat; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" background="#">
+  <tr>
+    <td>
+      <table class="table1" width="600" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+        <!-- padding-top -->
+        <tr><td height="60"></td></tr>
+        <!-- heading -->
+        <tr>
+          <td mc:edit="text702" align="center" class="text_color_282828" style="color: #282828; font-size: 24px;letter-spacing: 1px; font-weight: 800; font-family: Raleway, Helvetica, sans-serif; mso-line-height-rule: exactly;">
+            <div class="editable-text">
+              <span class="text_container">{{ options.intro }}</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- horizontal gap -->
+        <tr><td height="45"></td></tr>
+
+        <!-- details -->
+        <tr>
+          <td mc:edit="text703" align="center" class="text_color_c2c2c2" style="color: #131313; font-size: 13px;line-height: 2; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+            <div class="editable-text" style="line-height: 2;">
+              <p class="text_container">
+                <b>Buyer</b>: {{ options.buyer }}
+              </p>
+              <p class="text_container">
+                <b>Name</b>: {{ options.name }}
+              </p>
+              <p class="text_container">
+                <b>Scope</b>: {{ options.description|raw }}
+              </p>
+              <p class="text_container">
+                <b>Application Deadline</b>: {{ options.deadline }}
+              </p>
+              <p class="text_container">
+                <a href="{{ options.link }}" target="_blank">View Tender</a>
+              </p>
+            </div>
+          </td>
+        </tr>
+        <!-- padding-bottom -->
+        <tr><td height="20"></td></tr>
+      </table><!-- END container -->
+    </td>
+  </tr>
+</table><!-- END wrapper -->
+{{ include('email/footer.html.twig') }}

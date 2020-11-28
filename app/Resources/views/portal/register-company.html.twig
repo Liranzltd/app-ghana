@@ -1,0 +1,87 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+  {% stylesheets 'bundles/app/css/rfi.css' 'bundles/app/css/bootstrap-formhelpers.min.css' 'bundles/app/css/sweetalert2.min.css' filter='minifycsscompressor' filter='cssrewrite'%}
+      <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
+{% endblock %}
+
+{% block pagetitle %}Register new company{% endblock %}
+
+{% block title %}Edit Company Information{% endblock %}
+
+{% block body %}
+<div class="container">
+  <section>
+    <ul class="tabs">
+      <li class="hover"></li>
+      <li class="tab active" data-tab="companyInformation">Section A</li>
+    </ul>
+    <form role="form" id="company-registration" action="{{ path('save-company')}}" enctype="multipart/form-data"  method="post" novalidate>
+      <div id="companyInformation" class="slider">
+        <h2>General Information</h2>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Registered Name <span class="text-danger">(required)</span></label>
+          <input type="text" name="name" id="name" class="" placeholder="Name of organisation" required>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Organisation Type <span class="text-danger">(required)</span></label>
+          <select name="organisationType" id="organisationType" required>
+            <option value="" disabled selected>Type of organisation</option>
+            {%  for type in company_types %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-xs-12">
+          <label class="control-label">Company Description <span class="text-danger">(required)</span></label>
+          <textarea name="description" id="description" placeholder="Briefly describe your organisation" required></textarea>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">GRA TIN <span class="text-danger">(required)</span></label>
+          <input type="text" name="graTinNumber" id="graTinNumber" class="" placeholder="GRA TIN Number" required>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Membership Category <span class="text-danger">(required)</span></label>
+          <select name="membershipCategory" id="membershipCategory">
+            <option value="">Select One</option>
+            <option value="Local Supplier">Local Supplier</option>
+            <option value="International Supplier">International Supplier</option>
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <div class="form-group">
+            <label>Company Registration Date*</label>
+            <input type="text" name="registrationDate" id="registrationDate"class="date datepicker" required pattern="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
+          </div>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Tier <span class="text-danger">(required)</span></label>
+          <select name="tier" id="tier">
+            <option value="">Select One</option>
+            {% for tier in tiers %}
+            <option {{ tier.id == company.tier.id ? "selected" : "" }}>{{ tier.name ~ ' ' ~ tier.subscriptionFee ~ ' for ' ~ tier.membershipCategory }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-xs-12">
+          <input type="hidden" name="current_page" id="current_page" value="1"/>
+          <button type="button" class="saveBtn" data-btn="1" data-section="companyInformation">Save Section</button>
+        </div>
+      </div>
+      <!-- end section a --!>
+    </form>
+  </section>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent () }}
+  {% javascripts '@AppBundle/Resources/public/js/jquery.czMore-1.5.3.2.js' '@AppBundle/Resources/public/js/jquery-ui.js' '@AppBundle/Resources/public/js/jquery.form.min.js' '@AppBundle/Resources/public/js/jquery.ui.widget.js' '@AppBundle/Resources/public/js/jquery.iframe-transport.js' '@AppBundle/Resources/public/js/jquery.fileupload.js' '@AppBundle/Resources/public/js/sweetalert2.min.js' '@AppBundle/Resources/public/js/functions.js' '@AppBundle/Resources/public/js/rfijs.js' filter='?jsqueeze' %}
+      <script src="{{ asset_url }}"></script>
+      <script>
+
+        </script>
+  {% endjavascripts %}
+{% endblock %}

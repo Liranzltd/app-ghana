@@ -1,0 +1,25 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}APP Account Activation{% endblock %}
+
+{% block title %}APP Account Activation{% endblock %}
+
+{% block body %}
+<section class="main-user">
+  <div class="container">
+    <h4>{{ message.title }}</h4>
+    {{ message.message }}
+  </div>
+</section>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  {% if message.page != '' %}
+    <script>
+      $(function()
+      {
+        setTimeout(function(){ window.location = '{{ message.page }}'; }, 8000);
+      });
+    </script>
+  {% endif %}
+{% endblock %}

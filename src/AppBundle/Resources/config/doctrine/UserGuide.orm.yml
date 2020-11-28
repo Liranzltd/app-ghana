@@ -1,0 +1,30 @@
+AppBundle\Entity\UserGuide:
+  type: entity
+  table:  user_guides
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      length: 40
+    description:
+      type: text
+    media:
+      type: text
+      nullable: true
+    contentType:
+      type: string
+      length: 15
+    position:
+      type: integer
+      length: 2
+  manyToOne:
+    topic:
+      targetEntity: UserGuideTopic
+      inversedBy: null
+      joinColumn:
+        topic_id:
+          referencedColumnName: id

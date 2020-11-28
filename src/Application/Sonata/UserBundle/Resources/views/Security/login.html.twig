@@ -1,0 +1,54 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends "FOSUserBundle:Security:base_login.html.twig" %}
+
+{% block fos_user_content %}
+
+{% include 'header.html.twig' %}
+
+<div class="container">
+  <div class="row" style="margin:40px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form role="form" action="{{ path("fos_user_security_check") }}" method="post" class="flat-register-form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        <fieldset>
+          <h2>Please Sign In</h2>
+          <hr class="colorgraph">
+          {% block sonata_user_login_error %}
+              {% if error %}
+                  <div class="alert alert-danger alert-error">{{ error.messageKey|trans(error.messageData, 'security') }} </div>
+              {% endif %}
+          {% endblock %}
+          <div class="form-group">
+              <input type="email" name="_username" value="{{ last_username }}" class="form-control input-lg" placeholder="Email Address">
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" name="_password" class="form-control input-lg" placeholder="Password">
+          </div>
+
+          <hr class="colorgraph">
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <button type="submit" class="flat-button bg-theme">Sign In</button>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <a href="/register" class="flat-button bg-theme pull-right">REGISTER</a>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html.twig' %}
+{% endblock %}

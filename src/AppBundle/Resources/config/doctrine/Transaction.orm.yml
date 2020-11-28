@@ -1,0 +1,52 @@
+AppBundle\Entity\Transaction:
+  type: entity
+  table:  transactions
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    mode:
+      type: string
+      length: 20
+    reference:
+      type: string
+      length: 20
+    debit:
+      type: decimal
+      scale:  2
+      precision:  10
+    credit:
+      type: decimal
+      scale:  2
+      precision:  10
+    transactionDate:
+      type: datetime
+    transactionReference:
+      type: string
+      length: 255
+    remarks:
+      type: string
+      length: 255
+      nullable: true
+    status:
+      type: string
+      length: 100
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: transactions
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

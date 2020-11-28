@@ -1,0 +1,43 @@
+AppBundle\Entity\CompanySubscription:
+  type: entity
+  table:  companies_subscription
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    subscriptionDate:
+      type: datetime
+    expiryDate:
+      type: datetime
+    isActive:
+      type: boolean
+    expiryReminder:
+      type: integer
+      length: 1
+      nullable: true
+      options:
+        default:  0
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: subscription
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    tier:
+      targetEntity: Tier
+      inversedBy: null
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    receipt:
+      targetEntity: CompanyDocumentation
+      inversedBy: null
+      joinColumn:
+        receipt_id:
+          referencedColumnName: id
+        onDelete: CASCADE

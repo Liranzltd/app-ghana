@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133880339-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-133880339-1');
+        </script>
+        <meta charset="UTF-8" />
+        <meta name='keywords' content='africa, partnership, platform, social, tenders, ghana, business linkage, business growth, investment in ghana'>
+        <meta name='description' content="The African Partner Pool brings businesses together. It connects companies across sectors in Ghana with the local business partners they need to get the job done.">
+        <meta name='author' content='Invest in Africa'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Fonts Online -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <!-- Style Sheet -->
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/owl.carousel.css?ver='~random(5)) }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/main-style.css?ver='~random(5)) }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css?ver='~random(5)) }}">
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/custom.css?ver='~random(5)) }}">
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+      <div id="main-wrapper">
+        {% include 'header.html.twig' %}
+        <div class="container">
+          <div class="container pt60">
+            <div class="content">
+              <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="{{ path('supplier-dashboard-requests') }}">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                                <i class="fas fa-inbox text-gray fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">Requests</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="{{ path('my-companies') }}">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                              <i class="fas fa-briefcase text-gray fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">My Companies</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="{{ path('supplier-team-members') }}">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                              <i class="fas fa-users text-gray fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">Colleagues</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="{{ path('register-company') }}">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                              <i class="far fa-plus-square text-gray fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">Add Company</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="{{ path('supplier-dashboard-documents') }}">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                              <i class="fas fa-file-invoice fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">Documents</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="{{ path('supplier-add-to-team') }}">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                              <i class="far fa-plus-square text-gray fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">Add Colleague</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- <div class="col-xs-6 col-sm-4 col-md-2">
+                    <a class="block block-rounded text-center" href="https://kenya-app.hivebrite.com/saml/sso">
+                        <div class="block-content">
+                            <p class="mt-5 mb-10">
+                              <i class="fas fa-user-friends text-gray fa-3x"></i>
+                            </p>
+                            <p class="font-w600 font-size-sm text-uppercase">Community</p>
+                        </div>
+                    </a>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="page-header">
+            {% block logo %}{% endblock %}<h1 class="title">{% block pagetitle %}{% endblock %}<span>{% block crumbtitle %}{% endblock %}</span></h1>
+          </div>
+        </div>
+        <section class="profile-company-content main-user pt60">
+        {% block body %}{% endblock %}
+        </section>
+      </div>
+      {% include 'footer.html.twig' %}
+      {% block javascripts %}{% endblock %}
+      <!--  Bootstrap Table Plugin    -->
+    	<script src="{{ asset('bundles/app/js/bootstrap-table.js') }}"></script>
+      <script>
+        var $table = $('#bootstrap-table');
+        $().ready(function(){
+            window.operateEvents = {
+                'click .view': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    swal('You click view icon, row: ', info);
+                    console.log(info);
+                },
+                'click .edit': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    swal('You click edit icon, row: ', info);
+                    console.log(info);
+                },
+                'click .remove': function (e, value, row, index) {
+                    console.log(row);
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: [row.id]
+                    });
+                }
+            };
+
+            $table.bootstrapTable({
+                toolbar: ".tb",
+                clickToSelect: true,
+                showRefresh: false,
+                search: true,
+                showToggle: true,
+                showColumns: false,
+                pagination: true,
+                searchAlign: 'left',
+                pageSize: 8,
+                clickToSelect: false,
+                pageList: [8,10,25,50,100],
+
+                formatShowingRows: function(pageFrom, pageTo, totalRows){
+                    //do nothing here, we don't want to show the text "showing x of y from..."
+                },
+                formatRecordsPerPage: function(pageNumber){
+                    return pageNumber + " rows visible";
+                },
+                icons: {
+                    toggle: 'fas fa-list',
+                    columns: 'fas fa-columns',
+                    detailOpen: 'fa fa-plus-circle',
+                    detailClose: 'ti-close'
+                }
+            });
+
+            //activate the tooltips after the data table is initialized
+            $('[rel="tooltip"]').tooltip();
+
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView');
+            });
+    });
+    </script>
+    </body>
+</html>

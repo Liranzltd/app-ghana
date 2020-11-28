@@ -1,0 +1,73 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block pagetitle %}Colleagues{% endblock %}
+{% block crumbtitle %}In this section, you can add colleagues who will have access to the APP   {% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="content">
+    <div class="container">
+      <table id="bootstrap-table" class="table">
+          <thead>
+              <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="details">Name</th>
+                <th data-field="email" data-sortable="true">Email</th>
+                <th data-field="tel" data-sortable="true">Tel</th>
+                <th data-field="mobile" data-sortable="true">Mobile</th>
+                <th data-field="status" data-sortable="true">Status</th>
+                <th data-field="isAdmin" data-sortable="true">isAdmin</th>
+                <th data-field="totalResponses">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% set memberArray = [] %}
+          {% for mship in member.membership %}
+            {% for membership in mship.company.teamMembers %}
+              {% if membership.member.id not in memberArray %}
+                {%  set memberArray = memberArray|merge([membership.member.id]) %}
+                <tr data-id="{{ member.id }}">
+                  <td></td>
+                  <td>{{ membership.member.firstName ~ ' ' ~ membership.member.surname }}</td>
+                  <td>{{ membership.member.email }}</td>
+                  <td>{{ membership.member.tel }}</td>
+                  <td>{{ membership.member.mobile }}</td>
+                  <td>{{ membership.member.user.enabled == 0 ? '<button class="btn btn-danger btn-xs btn-fill">Disabled</button>' : '<button class="btn btn-success btn-xs btn-fill">Active</button>' }}</td>
+                  <td>{{ membership.isAdmin == 1 ? '<i class="material-icons">done</i>' : '' }}</td>
+                  {% if membership.isAdmin == 1 %}
+                  <td>
+                    <button class="btn btn-danger remove-member" data-id="{{ membership.member.id }}" id="disable_{{ membership.member.id }}">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </td>
+                  {% endif %}
+                </tr>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+
+    $(document).on('click','.remove-member',function(e)
+    {
+      e.preventDefault();
+      $.ajax(
+      {
+        url: '{{ path('remove-from-team') }}',
+        data: { member: $(this).data('id'), type: 'supplier' },
+        success: function(response)
+        {
+          location.reload();
+        }
+      });
+    });
+  </script>
+{% endblock %}

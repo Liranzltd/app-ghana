@@ -1,0 +1,15 @@
+AppBundle\Entity\UserGuideTopic:
+  type: entity
+  table:  user_guide_topics
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    position:
+      type: integer
+      length: 2

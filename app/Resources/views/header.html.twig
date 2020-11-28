@@ -1,0 +1,62 @@
+<!-- Top Toolbar -->
+<div class="toolbar">
+  <div class="uou-block-1a blog">
+    <div class="container">
+    <!--
+      <div class="search"> <a href="#" class="toggle fa fa-search"></a>
+        <form action="#">
+          <input type="text" class="search-input" placeholder="Search ...">
+          <input type="submit" value="">
+        </form>
+      </div>
+    -->
+      <ul class="social">
+        <li><a href="https://www.facebook.com/investinafrica1/" class="fa fa-facebook" target="_blank"></a></li>
+        <li><a href="https://twitter.com/investin_africa" class="fa fa-twitter" target="_blank"></a></li>
+        <li><a href="https://www.youtube.com/user/lnvestlnAfrica" class="fa fa-youtube" target="_blank"></a></li>
+      </ul>
+      <ul class="authentication">
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li><a href="#">Welcome {{ app.user.member.firstname }}</a></li>
+        <li><a href="/portal" title="Dashboard">Dashboard</a></li>
+        <li><a href="/portal/notifications" title="Notifications">{{ render(controller('AppBundle:Portal:notificationsMenu')) }}</a></li>
+        <li><a href="/logout">Sign Out</a></li>
+      {% else %}
+        <li><a href="/connect/azure">Login</a></li>
+        <li><a href="/get-started">Join</a></li>
+      {% endif %}
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- end .uou-block-1a -->
+</div>
+<!-- end toolbar -->
+<div class="box-shadow-for-ui">
+  <div class="uou-block-2b">
+    <div class="container">
+      <a href="/" class="logo"><img src="{{ asset('bundles/app/images/app-logo.png') }}" alt=""></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+      {# <a href="/" class="logo"><img src="{{ asset('bundles/app/images/iia-logo.png') }}" alt=""></a> #}
+      <nav class="nav">
+        <ul class="sf-menu">
+          <!-- <li class="active"><a href="/"><i class="fa  fa-home"></i></a></li> -->
+          <li> <a href="">About</a>
+            <ul>
+              <li><a href="/about/app">About APP</a></li>
+              <li><a href="/services">Our Services</a></li>
+              <li><a href="/about/iia">About Invest in Africa</a></li>
+              <!--<li><a href="/business-excellence-programme">Business Excellence Programme</a></li>-->
+            </ul>
+          </li>
+          <li> <a href="/how-it-works">Join Now</a></li>
+          <li><a href="/meet-the-buyers">Buyers</a></li>
+          <li><a href="/tenderspace">Tenders</a></li>
+          <li><a href="/network-hub">Network Hub</a></li>
+          <li><a href="/business-growth-hub">Business Growth Hub</a></li>
+          <li><a href="/articles">News and Media</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- end .uou-block-2b -->
+</div>

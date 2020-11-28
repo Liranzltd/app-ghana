@@ -1,0 +1,61 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Request Details{% endblock %}
+{% block leadingtext %}{{ request.requestType }}{% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/our-partners.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+{% block body %}
+<div id="page-body">
+    <div class="flat-row pad-top0px">
+      <div class="container">
+        <div class="row">
+          <div class="flat-wrapper">
+            <div class="col-lg-10 col-lg-offset-1 ">
+              <main class="post-wrap">
+                <div class="product-shop">
+                    <h2 class="product-name">
+                        {{ request.name }}
+                    </h2> <!-- /.product-name -->
+                    <div class="rating row mb30">
+                      <div class="col-lg-3">
+                        <img src="{{  asset('uploads/documents/'~request.buyer.name~'/'~request.buyer.logo )}}" alt="images" />
+                      </div>
+                      <div class="price-box col-lg-9">
+                        <div class="pull-right">
+                          <span class="amount text-right"><b>Deadline:</b> {{ request.deadline|date('D M j G:i Y') }}</span><br/>
+                          <span class="amount text-right"><b>Published on:</b> {{ request.publishDate|date('D M j Y') }}</span>&nbsp;&nbsp;<span><!-- |</span>&nbsp;&nbsp;<a href="#" class="woocommerce-review-link">{{ request.responsesTotal }} Responses Received&nbsp;&nbsp; -->
+                        </div>
+                      </div> <!-- /.price-box -->
+                    </div> <!-- /.rating -->
+
+                    <div class="desc std">
+                      <h4>Request Details Summary</h4>
+                      <div id="descr">{{ request.description|raw }}</div>
+                      {% if canbid %}
+                      <div id="descr">{{ request.submissionInstructions|raw }}</div>
+                        {% if request.documents|length > 0 %}
+                          <h4>Additional Documentation</h4>
+                          <ul class="list-with-number">
+                          {% for document in request.documents %}
+                          <li><a href="{{ path('downloadBuyerDocument',{'id': document.id }) }}">{{ document.name }}</a></li>
+                          {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div> <!-- /.desc.std -->
+                    </div> <!-- /.end of tender details -->
+                    <a href="{{ path('respond-to-request',{'slug': request.slug}) }}" class="btn mb20 btn-small btn-transparent-primary">Respond to request</a>
+                    {% else %}
+                    <p class="has-error pt20"><em>Your company may not be eligible to bid for this request or the request has closed / cancelled. Please contact us if you feel this is in error.</em></p>
+                    {% endif %}
+              </main> <!-- /.post-wrap -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+
+{% endblock %}

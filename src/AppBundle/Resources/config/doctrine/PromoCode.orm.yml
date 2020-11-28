@@ -1,0 +1,35 @@
+AppBundle\Entity\PromoCode:
+  type: entity
+  table:  promo_codes
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    code:
+      type: string
+      length: 10
+      unique: true
+    amountOff:
+      type: decimal
+      scale: 2
+      precision: 6
+    isPercentage:
+      type: boolean
+      options:
+        default:  false
+    expiryDate:
+      type: datetime
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  oneToMany:
+    companies:
+      targetEntity: Company
+      mappedBy: promoCode
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

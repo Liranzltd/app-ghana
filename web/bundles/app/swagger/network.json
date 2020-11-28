@@ -1,0 +1,53 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.1",
+        "title": "Twitter REST API"
+    },
+    "host": "kenya-app.hivebrite.com",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "oauth": {
+            "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "/?response_type=code&client_id=10e66c4f108212717f2871efe30c258e527a7cd3b84e6432f306ef132f6c6d45&redirect_uri=CALLBACK_URL&scope=read",
+            "scopes": {
+                "basic": "to read any and all data related to twitter\n"
+            }
+        }
+      }
+    },
+    "security": [
+        {
+            "oauth": [
+                "basic"
+            ]
+        }
+    ],
+    "paths":  {
+      "/api/admin/v1/me":
+      {
+        "get": {
+          "type": "object",
+          "description": "<h1 id=\"get-network-information\">Get network information</h1>\n<p>Return this network information.</p>",
+          "security": [
+              {
+                "oauth": [
+                    "basic"
+                  ]
+              }
+            ]
+        }
+      }
+    }
+}

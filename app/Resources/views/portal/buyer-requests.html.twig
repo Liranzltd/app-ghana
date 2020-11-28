@@ -1,0 +1,242 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ buyer.name }} APP: Requests{% endblock %}
+{% block crumbtitle %}In this section, you can post and edit requests to APP suppliers, view responses and update individual response status   {% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="card">
+          <div class="card-content">
+            {% if requests|length >= 1 %}
+              <div class="tb">
+                  <!--Here you can write extra buttons/actions for the toolbar-->
+              </div>
+              <table id="bootstrap-table" class="table">
+                  <thead>
+                      <tr>
+                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-field="details">Details</th>
+                        <th data-field="publishDate" data-sortable="true">Created Date</th>
+                        <th data-field="deadline" data-sortable="true">Deadline</th>
+                        <th data-field="status" data-sortable="true">Status</th>
+                        <th data-field="totalResponses" data-sortable="true">Responses</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {% for request in requests %}
+                      <tr>
+                        <td></td>
+                        <td class="td-product">
+                          <a href="{{ path('buyer-edit-request',{'slug': request.slug}) }}">
+                            <strong>{{ request.name }}</strong>
+                          </a>
+                          <p><small>
+                          {{ request.requestType }}</small></p>
+                        </td>
+                        <td>
+                            {{ request.createdAt|date('d/m/Y') }}
+                        </td>
+                        <td>
+                            {{ request.deadline|date('d/m/Y') }}
+                        </td>
+                        <td>
+                          {% set latest = request.updates.last %}
+                            {% if not request.isPublished %}
+                              <button class="btn btn-default btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                            {% elseif request.isPublished and latest.status == 'Published' %}
+                              <button class="btn btn-success btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                            {% elseif request.isPublished and latest.status == 'Under Review' %}
+                              <button class="btn btn-info btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                            {% elseif request.isPublished and latest.status == 'Awarded' %}
+                              <button class="btn btn-primary btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                            {% else %}
+                              <button class="btn btn-danger btn-xs btn-ws btn-fill">{{ request.status }}</button>
+                            {% endif %}
+
+                        </td>
+                        <td class="text-center">
+                            {{ request.responses|length }}
+                        </td>
+                      </tr>
+                  {% endfor %}
+                    </tbody>
+                  </table>
+              {% else %}
+                <h4>No requests posted yet</h4>
+              {% endif %}
+            </div>
+            </div><!--  end card  -->
+        </div>
+  </div>
+</div>
+<div id="info_modal" class="modal modal__bg">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <div class="modal__title">
+          <h2 class="modal__title-text"></h2>
+        </div>
+      </div>
+      <div class="modal__text">
+        <div id="modal-content"></div>
+      </div>
+      <div class="modal__footer">
+        <a class="mdl-button mdl-button--colored mdl-js-button  modal__close">
+          &nbsp;
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+  <link href="{{ asset('bundles/app/css/bootstrap-table.css') }}" rel="stylesheet"/>
+  {{ parent() }}
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <!--  Bootstrap Table Plugin    -->
+	<script src="{{ asset('bundles/app/js/bootstrap-table.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-selectpicker.js') }}"></script>
+  <script>
+    $('.suppliers').on('click',function()
+    {
+      var response;
+      response = fetchInfo('suppliers',$(this).data('id'));
+      $('.modal__title-text').html('<h5 class="headline">Suppliers invited</h5>');
+      var html = '<ol>';
+
+      if(response.count > 0)
+      {
+        for(var i = 0;i<response.count;i++)
+        {
+          html = html + '<li>'+response.items[i].name+'</li>';
+        }
+      }
+      else
+      {
+        html = 'No Suppliers invited';
+      }
+      html = html + '</ol>';
+      $('#modal-content').html(html);
+    });
+
+    $('.publish').on('click',function()
+    {
+      $('#p1').removeClass('hidden');
+      $.ajax(
+      {
+        url: '{{ path('publish-request') }}',
+        data: { request: $(this).data('id') },
+        success:  function()
+        {
+          $('#p1').addClass('hidden');
+        }
+      });
+    });
+
+    function fetchInfo(type,request)
+    {
+      var ret;
+      $.ajax(
+      {
+        url: '{{ path('fetch-info') }}',
+        data: { requestType:  type, id: request},
+        type: 'POST',
+        async: false,
+        success: function(response)
+        {
+          ret =  response;
+        }
+      });
+      return ret;
+    }
+    var $table = $('#bootstrap-table');
+
+	        function operateFormatter(value, row, index) {
+	            return [
+					'<div class="table-icons">',
+		                '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
+							'<i class="ti-image"></i>',
+						'</a>',
+		                '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
+		                    '<i class="ti-pencil-alt"></i>',
+		                '</a>',
+		                '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+		                    '<i class="ti-close"></i>',
+		                '</a>',
+					'</div>',
+	            ].join('');
+	        }
+
+	        $().ready(function(){
+	            window.operateEvents = {
+	                'click .view': function (e, value, row, index) {
+	                    info = JSON.stringify(row);
+
+	                    swal('You click view icon, row: ', info);
+	                    console.log(info);
+	                },
+	                'click .edit': function (e, value, row, index) {
+	                    info = JSON.stringify(row);
+
+	                    swal('You click edit icon, row: ', info);
+	                    console.log(info);
+	                },
+	                'click .remove': function (e, value, row, index) {
+	                    console.log(row);
+	                    $table.bootstrapTable('remove', {
+	                        field: 'id',
+	                        values: [row.id]
+	                    });
+	                }
+	            };
+
+	            $table.bootstrapTable({
+	                toolbar: ".tb",
+	                clickToSelect: true,
+	                showRefresh: false,
+	                search: true,
+	                showToggle: true,
+	                showColumns: false,
+	                pagination: true,
+	                searchAlign: 'left',
+	                pageSize: 8,
+	                clickToSelect: false,
+	                pageList: [8,10,25,50,100],
+
+	                formatShowingRows: function(pageFrom, pageTo, totalRows){
+	                    //do nothing here, we don't want to show the text "showing x of y from..."
+	                },
+	                formatRecordsPerPage: function(pageNumber){
+	                    return pageNumber + " rows visible";
+	                },
+	                icons: {
+	                    toggle: 'fas fa-list',
+	                    columns: 'fas fa-columns',
+	                    detailOpen: 'fa fa-plus-circle',
+	                    detailClose: 'ti-close'
+	                },
+
+	            });
+
+
+
+	            //activate the tooltips after the data table is initialized
+	            $('[rel="tooltip"]').tooltip();
+
+	            $(window).resize(function () {
+	                $table.bootstrapTable('resetView');
+	            });
+
+              $table.on('search.bs.table', function (e, text) {
+                  console.log('Event: search.bs.table');
+              });
+			});
+  </script>
+{% endblock %}

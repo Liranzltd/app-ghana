@@ -1,0 +1,721 @@
+<?php
+
+namespace AppBundle\Entity;
+use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Member
+ */
+class Member
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     */
+    private $middleName;
+
+    /**
+     * @var string
+     */
+    private $surname;
+
+    /**
+     * @var string
+     */
+    private $gender;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $mobile;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateOfBirth;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->registeredCompanies = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return Member
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set middleName
+     *
+     * @param string $middleName
+     *
+     * @return Member
+     */
+    public function setMiddleName($middleName)
+    {
+        $this->middleName = $middleName;
+
+        return $this;
+    }
+
+    /**
+     * Get middleName
+     *
+     * @return string
+     */
+    public function getMiddleName()
+    {
+        return $this->middleName;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return Member
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Member
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Member
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     *
+     * @return Member
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * Set dateOfBirth
+     *
+     * @param \DateTime $dateOfBirth
+     *
+     * @return Member
+     */
+    public function setDateOfBirth($dateOfBirth)
+    {
+        $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOfBirth
+     *
+     * @return \DateTime
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Member
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Member
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+
+
+    public function getCompanies()
+    {
+        $memberships = $this->getMembership();
+        $companies = [];
+        foreach ($memberships as $membership) {
+          array_push($companies,$membership->getCompany());
+        }
+        return new ArrayCollection($companies);
+    }
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     *
+     * @return Member
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        if($this->createdAt == null)
+        {
+          $this->createdAt = new \DateTime();
+        }
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+      $this->updatedAt = new \DateTime();
+    }
+    /**
+     * @var boolean
+     */
+    private $isPaidUp = false;
+
+
+    /**
+     * Set isPaidUp
+     *
+     * @param boolean $isPaidUp
+     *
+     * @return Member
+     */
+    public function setIsPaidUp($isPaidUp)
+    {
+        $this->isPaidUp = $isPaidUp;
+
+        return $this;
+    }
+
+    /**
+     * Get isPaidUp
+     *
+     * @return boolean
+     */
+    public function getIsPaidUp()
+    {
+        return $this->isPaidUp;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $registeredCompanies;
+
+
+    /**
+     * Add registeredCompany
+     *
+     * @param \AppBundle\Entity\Company $registeredCompany
+     *
+     * @return Member
+     */
+    public function addRegisteredCompany(\AppBundle\Entity\Company $registeredCompany)
+    {
+        $this->registeredCompanies[] = $registeredCompany;
+
+        return $this;
+    }
+
+    /**
+     * Remove registeredCompany
+     *
+     * @param \AppBundle\Entity\Company $registeredCompany
+     */
+    public function removeRegisteredCompany(\AppBundle\Entity\Company $registeredCompany)
+    {
+        $this->registeredCompanies->removeElement($registeredCompany);
+    }
+
+    /**
+     * Get registeredCompanies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRegisteredCompanies()
+    {
+        return $this->registeredCompanies;
+    }
+    /**
+     * @var string
+     */
+    private $dhot;
+
+
+    /**
+     * Set dhot
+     *
+     * @param string $dhot
+     *
+     * @return Member
+     */
+    public function setDhot($dhot)
+    {
+        $this->dhot = $dhot;
+
+        return $this;
+    }
+
+    /**
+     * Get dhot
+     *
+     * @return string
+     */
+    public function getDhot()
+    {
+        return $this->dhot;
+    }
+    /**
+     * @var integer
+     */
+    private $hiveBriteId;
+
+
+    /**
+     * Set hiveBriteId
+     *
+     * @param integer $hiveBriteId
+     *
+     * @return Member
+     */
+    public function setHiveBriteId($hiveBriteId)
+    {
+        $this->hiveBriteId = $hiveBriteId;
+
+        return $this;
+    }
+
+    /**
+     * Get hiveBriteId
+     *
+     * @return integer
+     */
+    public function getHiveBriteId()
+    {
+        return $this->hiveBriteId;
+    }
+
+    public function hasPaidUpCompany()
+    {
+      $hasPaidUp = false;
+      foreach($this->getCompanies() as $company)
+      {
+        if($company->getIsFullyPaidUp())
+        {
+          $hasPaidUp = true;
+        }
+      }
+      return $hasPaidUp;
+    }
+    /**
+     * @var \AppBundle\Entity\SourceDoggSSO
+     */
+    private $sdsso;
+
+
+    /**
+     * Set sdsso
+     *
+     * @param \AppBundle\Entity\SourceDoggSSO $sdsso
+     *
+     * @return Member
+     */
+    public function setSdsso(\AppBundle\Entity\SourceDoggSSO $sdsso = null)
+    {
+        $this->sdsso = $sdsso;
+
+        return $this;
+    }
+
+    /**
+     * Get sdsso
+     *
+     * @return \AppBundle\Entity\SourceDoggSSO
+     */
+    public function getSdsso()
+    {
+        return $this->sdsso;
+    }
+
+    public function companiesAsString()
+    {
+      $cos = '';
+      foreach($this->getCompanies() as $compan)
+      {
+        $cos .= $compan->getName().' ,';
+      }
+      return $cos;
+    }
+
+    public function __toString()
+    {
+      return $this->getFirstName() == null ? 'New' : $this->getFirstName() .' '.$this->getSurname();
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $activities;
+
+
+    /**
+     * Add activity
+     *
+     * @param \AppBundle\Entity\UserActivity $activity
+     *
+     * @return Member
+     */
+    public function addActivity(\AppBundle\Entity\UserActivity $activity)
+    {
+        $this->activities[] = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Remove activity
+     *
+     * @param \AppBundle\Entity\UserActivity $activity
+     */
+    public function removeActivity(\AppBundle\Entity\UserActivity $activity)
+    {
+        $this->activities->removeElement($activity);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+    /**
+     * @var string|null
+     */
+    private $tel;
+
+
+    /**
+     * Set tel.
+     *
+     * @param string|null $tel
+     *
+     * @return Member
+     */
+    public function setTel($tel = null)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel.
+     *
+     * @return string|null
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $membership;
+
+
+    /**
+     * Add membership.
+     *
+     * @param \AppBundle\Entity\CompanyMembership $membership
+     *
+     * @return Member
+     */
+    public function addMembership(\AppBundle\Entity\CompanyMembership $membership)
+    {
+        $this->membership[] = $membership;
+
+        return $this;
+    }
+
+    /**
+     * Remove membership.
+     *
+     * @param \AppBundle\Entity\CompanyMembership $membership
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMembership(\AppBundle\Entity\CompanyMembership $membership)
+    {
+        return $this->membership->removeElement($membership);
+    }
+
+    /**
+     * Get membership.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMembership()
+    {
+        return $this->membership;
+    }
+    /**
+     * @var string|null
+     */
+    private $azureId;
+
+
+    /**
+     * Set azureId.
+     *
+     * @param string|null $azureId
+     *
+     * @return Member
+     */
+    public function setAzureId($azureId = null)
+    {
+        $this->azureId = $azureId;
+
+        return $this;
+    }
+
+    /**
+     * Get azureId.
+     *
+     * @return string|null
+     */
+    public function getAzureId()
+    {
+        return $this->azureId;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $buyerMembership;
+
+
+    /**
+     * Add buyerMembership.
+     *
+     * @param \AppBundle\Entity\BuyerMembership $buyerMembership
+     *
+     * @return Member
+     */
+    public function addBuyerMembership(\AppBundle\Entity\BuyerMembership $buyerMembership)
+    {
+        $this->buyerMembership[] = $buyerMembership;
+
+        return $this;
+    }
+
+    /**
+     * Remove buyerMembership.
+     *
+     * @param \AppBundle\Entity\BuyerMembership $buyerMembership
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeBuyerMembership(\AppBundle\Entity\BuyerMembership $buyerMembership)
+    {
+        return $this->buyerMembership->removeElement($buyerMembership);
+    }
+
+    /**
+     * Get buyerMembership.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBuyerMembership()
+    {
+        return $this->buyerMembership;
+    }
+}

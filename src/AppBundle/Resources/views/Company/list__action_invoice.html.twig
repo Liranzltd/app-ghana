@@ -1,0 +1,12 @@
+<a class="btn btn-sm" id="generateInvoice-{{ object.id }}" href="" data-id="{{ object.id }}">Generate Invoice</a>
+<script>
+  $(document).ready(function() {
+    $('#generateInvoice-{{ object.id }}').on("click",function(e){
+      e.preventDefault();
+      $.ajax({
+        url:  '{{ path('generateInvoice') }}',
+        data: {id: $(this).data('id')}
+      });
+    })
+  });
+</script>

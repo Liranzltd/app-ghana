@@ -1,0 +1,24 @@
+AppBundle\Entity\CompanyGAT:
+  type: entity
+  table:  companies_gross_annual_turnover
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    mwaka:
+      type: integer
+      length: 4
+    turnover:
+      type: decimal
+      scale:  2
+      precision:  12
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: gat
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE

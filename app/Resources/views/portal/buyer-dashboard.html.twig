@@ -1,0 +1,55 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ buyer.name }}'s APP Dashboard{% endblock %}
+{% block crumbtitle %}This is an overview of your account, please click on any button to interact with the APP platform {% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('bundles/app/css/dashboard.css?ver='~random(5)) }}">
+{% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="container">
+    <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
+        <div class="col-md-4">
+            <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="py-20 text-center">
+                        <div class="mb-10">
+                            <i class="fa fa-user-circle-o fa-3x text-corporate"></i>
+                        </div>
+                        <div class="font-size-h4 font-w600">{{ suppliers }} Suppliers</div>
+                        <!-- <div class="text-muted">2 were added today!</div> -->
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="py-20 text-center">
+                        <div class="mb-10">
+                            <i class="fa fa-calendar fa-3x text-elegance"></i>
+                        </div>
+                        <div class="font-size-h4 font-w600">{{ buyer.postedRequests|length }} Direct Requests</div>
+                        <!-- <div class="text-muted">4 closing soon!</div> -->
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="py-20 text-center">
+                        <div class="mb-10">
+                            <i class="fa fa-sitemap fa-3x text-primary"></i>
+                        </div>
+                        <div class="font-size-h4 font-w600">{{ buyer.teamMembers|length }} team members</div>
+                        <!-- <div class="text-muted">1 currently online</div> -->
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

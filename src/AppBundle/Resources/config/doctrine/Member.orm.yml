@@ -1,0 +1,70 @@
+AppBundle\Entity\Member:
+  type: entity
+  table:  members
+  repositoryClass: AppBundle\Repository\MemberRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    firstName:
+      type: string
+      length: 30
+    surname:
+      type: string
+      length: 255
+    gender:
+      type: string
+      length: 6
+    email:
+      type: string
+      length: 255
+    mobile:
+      type: string
+      length: 255
+      nullable: true
+    tel:
+      type: string
+      length: 255
+      nullable: true
+    dateOfBirth:
+      type: date
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    hiveBriteId:
+      type: integer
+      length: 8
+      nullable: true
+    azureId:
+      type: string
+      length: 40
+      nullable: true
+  oneToMany:
+    registeredCompanies:
+      targetEntity: Company
+      mappedBy: registeredBy
+    activities:
+      targetEntity: UserActivity
+      mappedBy: member
+    membership:
+      targetEntity: CompanyMembership
+      mappedBy: member
+    buyerMembership:
+      targetEntity: BuyerMembership
+      mappedBy: member
+  oneToOne:
+    user:
+      targetEntity:   Application\Sonata\UserBundle\Entity\User
+      inversedBy: member
+      joinColumn:
+        user_id:
+            referencedColumnName:   id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue]
+      preUpdate: [setUpdatedAtValue]

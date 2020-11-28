@@ -1,0 +1,20 @@
+AppBundle\Entity\IdEntry:
+  type: entity
+  table:  id_entries
+  id:
+    id:
+      type: string
+      length: 255
+      nullable: false
+      generator:
+        strategy: NONE
+  fields:
+    entityId:
+      type: string
+      length: 255
+      nullable: false
+      generator:
+        strategy: NONE
+    expiryTimestamp:
+      type: integer
+      nullable: false

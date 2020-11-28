@@ -1,0 +1,132 @@
+{% extends "AppBundle::standard_layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/app/css/dataTables.bootstrap.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="dasheader">
+  APP Control panel
+  <small> - User Dashboard</small>
+</h1>
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{ members|length }}</h3>
+
+        <p>Total Users</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-stalker"></i>
+      </div>
+      <a href="{{ path('admin_app_member_list') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{ yet_to_activate|length }}</h3>
+
+        <p>Active</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-mouse"></i>
+      </div>
+      <a href="{{ path('admin_app_member_list',{'filter[user__enabled][value]':1}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{ online_users|length}}</h3>
+
+        <p>Online</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{ members|length - yet_to_activate|length}}</h3>
+
+        <p>Not activated</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-pie-graph"></i>
+      </div>
+      <a href="{{ path('admin_app_member_list',{'filter[user__enabled][value]':2}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Inactive Accounts</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="inactive" class="table table-bordered table-striped datatables" data-empty="No verified companies">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>APP Registration Date</th>
+            <th>Last Log in</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if yet_to_activate|length > 0 %}
+          {% for user in yet_to_activate %}
+          <tr>
+            <td><a href="{{ path('admin_app_member_edit',{id:  user.member.id }) }}">{{  user.member }}</a></td>
+            <td>{% set company =  user.member.companies|first %}{{ company != '' ? company.name : '' }}</td>
+            <td>{{  user.member.createdAt|date('d/m/Y h:i A') }}</td>
+            <td>{{ user.lastLogin|date('d/m/Y h:i A') }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="6">No inactive</td>
+          </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{asset('bundles/app/js/datatables.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('bundles/app/js/dataTables.bootstrap.min.js')}}"></script>
+  <script>
+    $(function() {
+      $('.datatables').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "language": {
+          "emptyTable": $(this).data('empty')
+        }
+      });
+    });
+  </script>
+{% endblock %}

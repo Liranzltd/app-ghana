@@ -1,0 +1,512 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ request.buyer.name }}'s' APP: Edit Request{% endblock %}
+{% block crumbtitle %}{{ request.name }} {% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="content">
+    <div class="container">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-content">
+            <form class="mdl-grid" name="new-request" action="{{ path('save-request') }}"  enctype="multipart/form-data" method="POST">
+              <div class="row">
+                <div class="left-vertical-tabs">
+                  <ul class="nav nav-stacked" role="tablist">
+                      <li class="active">
+                          <a href="#info" role="tab" data-toggle="tab">
+                               General Request Infomation
+                          </a>
+                      </li>
+                      <li>
+                         <a href="#responses" role="tab" data-toggle="tab">
+                              Responses
+                         </a>
+                      </li>
+                  </ul>
+                </div>
+                <div class="right-text-tabs">
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="info">
+                      <div class="form-group">
+                        <label>Name of request</label>
+                        <input type="text" id="name" name="name" value="{{ request.name }}" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Type of Request</label>
+                          <select class="selectpicker" data-style="btn btn-danger btn-block" title="Single Select" data-size="7" id="requestType" name="requestType">
+                            <option value=""></option>
+                            {% for type in requestType %}
+                            <option value="{{ type.id }}" {{ request.requestType.id == type.id ? 'selected' : '' }}>{{ type.name }}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Request summary</label>
+                        <textarea class="form-control" placeholder="Provide summary of the request for suppliers" rows= "8" id="summary" name="summary">{{ request.summary }}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>Request Details</label>
+                        <textarea class="form-control" placeholder="Provide summary of the request for suppliers" rows= "15" id="description" name="description" required>{{ request.description }}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>Submission Instructions</label>
+                        <textarea class="form-control" placeholder="How are suppliers to submit their responses?" rows= "15" id="submissionInstructions" name="submissionInstructions" required>{{ request.submissionInstructions }}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>Deadline</label>
+    										<input type="text" class="form-control datetimepicker" id="deadline" name="deadline" required value="{{ request.deadline|date('d/m/Y H:i') }}"/>
+    									</div>
+                      <div class="checkbox">
+  									   <input name="isPublic" id="isPublic" {{ request.isPublic ? 'checked' : '' }} type="checkbox">
+  									   <label for="isPublic">
+  										    Allow all relevant suppliers in the APP to join?
+  									    </label>
+					             </div>
+                       <div class="row">
+                        <div class="col-lg-12">
+                            <h5>Sectors</h5>
+                            {% for sector in sectors %}
+                            <div class="checkbox col-md-4 col-xs-12 col-sm-6">
+        									   <input id="sector-{{sector.id}}" type="checkbox" name="sectors[]" value="{{sector.name}}" {{ sector in request.tags ? 'checked' : '' }}>
+        									   <label for="sector-{{sector.id}}">
+        										    {{sector.name}}
+        									    </label>
+      					             </div>
+                            {% endfor %}
+                          </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-lg-12" id="docs">
+                            <h5>Documents</h5>
+                            {% for document in request.documents %}
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Document name or title</label>
+                                    <input type="text" name="docs[filename][]" value="{{ document.name }}" class="form-control">
+                                </div>
+                              </div>
+                              <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Attach file</label>
+                                    <input type="file" id="FileAttachment" class="upload" name="docs[FileAttachment][]">
+                                    <input type="text" class="fileuploadurl" readonly placeholder="Maximum file size is 32MB" name="docs[fileuploadurl][]">
+                                </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <a href="#" class="btn btn-xs btn-fill download" data-id="{{document.id }}" id="download-{{ document.id }}"><i class="fas fa-download"></i></a>
+                                <button class="btn btn-xs btn-fill delete" data-id="{{document.id }}" id="delete-{{ document.id }}"><i class="far fa-trash-alt"></i></button>
+                              </div>
+                            </div>
+                            {% endfor %}
+                          </div>
+                       </div>
+                       <div class="row">
+                         <div class="col-lg-12">
+                          <button type="button" class="btn btn-wd btn-danger btn-xs" id="add-upload">
+                               <span class="btn-label">
+                                   <i class="fas fa-plus"></i>
+                               </span>
+                               Add Document
+                           </button>
+                         </div>
+                       </div>
+                       <br/>
+                       <div class="row">
+                        <div class="col-lg-12">
+                           <button type="submit" class="btn btn-wd btn-fill btn-info">
+                              <span class="btn-label">
+                                <i class="fa fa-check"></i>
+                                </span>
+                                Update
+                          </button>
+                          {% if request.status == 'Draft' %}
+                           <button type="submit" class="btn btn-fill btn-wd btn-success" id="publish" data-id="{{ request.id }}">
+                              <span class="btn-label">
+                                <i class="fa fa-check"></i>
+                                </span>
+                                Publish
+                          </button>
+                           <button type="submit" class="btn btn-wd btn-fill btn-danger" id="deleteRequest" data-id="{{ request.id }}">
+                              <span class="btn-label">
+                                <i class="fa fa-trash-alt"></i>
+                                </span>
+                                Delete
+                          </button>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="responses">
+                      <h5>Supplier Responses</h5>
+                      {% if request.responses|length > 0 %}
+                        {% for response in request.responses %}
+                          <h2 class="content-heading text-black">{{ response.company.name }}</h2>
+                          <div class="form-group">
+                            <label class="control-label">Response Date</label>
+                            {{ response.responseDate|date('d/m/Y H:i') }}
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Status</label>
+                            {{ response.status }}
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Supplier Remarks</label>
+                            {{ response.supplierRemarks|raw }}
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Accompanying Documents</label>
+                            <ol>
+                            {% for document in response.documents %}
+                              <li><a href="{{ path('downloadResponseDocument',{id: document.id}) }}">{{ document.name }}</a></li>
+                            {% endfor %}
+                            </ol>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Additional Links</label>
+                            <a href="{{ path('supplier-profile',{"id": response.company.id, "buyer": request.buyer.id}) }}" class="btn btn-danger">View Supplier Profile</a>
+                            <a href="#" class="btn btn-danger review" class="review" id="review-{{ response.id }}" data-title="Review {{ response.company.name }}'s response" data-id="{{ response.id }}"><i class="fas fa-star-half-alt"></i> Review bid</a>
+                          </div>
+                        {% endfor %}
+                      {% else %}
+                        <h6>No suppliers have been invited or have responded to this request</h6>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" value="{{ request.id }}" name="request"/>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+<div id="info_dialog" class="modal modal__bg">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <div class="modal__title">
+          <h3 class="modal__title-text"></h3>
+        </div>
+      </div>
+      <div class="modal__text">
+        <div id="supplier-content"></div>
+      </div>
+      <div class="modal__footer">
+        <a class="mdl-button mdl-button--colored mdl-js-button  modal__close">
+          &nbsp;
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="review_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress hidden">
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+        </div>
+        <div class="alert alert-danger hidden" role="alert">Do not close window until the progress bar disappears</div>
+        <form action="#">
+          <div class="form-group">
+            <label for="requestType">Final Decision</label>
+            <select name="decision" id="decision" class="selectpicker">
+                <option></option>
+                <option value="Awarded">Awarded</option>
+                <option value="Unsuccessful">Unsuccessful</option>
+                <option value="Disqualified">Disqualified</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label>Bid Score</label>
+            <input type="text" id="score" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Bid review / feedback to supplier</label>
+            <textarea class="form-control" rows="10" id="review"></textarea>
+             <input type="hidden" id="response-id">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="review-btn">Submit Review</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/app/js/moment.min.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-datetimepicker.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-selectpicker.js') }}"></script>
+  <script type="text/javascript">
+    var CKEDITOR_BASEPATH = "/bundles/ivoryckeditor/";
+  </script>
+  <script type="text/javascript" src="{{ asset('/bundles/ivoryckeditor/ckeditor.js') }}"></script>
+  <script>
+    var cnt = 0;
+    $(".upload").on('change',function() {
+      $(this).parent().next().val(this.value.replace(/C:\\fakepath\\/i, ''));
+    });
+
+    if (CKEDITOR.instances["description"]) { CKEDITOR.instances["supplier_remarks"].destroy(true); delete CKEDITOR.instances["description"]; }
+    CKEDITOR.replace("description", {"toolbar":[["Cut","Copy","Paste","PasteText","PasteFromWord","-","Undo","Redo"],["Scayt"],["Link","Unlink","Anchor"],["Image","Table","HorizontalRule","SpecialChar"],["Maximize"],["Source"],"\/",["Bold","Italic","Strike","-","RemoveFormat"],["NumberedList","BulletedList","-","Outdent","Indent","-","Blockquote"],["Styles","Format","About"]],"uiColor":"#ffffff","language":"en"});
+
+    if (CKEDITOR.instances["summary"]) { CKEDITOR.instances["supplier_remarks"].destroy(true); delete CKEDITOR.instances["summary"]; }
+    CKEDITOR.replace("summary", {"toolbar":[["Cut","Copy","Paste","PasteText","PasteFromWord","-","Undo","Redo"],["Scayt"],["Link","Unlink","Anchor"],["Image","Table","HorizontalRule","SpecialChar"],["Maximize"],["Source"],"\/",["Bold","Italic","Strike","-","RemoveFormat"],["NumberedList","BulletedList","-","Outdent","Indent","-","Blockquote"],["Styles","Format","About"]],"uiColor":"#ffffff","language":"en"});
+
+    jQuery('.datetimepicker').datetimepicker(
+    {
+      format: 'DD/MM/YYYY HH:mm',
+      icons: {
+            time: 'fas fa-clock',
+            date: 'fas fa-calendar-alt',
+            up: 'fas fa-angle-up',
+            down: 'fas fa-angle-down',
+            previous: 'fas fa-angle-left',
+            next: 'fas fa-angle-right',
+            today: 'far fa-calendar-check',
+            clear: 'far fa-calendar-times',
+            close: 'far fa-window-close'
+        }
+    });
+    $('#add-upload').on('click',function(e)
+    {
+      e.preventDefault();
+      var html='<div class="row doc-row" id="row'+cnt+'">'+
+        '<div class="col-lg-6">'+
+        '  <div class="form-group">'+
+        '    <label>Document name or title</label>'+
+        '    <input type="text" name="docs[filename][]" class="form-control">'+
+        '  </div>'+
+        '</div>'+
+        '<div class="col-lg-4">'+
+        '  <div class="form-group">'+
+      '      <label>Attach file</label>'+
+      '       <input type="file" id="FileAttachment" class="upload" name="docs[FileAttachment][]">'+
+      '       <input type="text" class="fileuploadurl" readonly placeholder="Maximum file size is 32MB" name="docs[fileuploadurl][]">'+
+      '    </div>'+
+      '</div>'+
+      '<div class="col-lg-2">'+
+      '  <button class="btn btn-xs btn-fill delete-n" data-id="'+cnt+'" id="delete-'+cnt+'"><i class="far fa-trash-alt"></i></button>'+
+      '</div>'+
+      '</div>';
+      $('#docs').append(html);
+      componentHandler.upgradeDom();
+    });
+
+    $(document).on('click','.delete-n',function(e)
+    {
+      e.preventDefault();
+      $('#row'+$(this).data('id')).remove();
+    });
+    $(document).on('click','.download',function(e)
+    {
+      e.preventDefault();
+      window.location = "/portal/download-request-file/" + $(this).data('id');
+    });
+    $(document).on('click','.delete',function(e)
+    {
+      e.preventDefault();
+      if(confirm("Are you sure you want to delete this file?")) {
+        $.ajax({
+          url: "/portal/delete-request-file/" + $(this).data('id'),
+          success: function(response)
+          {
+            alert(response);
+            location.reload();
+          }
+        });
+
+      } else {
+          // Do nothing!
+      }
+    });
+
+    $('#bulk-invite').on('click',function()
+    {
+      var el = document.querySelectorAll("#mdl-table .is-selected");
+      var selected = [];
+
+      $('#p2').removeClass('hidden');
+
+      for(var i = 0; i<el.length; i++)
+      {
+        selected.push($(el[i]).data('id'));
+      }
+
+      $.ajax(
+      {
+        url: '{{ path('invite-suppliers') }}',
+        data: { companies: selected, request: {{ request.id }} },
+        type: 'POST',
+        success: function(response)
+        {
+          $('#p2').addClass('hidden');
+          location.reload();
+
+        }
+      });
+    });
+    $('#bulk-remove').on('click',function()
+    {
+      var el = document.querySelectorAll("#invited-table .is-selected");
+      var selected = [];
+
+      $('#p1').removeClass('hidden');
+
+      for(var i = 0; i<el.length; i++)
+      {
+        selected.push($(el[i]).data('id'));
+        el[i].remove();
+      }
+
+      $.ajax(
+      {
+        url: '{{ path('remove-suppliers') }}',
+        data: { companies: selected, request: {{ request.id }} },
+        type: 'POST',
+        success: function(response)
+        {
+          $('#p1').addClass('hidden');
+
+        }
+      });
+    });
+    $(".show-info").on('click',function(e)
+    {
+      e.preventDefault();
+      $('.modal__title-text').html('');
+      if($(this).hasClass('descr'))
+      {
+        var info = '';
+        info = info + '<h6>Registration date</h6><p>' + $(this).data('registrationdate')  +'</p>';
+        info = info + '<h6>Company Type</h6><p>' + $(this).data('companytype')  +'</p>';
+        info = info + '<h6>Nature of Business</h6><p>' + $(this).data('natureofbusiness')  +'</p>';
+        info = info + '<h6>Sectors</h6><p>' + $(this).data('sectors')  +'</p>';
+        info = info + '<h6>Company description</h6>' + $(this).data('description');
+        $('#supplier-content').html(info);
+      }
+      if($(this).hasClass('contacts'))
+      {
+        $('#supplier-content').empty();
+        var first_contact = $(this).data('first-contact');
+        var last_contact = $(this).data('second-contact');
+        var html = '';
+        html = html + printLines(first_contact);
+        html = html + printLines(last_contact);
+        $('#supplier-content').html(html);
+      }
+      if($(this).hasClass('docs'))
+      {
+        var html = '';
+        html = html + $(this).data('remarks');
+        $('#supplier-content').html(html);
+      }
+      $('.modal__title-text').html($(this).data('title'));
+    });
+    $(".review").on('click',function(e)
+    {
+      e.preventDefault();
+      $('.modal-title').html('');
+      $('.modal-title h4').text($(this).data('title'));
+      $('#review_dialog').modal();
+
+      $('#response-id').val($(this).data('id'));
+    });
+    $("#review-btn").on('click',function(e)
+    {
+      e.preventDefault();
+      var $progress = $('.progress');
+      var $progressBar = $('.progress-bar');
+      var $alert = $('.alert');
+      $('.alert').removeClass('hidden');
+      $('.progress-bar').removeClass('hidden');
+      setTimeout(function() {
+          $progressBar.css('width', '10%');
+          setTimeout(function() {
+              $progressBar.css('width', '30%');
+              setTimeout(function() {
+                  $progressBar.css('width', '100%');
+                  setTimeout(function() {
+                      $progress.css('display', 'none');
+                      $alert.css('display', 'block');
+                  }, 500); // WAIT 5 milliseconds
+              }, 2000); // WAIT 2 seconds
+          }, 1000); // WAIT 1 seconds
+      }, 1000);
+
+
+      $.ajax(
+      {
+        url: '{{ path('review-response') }}',
+        data: {response: $('#response-id').val(), remarks: $('#review').val(), score: $('#score').val(), decision: $('#decision').val()},
+        success: function()
+        {
+          $('#p3').addClass('hidden');
+          $('.alert').addClass('hidden');
+        }
+      })
+    });
+    $(document).ready(function() {
+      $('#publish').on('click',function(e)
+      {
+        e.preventDefault();
+        if(confirm("Are you sure you want to publish this request?")) {
+          $.ajax({
+            url: "{{ path('publish-request') }}?request=" + $(this).data('id'),
+            success: function(response)
+            {
+              console.log();
+              if(response == "Request has been published")
+              {
+                alert(response);
+                window.location = '{{ path('buyer-dashboard-requests',{'slug': request.buyer.slug }) }}';
+              }
+            }
+          });
+
+        } else {
+            // Do nothing!
+        }
+
+      });
+      $('#deleteRequest').on('click',function(e)
+      {
+        e.preventDefault();
+        if(confirm("Are you sure you want to delete this request?")) {
+          $.ajax({
+            url: "{{ path('delete-request') }}?request=" + $(this).data('id'),
+            success: function(response)
+            {
+              if(response === "Request have been deleted")
+              {
+                alert(response);
+                window.location = '{{ path('buyer-dashboard-requests',{'slug': request.buyer.slug }) }}';
+              }
+            }
+          });
+
+        } else {
+            // Do nothing!
+        }
+
+      });
+    });
+  </script>
+{% endblock %}

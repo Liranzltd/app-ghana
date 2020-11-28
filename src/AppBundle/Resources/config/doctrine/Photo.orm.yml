@@ -1,0 +1,35 @@
+AppBundle\Entity\Photo:
+    type: entity
+    table: photos
+    fields:
+        id:
+            id: true
+            type: bigint
+            generator:
+                strategy: AUTO
+        name:
+            type:   string
+            length: 255
+        caption:
+            type:   string
+            length: 255
+            nullable:   true
+        original_name:
+            type:   string
+            length: 255
+        created_at:
+            type: datetime
+    oneToOne:
+        article:
+            targetEntity: Article
+            inversedBy: photo
+            joinColumn:
+                article_id:
+                    referencedColumnName:   id
+                onDelete:   CASCADE
+    lifecycleCallbacks:
+        prePersist: [setCreatedAtValue,preUpload]
+        preUpdate: [preUpload]
+        postPersist: [upload]
+        postUpdate: [upload]
+        postRemove: [removeUpload]

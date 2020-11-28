@@ -1,0 +1,16 @@
+AppBundle\Entity\RequestType:
+  type: entity
+  table:  request_types
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+  oneToMany:
+    requests:
+      targetEntity: Request
+      mappedBy: requestType

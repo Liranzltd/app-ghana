@@ -1,0 +1,138 @@
+AppBundle\Entity\Request:
+  type: entity
+  table:  requests
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: NONE
+  fields:
+    name:
+      type: string
+      length: 300
+    summary:
+      type: text
+      nullable: true
+    description:
+      type: text
+      nullable: true
+    deadline:
+      type: datetime
+    publicUrl:
+      type: string
+      length: 255
+      nullable: true
+    submissionInstructions:
+      type: string
+      length: 1000
+      nullable: true
+    expectedDecisionDate:
+      type: datetime
+      nullable: true
+    joinedTotal:
+      type: integer
+      length: 3
+      nullable: true
+    messagesTotal:
+      type: object
+      length: 3
+      nullable: true
+    notesTotal:
+      type: integer
+      nullable: true
+      length: 3
+    filesTotal:
+      type: integer
+      length: 3
+      nullable: true
+    currencyId:
+      type: integer
+      length: 3
+      nullable: true
+    dateModified:
+      type: datetime
+      nullable: true
+    publishDate:
+      type: datetime
+      nullable: true
+    invitationsTotal:
+      type: integer
+      length: 3
+      nullable: true
+      options:
+        default:  0
+    responsesTotal:
+      type: integer
+      length: 3
+      nullable: true
+      options:
+        default:  0
+    createDate:
+      type: datetime
+      nullable: true
+    tenderSource:
+      type: string
+      length: 30
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    slug:
+      type: string
+      length: 600
+      nullable: true
+    isPublished:
+      type: boolean
+      options:
+        default:  false
+      nullable: true
+    isPublic:
+      type: boolean
+      options:
+        default:  false
+      nullable: true
+    status:
+      type: string
+      length: 20
+    importData:
+      type: string
+      length: 1000
+      nullable: true
+  manyToMany:
+    tags:
+      targetEntity: Category
+      inversedBy: requests
+  manyToOne:
+    requestType:
+      targetEntity: RequestType
+      inversedBy: requests
+      joinColumn:
+        request_type_id:
+          referencedColumnName: id
+    buyer:
+      targetEntity: Buyer
+      inversedBy: postedRequests
+      joinColumn:
+        buyer_id:
+          referencedColumnName: id
+        onDelete: SET NULL
+  oneToMany:
+    documents:
+      targetEntity: RequestDocument
+      mappedBy: request
+      cascade:  ['persist']
+      orphanRemoval:  true
+    responses:
+      targetEntity: CompanyRequest
+      mappedBy: request
+    updates:
+      targetEntity: RequestUpdate
+      mappedBy: request
+    stats:
+      targetEntity: RequestStat
+      mappedBy: request
+  lifecycleCallbacks:
+    prePersist: ['setCreatedAtValue','setDocumentId']
+    preUpdate: ['setUpdateAtValue']

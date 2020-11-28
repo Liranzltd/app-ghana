@@ -1,0 +1,28 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Buyers{% endblock %}
+{% block leadingtext %}Meet the Buyers{% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/buyers.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+{% block body %}
+  {% for buyer in buyers %}
+  <div class="partners {{ loop.index%2 == 0 ? 'bg-f2f2f2' : ''}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}" class="img-responsive hidden-xs hidden-sm">
+                <img src="" class="img-responsive hidden-lg hidden-md">
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-8">
+              <div class="services-text-1">
+                <h3><a href="{{ buyer.website }}" target="_blank">{{ buyer.name }}</a></h3>
+                <p>{{ buyer.description }}</p>
+                <div class="meta">
+                  <span class="time-ago">{{ buyer.country }}</span> <span class="category"> <a href="{{ buyer.website }}" target="_blank">{{ buyer.website }}</a></span>
+                </div>
+              </div><!-- /.services-text-1 -->
+            </div><!-- /.col-md-8 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div>
+{% endfor %}
+{% endblock %}

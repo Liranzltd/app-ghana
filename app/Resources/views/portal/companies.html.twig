@@ -1,0 +1,57 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block pagetitle %}My Companies{% endblock %}
+{% block crumbtitle %}This companies registered as suppliers in the APP {% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table id="bootstrap-table" class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Registration Date</th>
+            <th>Requests</th>
+            <th>Subscription Status</th>
+            <th>Renewal Date</th>
+            <th>Verification Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set doc_count = 0 %}
+          {% if member.membership|length > 0  %}
+            {% for membership in member.membership %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="/portal/edit-company/{{ membership.company.slug }}">{{ membership.company.name }}</a></td>
+                <td>{{ membership.company.createdAt|date('d/m/Y') }}</td>
+                <td>{{ membership.company.requests|length }}</td>
+                <td>{{ membership.company.subscriptionStatus }}</td>
+                <td>{{ membership.company.accountRenewal|date('d/m/Y') }}</td>
+                <td>{{ membership.company.status }}</td>
+              </tr>
+              {% set doc_count = doc_count + membership.company.documents|length %}
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="7">No companies</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+  <link href="{{ asset('bundles/app/css/bootstrap-table.css') }}" rel="stylesheet"/>
+  {{ parent() }}
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}

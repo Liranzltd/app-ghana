@@ -1,0 +1,35 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block pagetitle %}Log In{% endblock %}
+{% block title %}Log in{% endblock %}
+
+{% block fos_user_content %}
+
+<div class="container login-container">
+  <div class="row" style="margin:40px;background: #FFF;padding: 20px 20px;">
+    <div class="col-xs-12">
+      <h3>Log in  </h3>
+      {% if error %}
+      <div class="alert alert-error alert-dismissible" role="alert">
+          <button type="button" class="close">×</button>
+          <strong>Oh snap!</strong> {{ error.messageKey|trans(error.messageData, 'security') }}
+      </div>
+      {% endif %}
+      <form role="form" action="{{ path("fos_user_security_check") }}" method="post" class="flat-register-form" style="
+    z-index: 9999999999999;>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12">
+              <a href="{{ path('hwi_oauth_service_redirect', {'service': 'azure' }) }}" class="btn  col-xs-12 mb20 btn-small btn-primary">Sign In</a>
+            </div>
+            <div class="col-xs-12">
+              <a href="{{ path('get-started') }}" class="btn  col-xs-12 mb20 btn-small btn-primary">REGISTER</a>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

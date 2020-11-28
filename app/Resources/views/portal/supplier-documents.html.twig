@@ -1,0 +1,39 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block pagetitle %}Documents{% endblock %}
+{% block crumbtitle %}This page lists all documents you have uploaded or system has generated {% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="content">
+    <div class="container">
+        <table id="bootstrap-table" class="table">
+          <thead>
+            <tr>
+              <th data-field="documentType" data-sortable="true">Document Type</th>
+              <th data-field="company" data-sortable="true">Company</th>
+              <th data-field="expity" data-sortable="true">Expires</th>
+              <th data-field="status" data-sortable="true">Verification Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for company in member.companies %}
+              {% if company.documents|length > 0  %}
+                {% for document in company.documents %}
+                <tr>
+                  <td>{{document.documentType.name}}</td>
+                  <td>{{ document.company.name }}</td>
+                  <td class="text-r">{{ document.expiryDate != null ? document.expiryDate|date('d/m/Y' ) : ''}}</td>
+                  <td>{{ document.verificationStatus }}</td>
+                  <td><a href="/portal/downloadfile/{{document.id}}" class="btn btn-xs btn-fill download" data-id="{{document.id }}" id="download-{{ document.id }}"><i class="fas fa-download"></i></a></td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

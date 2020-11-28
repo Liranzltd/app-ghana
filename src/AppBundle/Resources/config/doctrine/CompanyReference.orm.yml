@@ -1,0 +1,54 @@
+AppBundle\Entity\CompanyReference:
+  type: entity
+  table:  company_references
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    client:
+      type: string
+      length: 255
+    description:
+      type: string
+      length: 3000
+    valueOfContract:
+      type: decimal
+      scale:  2
+      precision:  12
+      nullable: true
+    currency:
+      type: string
+      length: 3
+      nullable: true
+    file:
+      type: string
+      nullable: true
+      length: 255
+    contactPerson:
+      type: string
+      length: 255
+    designation:
+      type: string
+      length: 255
+    email:
+      type: string
+      length: 255
+    telephone:
+      type: string
+      length: 255
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: references
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    document:
+      targetEntity: CompanyDocumentation
+      inversedBy: null
+      joinColumn:
+        document_id:
+          referencedColumnName: id

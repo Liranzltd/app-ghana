@@ -1,0 +1,58 @@
+AppBundle\Entity\Payment:
+  type: entity
+  table:  payments
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    paymentReference:
+      type: string
+      length: 255
+    amount:
+      type: decimal
+      scale:  2
+      precision:  10
+    transactionTime:
+      type: datetime
+    gatewayTransactionCode:
+      type: string
+      length: 255
+      nullable: true
+    remarks:
+      type: string
+      length: 255
+      nullable: true
+    status:
+      type: string
+      length: 100
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: payments
+      joinColumn:
+        transactionId:
+          referencedColumnName: paymentReference
+        onDelete: CASCADE
+    recordedBy:
+      targetEntity: Staff
+      inversedBy: null
+      joinColumn:
+        staff_id:
+          referencedColumnName: id
+    mode:
+      targetEntity: PaymentMode
+      inversedBy: payments
+      joinColumn:
+        payment_mode_id:
+          referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

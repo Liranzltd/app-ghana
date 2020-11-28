@@ -1,0 +1,30 @@
+AppBundle\Entity\VerificationStep:
+  type: entity
+  table:  verification_steps
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    description:
+      type: string
+      length: 10000
+      nullable: true
+    checkType:
+      type: string
+      length: 10
+    mandatory:
+      type: boolean
+      options:
+        default:  false
+  manyToOne:
+    stage:
+      targetEntity: VerificationStage
+      inversedBy: steps
+      joinColumn:
+        verification_id:
+          referencedColumnName: id

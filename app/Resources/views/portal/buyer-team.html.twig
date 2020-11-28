@@ -1,0 +1,79 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ buyer.name }} APP: Team Members{% endblock %}
+{% block crumbtitle %}In this section, you can add colleagues who will have access to the APP   {% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="content">
+    <div class="container">
+      <table id="bootstrap-table" class="table">
+          <thead>
+              <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="details">Name</th>
+                <th data-field="publishDate" data-sortable="true">Email</th>
+                <th data-field="deadline" data-sortable="true">Tel</th>
+                <th data-field="status" data-sortable="true">Mobile</th>
+                <th data-field="status" data-sortable="true">Status</th>
+                <th data-field="totalResponses" data-sortable="true">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for member in members %}
+            <tr data-id="{{ member.id }}">
+              <td></td>
+              <td>{{ member.member.firstName ~ ' ' ~ member.member.surname }}</td>
+              <td>{{ member.member.email }}</td>
+              <td>{{ member.member.tel }}</td>
+              <td>{{ member.member.mobile }}</td>
+              <td>{{ member.isDisabled == 1 ? '<button class="btn btn-danger btn-xs btn-fill">Disabled</button>' : '<button class="btn btn-success btn-xs btn-fill">Active</button>' }}</td>
+            <!--  <td>{{ member.isAdmin == 1 ? '<i class="material-icons">done</i>' : '' }}</td> -->
+              <td>
+                <button class="btn btn-danger remove-member" data-id="{{ member.member.id }}" id="disable_{{ member.member.id }}">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+
+  <script>
+
+    $(document).on('click','.remove-member',function(e)
+    {
+      e.preventDefault();
+      $.ajax(
+      {
+        url: '{{ path('remove-from-team') }}',
+        data: { member: $(this).data('id')},
+        success: function(response)
+        {
+          location.reload();
+        }
+      });
+    });
+
+    $('#add-member').on('click',function(e)
+    {
+      e.preventDefault();
+      $.ajax(
+      {
+        url: '#',
+        data: { buyer: {{ buyer.id }}, firstname: $('#firstname').val(), surname: $('#surname').val(), tel: $('#tel').val(), mobile: $('#mobile').val(), email: $('#email').val(), gender: $("input[name='gender']:checked").val(), isAdmin: $('#isAdmin').val() },
+        success: function(response)
+        {
+          location.reload();
+        }
+      });
+    });
+  </script>
+{% endblock %}

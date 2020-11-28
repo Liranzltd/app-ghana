@@ -1,0 +1,40 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Business Growth Hub{% endblock %}
+{% block leadingtext %}Practical ‘how-to’ guides to support Ghanaian businesses {% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/growth-hub.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <p>The Business Growth Hub is a library of practical ‘how-to’ guides to support Ghanaian businesses in overcoming the challenges of contracting with large companies. These guides have been exclusively written for the African Partner Pool members by IIA Partners and local business experts.</p></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="uou-tabs vertical">
+        <ul class="tabs">
+        {% for category in cats %}
+          <li class="{{ loop.index == 1 ? 'active' : ''}}"><a href="#uou-tab-{{ loop.index }}v">{{ category.name }}</a></li>
+        {% endfor %}
+        </ul>
+        <div class="content">
+          {% for category in cats %}
+          <div class="pt0 {{ loop.index == 1 ? 'active' : ''}}" id="uou-tab-{{ loop.index }}v">
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
+            <ul class="list-with-number cols2">
+              {% for content in category.growthub %}
+                <li> <a href="{{ path('business-growth-hub-show',{'slug': content.slug, 'category': category.slug}) }}">{{ content.title  }}</a></li>
+              {% endfor %}
+          </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- end .uou-tabs -->
+    </div>
+  </div>
+</div><!-- /.container -->
+{% endblock %}

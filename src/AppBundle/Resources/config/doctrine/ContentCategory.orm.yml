@@ -1,0 +1,48 @@
+AppBundle\Entity\ContentCategory:
+  type: entity
+  table:  content_categories
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    description:
+      type: text
+    slug:
+      type: string
+      length: 300
+      nullable: true
+    banner:
+      type: string
+      length: 255
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    parent:
+      targetEntity: ContentCategory
+      inversedBy: children
+      joinColumn:
+        parent_id:
+          referencedColumnName: id
+  oneToMany:
+    children:
+      targetEntity: ContentCategory
+      mappedBy: parent
+  manyToMany:
+    articles:
+      targetEntity: Article
+      mappedBy: categories
+    growthub:
+      targetEntity: BusinessGrowthHub
+      mappedBy: categories
+  lifecycleCallbacks:
+    prePersist: [setSlugValue,setCreatedAtValue, lifecycleFileUpload]
+    preUpdate: [setSlugValue,setUpdateAtValue,lifecycleFileUpload]

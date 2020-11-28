@@ -1,0 +1,859 @@
+<?php
+
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Utils;
+
+/**
+ * SourceDoggRequest
+ */
+class SourceDoggRequest
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     */
+    private $deadline;
+
+    /**
+     * @var string
+     */
+    private $publicUrl;
+
+    /**
+     * @var \DateTime
+     */
+    private $expectedDecisionDate;
+
+    /**
+     * @var integer
+     */
+    private $joinedTotal;
+
+    /**
+     * @var \stdClass
+     */
+    private $messagesTotal;
+
+    /**
+     * @var integer
+     */
+    private $notesTotal;
+
+    /**
+     * @var integer
+     */
+    private $filesTotal;
+
+    /**
+     * @var integer
+     */
+    private $currencyId;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateModified;
+
+    /**
+     * @var \DateTime
+     */
+    private $publishDate;
+
+    /**
+     * @var integer
+     */
+    private $invitationsTotal = 0;
+
+    /**
+     * @var integer
+     */
+    private $responsesTotal = 0;
+
+    /**
+     * @var \DateTime
+     */
+    private $createDate;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $slug;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $documents;
+
+    /**
+     * @var \AppBundle\Entity\SourceDoggRequestType
+     */
+    private $requestType;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $tags;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return SourceDoggRequest
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return SourceDoggRequest
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return SourceDoggRequest
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set deadline
+     *
+     * @param \DateTime $deadline
+     *
+     * @return SourceDoggRequest
+     */
+    public function setDeadline($deadline)
+    {
+        $this->deadline = $deadline;
+
+        return $this;
+    }
+
+    /**
+     * Get deadline
+     *
+     * @return \DateTime
+     */
+    public function getDeadline()
+    {
+        return $this->deadline;
+    }
+
+    /**
+     * Set publicUrl
+     *
+     * @param string $publicUrl
+     *
+     * @return SourceDoggRequest
+     */
+    public function setPublicUrl($publicUrl)
+    {
+        $this->publicUrl = $publicUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get publicUrl
+     *
+     * @return string
+     */
+    public function getPublicUrl()
+    {
+        return $this->publicUrl;
+    }
+
+    /**
+     * Set expectedDecisionDate
+     *
+     * @param \DateTime $expectedDecisionDate
+     *
+     * @return SourceDoggRequest
+     */
+    public function setExpectedDecisionDate($expectedDecisionDate)
+    {
+        $this->expectedDecisionDate = $expectedDecisionDate;
+
+        return $this;
+    }
+
+    /**
+     * Get expectedDecisionDate
+     *
+     * @return \DateTime
+     */
+    public function getExpectedDecisionDate()
+    {
+        return $this->expectedDecisionDate;
+    }
+
+    /**
+     * Set joinedTotal
+     *
+     * @param integer $joinedTotal
+     *
+     * @return SourceDoggRequest
+     */
+    public function setJoinedTotal($joinedTotal)
+    {
+        $this->joinedTotal = $joinedTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get joinedTotal
+     *
+     * @return integer
+     */
+    public function getJoinedTotal()
+    {
+        return $this->joinedTotal;
+    }
+
+    /**
+     * Set messagesTotal
+     *
+     * @param \stdClass $messagesTotal
+     *
+     * @return SourceDoggRequest
+     */
+    public function setMessagesTotal($messagesTotal)
+    {
+        $this->messagesTotal = $messagesTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get messagesTotal
+     *
+     * @return \stdClass
+     */
+    public function getMessagesTotal()
+    {
+        return $this->messagesTotal;
+    }
+
+    /**
+     * Set notesTotal
+     *
+     * @param integer $notesTotal
+     *
+     * @return SourceDoggRequest
+     */
+    public function setNotesTotal($notesTotal)
+    {
+        $this->notesTotal = $notesTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get notesTotal
+     *
+     * @return integer
+     */
+    public function getNotesTotal()
+    {
+        return $this->notesTotal;
+    }
+
+    /**
+     * Set filesTotal
+     *
+     * @param integer $filesTotal
+     *
+     * @return SourceDoggRequest
+     */
+    public function setFilesTotal($filesTotal)
+    {
+        $this->filesTotal = $filesTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get filesTotal
+     *
+     * @return integer
+     */
+    public function getFilesTotal()
+    {
+        return $this->filesTotal;
+    }
+
+    /**
+     * Set currencyId
+     *
+     * @param integer $currencyId
+     *
+     * @return SourceDoggRequest
+     */
+    public function setCurrencyId($currencyId)
+    {
+        $this->currencyId = $currencyId;
+
+        return $this;
+    }
+
+    /**
+     * Get currencyId
+     *
+     * @return integer
+     */
+    public function getCurrencyId()
+    {
+        return $this->currencyId;
+    }
+
+    /**
+     * Set dateModified
+     *
+     * @param \DateTime $dateModified
+     *
+     * @return SourceDoggRequest
+     */
+    public function setDateModified($dateModified)
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModified
+     *
+     * @return \DateTime
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
+    }
+
+    /**
+     * Set publishDate
+     *
+     * @param \DateTime $publishDate
+     *
+     * @return SourceDoggRequest
+     */
+    public function setPublishDate($publishDate)
+    {
+        $this->publishDate = $publishDate;
+
+        return $this;
+    }
+
+    /**
+     * Get publishDate
+     *
+     * @return \DateTime
+     */
+    public function getPublishDate()
+    {
+        return $this->publishDate;
+    }
+
+    /**
+     * Set invitationsTotal
+     *
+     * @param integer $invitationsTotal
+     *
+     * @return SourceDoggRequest
+     */
+    public function setInvitationsTotal($invitationsTotal)
+    {
+        $this->invitationsTotal = $invitationsTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get invitationsTotal
+     *
+     * @return integer
+     */
+    public function getInvitationsTotal()
+    {
+        return $this->invitationsTotal;
+    }
+
+    /**
+     * Set responsesTotal
+     *
+     * @param integer $responsesTotal
+     *
+     * @return SourceDoggRequest
+     */
+    public function setResponsesTotal($responsesTotal)
+    {
+        $this->responsesTotal = $responsesTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get responsesTotal
+     *
+     * @return integer
+     */
+    public function getResponsesTotal()
+    {
+        return $this->responsesTotal;
+    }
+
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     *
+     * @return SourceDoggRequest
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return SourceDoggRequest
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return SourceDoggRequest
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return SourceDoggRequest
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add document
+     *
+     * @param \AppBundle\Entity\SourceDoggRequestDocument $document
+     *
+     * @return SourceDoggRequest
+     */
+    public function addDocument(\AppBundle\Entity\SourceDoggRequestDocument $document)
+    {
+        $this->documents[] = $document;
+        $document->setRequest($this);
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \AppBundle\Entity\SourceDoggRequestDocument $document
+     */
+    public function removeDocument(\AppBundle\Entity\SourceDoggRequestDocument $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     * Set requestType
+     *
+     * @param \AppBundle\Entity\SourceDoggRequestType $requestType
+     *
+     * @return SourceDoggRequest
+     */
+    public function setRequestType(\AppBundle\Entity\SourceDoggRequestType $requestType = null)
+    {
+        $this->requestType = $requestType;
+
+        return $this;
+    }
+
+    /**
+     * Get requestType
+     *
+     * @return \AppBundle\Entity\SourceDoggRequestType
+     */
+    public function getRequestType()
+    {
+        return $this->requestType;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \AppBundle\Entity\Category $tag
+     *
+     * @return SourceDoggRequest
+     */
+    public function addTag(\AppBundle\Entity\Category $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \AppBundle\Entity\Category $tag
+     */
+    public function removeTag(\AppBundle\Entity\Category $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+    /**
+   * @ORM\PrePersist
+   */
+   public function setCreatedAtValue()
+   {
+       if($this->createdAt == null)
+       {
+         $this->createdAt = new \DateTime();
+       }
+       $this->setSlug(Utils::slugify($this->name));
+   }
+
+   /**
+    * @ORM\PreUpdate
+    */
+   public function setUpdateAtValue()
+   {
+       $this->updatedAt = new \DateTime();
+       $this->setSlug(Utils::slugify($this->name));
+   }
+
+   public function __toString()
+   {
+     return $this->getName() == null ? 'New' : $this->getName();
+   }
+    /**
+     * @var \AppBundle\Entity\Buyer
+     */
+    private $buyer;
+
+
+    /**
+     * Set buyer
+     *
+     * @param \AppBundle\Entity\Buyer $buyer
+     *
+     * @return SourceDoggRequest
+     */
+    public function setBuyer(\AppBundle\Entity\Buyer $buyer = null)
+    {
+        $this->buyer = $buyer;
+
+        return $this;
+    }
+
+    /**
+     * Get buyer
+     *
+     * @return \AppBundle\Entity\Buyer
+     */
+    public function getBuyer()
+    {
+        return $this->buyer;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDocumentId()
+    {
+      if (null == $this->id) {
+        $digits = 9;
+        $this->id = rand(pow(10, $digits-1), pow(10, $digits)-1);
+      }
+    }
+    /**
+     * @var string
+     */
+    private $summary;
+
+
+    /**
+     * Set summary
+     *
+     * @param string $summary
+     *
+     * @return SourceDoggRequest
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * Get summary
+     *
+     * @return string
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+    /**
+     * @var string
+     */
+    private $tenderSource;
+
+
+    /**
+     * Set tenderSource
+     *
+     * @param string $tenderSource
+     *
+     * @return SourceDoggRequest
+     */
+    public function setTenderSource($tenderSource)
+    {
+        $this->tenderSource = $tenderSource;
+
+        return $this;
+    }
+
+    /**
+     * Get tenderSource
+     *
+     * @return string
+     */
+    public function getTenderSource()
+    {
+        return $this->tenderSource;
+    }
+    /**
+     * @var boolean
+     */
+    private $isPublished = false;
+
+
+    /**
+     * Set isPublished
+     *
+     * @param boolean $isPublished
+     *
+     * @return SourceDoggRequest
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublished
+     *
+     * @return boolean
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }
+    /**
+     * @var integer
+     */
+    private $clicks;
+
+
+    /**
+     * Set clicks
+     *
+     * @param integer $clicks
+     *
+     * @return SourceDoggRequest
+     */
+    public function setClicks($clicks)
+    {
+        $this->clicks = $clicks;
+
+        return $this;
+    }
+
+    /**
+     * Get clicks
+     *
+     * @return integer
+     */
+    public function getClicks()
+    {
+        return $this->clicks;
+    }
+}

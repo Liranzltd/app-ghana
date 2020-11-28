@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+  {% for document in object.documents %}
+    {% if document.file is not null %}
+    <a href="{{ path('downloadResponseDocument',{'id': document.id}) }}" target="_blank"/ title="Download file">{{ document.file }}</a>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

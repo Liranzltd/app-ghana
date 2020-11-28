@@ -1,0 +1,53 @@
+AppBundle\Entity\CompanyDocumentation:
+  type: entity
+  table:  company_documentation
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    file:
+      type: string
+      length: 255
+      nullable: true
+    documentNumber:
+      type: string
+      length: 50
+      nullable: true
+    issuedBy:
+      type: string
+      length: 255
+      nullable: true
+    verificationStatus:
+      type: string
+      length: 30
+      nullable: true
+    issueDate:
+      type: date
+      nullable: true
+    expiryDate:
+      type: date
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    documentType:
+      targetEntity: CompanyTypeDocumentation
+      inversedBy: null
+      joinColumn:
+        document_id:
+          referencedColumnName: id
+    company:
+      targetEntity: Company
+      inversedBy: documents
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue]
+      preUpdate: [setUpdatedAtValue]

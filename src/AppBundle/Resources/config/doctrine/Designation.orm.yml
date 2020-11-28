@@ -1,0 +1,13 @@
+AppBundle\Entity\Designation:
+    type:   entity
+    table:  designations
+    id:
+        id:
+            type:   integer
+            length: 4
+            generator:
+                strategy:   IDENTITY
+    fields:
+      name:
+        type: string
+        length: 20

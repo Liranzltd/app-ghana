@@ -1,0 +1,63 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Articles{% endblock %}
+{% block leadingtext %}{{ category is not null ? category : 'News, Case Studies and other material'}}{% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/news.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      {% if article is iterable %}
+        {% for item in article %}
+          <article class="uou-block-7f">
+            <img src="{{ item.media }}" alt="" class="thumb">
+            <div class="meta">
+              <span class="time-ago">{{ item.publishDate|date('F jS \\a\\t g:ia') }}</span>
+              <span class="category">Posted in:
+              <a href="{{ path('articles',{'category': item.contentType }) }}">{{ item.contentType }}</a></span>
+            </div>
+            <h1><a href="{{ item.externalLink is null ?  path('articles',{'slug': item.slug, 'category': item.contentType }) : item.externalLink }}">{{ item.title }}</a></h1>
+            <p>{{ item.summary|raw }}</p>
+            <a href="{{ item.externalLink is null ?  path('articles',{'slug': item.slug, 'category': item.contentType }) : item.externalLink }}" class="btn btn-small btn-primary">Read More</a>
+          </article>
+        {% endfor %}
+      {% else %}
+        <article class="uou-block-7f blog-post-content">
+          <img src="{{ article.media }}" alt="">
+          <div class="meta">
+            <span class="time-ago">{{ article.publishDate|date('F jS \\a\\t g:ia') }}</span>
+            <span class="category">Posted in: <a href="{{ path('articles',{'category': article.contentType }) }}">{{ article.contentType }}</a></span>
+          </div>
+          <h1><a href="#">{{ article.title }}</a></h1>
+          {{article.content|raw}}
+        </article>
+      {% endif %}
+    </div>
+    <div class="col-md-3">
+      <div class="uou-sidebar">
+        <h5 class="sidebar-title">Connect With Us</h5>
+        <div class="social-widget">
+          <div class="uou-block-4b">
+            <ul class="social-icons">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            </ul>
+          </div> <!-- end .uou-block-4b -->
+        </div>
+        <h5 class="sidebar-title">Recent Posts</h5>
+        <div class="latest-post-widget">
+          {% for article in recent %}
+          <div class="post-single">
+            <img src="{{ article.media }}" alt="">
+            <p class="meta">{{ article.publishDate|date('F j Y') }}</p>
+            <p class="meta">{{article.contentType}}</p>
+            <h6 class="post-title"><a href="{{ article.externalLink is null ?  path('articles',{'slug': article.slug, 'category': article.contentType }) : article.externalLink }}">{{ article.title }}</a></h6>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

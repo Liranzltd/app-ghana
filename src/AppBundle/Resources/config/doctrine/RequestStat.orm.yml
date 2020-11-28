@@ -1,0 +1,44 @@
+AppBundle\Entity\RequestStat:
+  type: entity
+  table:  request_stats
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: NONE
+  fields:
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    browser:
+      type: string
+      length: 256
+      nullable: true
+    ip:
+      type: string
+      length: 50
+      nullable: true
+    country:
+      type: string
+      length: 50
+      nullable: true
+    city:
+      type: string
+      length: 50
+      nullable: true
+    location:
+      type: string
+      length: 50
+      nullable: true
+  manyToOne:
+    request:
+      targetEntity: Request
+      inversedBy: stats
+      joinColumn:
+        request_id:
+          referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: ['setCreatedAtValue']
+    preUpdate: ['setUpdateAtValue']

@@ -1,0 +1,52 @@
+AppBundle\Entity\CompanyTypeDocumentation:
+  type: entity
+  table:  company_type_documentation
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+      nullable: true
+    isRequired:
+      type: boolean
+      nullable: true
+      options:
+        default:  true
+    multiple:
+      type: boolean
+      nullable: true
+      options:
+        default:  true
+    requiresUpload:
+      type: boolean
+      nullable: true
+      options:
+        default:  true
+    expires:
+      type: boolean
+      nullable: true
+      options:
+        default:  true
+    systemGenerated:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+  manyToOne:
+    companyType:
+      targetEntity: CompanyType
+      inversedBy: requiredDocuments
+      joinColumn:
+        company_type_id:
+          referencedColumnName: id
+    documentType:
+      targetEntity: DocumentType
+      inversedBy: null
+      joinColumn:
+        document_type_id:
+          referencedColumnName: id
+        onDelete: SET NULL

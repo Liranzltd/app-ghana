@@ -1,0 +1,65 @@
+{% extends 'base-bannerless.html.twig' %}
+
+{% block pagetitle %}Contact IIA{% endblock %}
+{% block leadingtext %}Get in touch with us {% endblock %}
+{% block body %}
+<div class="pt0">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1484.5794210953695!2d-0.17536834518630415!3d5.568571521855561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9a9bbf2139f9%3A0x740f0ec919f1473a!2sFourth+Norla+St+%26+Peter+Ala+Adjetey+Ave%2C+Accra%2C+Ghana!5e0!3m2!1sen!2ske!4v1538577234994" class="contact-map" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <div><p style="color:red; border:1px solid red;text-align:center;">{{ feedback }}</p></div>
+      <h3>Contact us for any further questions</h3>
+      <div class="sidebar-information form-side row">
+        <form action="/contact" method="post">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="email">Name</label>
+              <input type="text" placeholder="" name="name" required>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="email">E-mail address</label>
+              <input type="email" name="email" required>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="email">Phone</label>
+              <input type="text" name="phone" required>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="email">Subject</label>
+              <input type="text" name="subject" required>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label for="email">Your Message</label>
+            <textarea rows="6" name="message" required></textarea>
+        </div>
+       
+        <div class="col-lg-12">
+           <div class="g-recaptcha" data-sitekey="6LfWLdgUAAAAADtoJTjD73C-nykk0oAewhBxs7Nx"></div>
+
+         </div> 
+        
+      </div><button class="btn mb20 btn-medium btn-transparent-primary">Send message</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <h6>Address</h6>
+      <p>2nd Floor, Mabani Plaza, <br/>4th Norla Street, Peter Ala Adjetey Avenue, Labone, <br/>Accra, Ghana</p>
+      <p>Email: <a href="mailto: app@investinafrica.com">app@investinafrica.com</a></p>
+      <h6>Key Contact</h6>
+      <p><b>Christina Abban-Mensah</b><br/>APP Support Advisor<br/>Email: <a href="mailto:christina.mensah@investinafrica.com">christina.mensah@investinafrica.com</a><br/>Tel: <a href="tel:+2330303938751">+233 (0) 303 938 751</a><br/><a href="tel:+2330303935284">+233 (0) 303 935 284</a></p>
+    </div>
+  </div>
+</div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

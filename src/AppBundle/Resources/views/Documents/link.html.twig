@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+  {% if object.file is not null %}
+  <a href="{{ absolute_url(asset('/admin/downloadfile/' ~ object.id )) }}" target="_blank"/>Download</a>
+  {% endif %}
+{% endblock %}

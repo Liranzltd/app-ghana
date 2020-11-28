@@ -1,0 +1,45 @@
+AppBundle\Entity\Staff:
+    table:  staff
+    type:   entity
+    repositoryClass:   AppBundle\Repository\StaffRepository
+    fields:
+        id:
+            id: true
+            generator:
+                strategy:   IDENTITY
+            type:   integer
+        firstname:
+          type: string
+          length: 25
+        lastname:
+          type: string
+          length: 30
+        email:
+          type: string
+          length: 60
+        mobile:
+          type: string
+          length: 30
+          nullable: true
+        createdAt:
+            type:   datetime
+        updatedAt:
+            type:   datetime
+            nullable:   true
+    manyToOne:
+        user:
+            targetEntity:   Application\Sonata\UserBundle\Entity\User
+            inversedBy: null
+            joinColumn:
+                user_id:
+                    referencedColumnName:   id
+                onDelete: CASCADE
+        designation:
+          targetEntity: Designation
+          inversedBy: null
+          joinColumn:
+            designation_id:
+              referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [setCreatedAtValue]
+        preUpdate: [setUpdatedAtValue]

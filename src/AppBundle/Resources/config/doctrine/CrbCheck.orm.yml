@@ -1,0 +1,153 @@
+AppBundle\Entity\CrbCheck:
+  type: entity
+  table:  crb_checks
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    response:
+      type: string
+      length: 100
+    creditHistory:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    npaAccounts:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    npaTotalValue:
+      type: decimal
+      scale: 2
+      precision:  15
+      nullable: true
+      options:
+        default:  0.00
+    npaTotalValueCurrency:
+      type: string
+      length: 3
+      nullable: true
+    openAccounts:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    closedAccounts:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    paAccounts:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    paTotalValue:
+      type: decimal
+      scale: 2
+      precision:  15
+      nullable: true
+      options:
+        default:  0
+    paOpenAccounts:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    paClosedAccounts:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    legalSuits:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    bouncedCheques:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    fraudulentCases:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    creditApplications:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    lastPAListingDate:
+      type: date
+      nullable: true
+    lastNPAListingDate:
+      type: date
+      nullable: true
+    lastLegalSuitDate:
+      type: date
+      nullable: true
+    lastBouncedChequeDate:
+      type: date
+      nullable: true
+    lastFraudDate:
+      type: date
+      nullable: true
+    lastCreditApplicationDate:
+      type: date
+      nullable: true
+    enquiriesLast30Days:
+      type: integer
+      length: 3
+      nullable: true
+      options:
+        default:  0
+    enquiries31to60Days:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    enquiries61to90Days:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    enquiries91Days:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: crbCheck
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

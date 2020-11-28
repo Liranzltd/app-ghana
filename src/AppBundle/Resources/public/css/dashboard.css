@@ -1,0 +1,52 @@
+.main-panel {
+    /* background-color: #f4f3ef; */
+    overflow: auto;
+    position: relative;
+    z-index: 2;
+    min-height: 100%;
+}
+.main-panel>.content {
+    padding: 30px 15px 0;
+    min-height: calc(100% - 123px);
+}
+.card, .card .actions, .card .card-content, .card .card-footer, .card .card-title, .card .category, .card .description, .card .social-line, .card .stats, .card a, .card small {
+    position: relative;
+}
+.card {
+    border-radius: 6px;
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
+    background-color: #fff;
+    color: #252422;
+    margin-bottom: 20px;
+    border: 1px solid #f4f3ef;
+    box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+    background-color: #00d3ee;
+}
+.card .card-content {
+    padding: 15px 15px 10px;
+}
+.card, .card .actions, .card .card-content, .card .card-footer, .card .card-title, .card .category, .card .description, .card .social-line, .card .stats, .card a, .card small {
+    position: relative;
+}
+.card-content.dash {
+    min-height: 85px;
+}
+.card-content .fas
+{
+  font-weight: bold;
+  color: #FFF;
+  font-size: 60px;
+}
+.card-content
+{
+  color: #FFF;
+}
+.card-content p
+{
+  font-size: 16px;
+  line-height: 1.4em;
+}
+.card .numbers {
+    text-align: right;
+    font-size: 2em;
+}

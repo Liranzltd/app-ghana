@@ -1,0 +1,19 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Registration Failed{% endblock %}
+
+{% block title %}Register{% endblock %}
+{% block leadingtext %}Join the APP {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <h1>
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ feedback }}
+            </h1>
+            <a href="javascript:history.back()">Go back to previous page</a>
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</div><!-- /.container -->
+{% endblock %}

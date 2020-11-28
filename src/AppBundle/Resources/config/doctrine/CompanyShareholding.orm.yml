@@ -1,0 +1,31 @@
+AppBundle\Entity\CompanyShareholding:
+  type: entity
+  table:  companies_shareholders
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    nationality:
+      type: string
+      length: 60
+    shares:
+      type: string
+      length: 20
+      nullable: true
+    percentage:
+      type: string
+      length: 20
+      nullable: true
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: shareholders
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE

@@ -1,0 +1,41 @@
+AppBundle\Entity\Notification:
+  type: entity
+  table:  notifications
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      length: 300
+    message:
+      type: string
+      length: 3000
+    createdAt:
+      type: datetime
+    isRead:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: null
+      cascade:  [persist]
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    buyer:
+      targetEntity: Buyer
+      inversedBy: null
+      joinColumn:
+        buyer_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue ]
+      preUpdate:    [ setUpdatedAtValue ]

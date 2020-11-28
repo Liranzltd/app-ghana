@@ -1,0 +1,56 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_wrapper %}
+    {{ parent() }}
+    <div class="overlay">
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+{% endblock sonata_wrapper %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/app/css/backend.css?ver='~random(5)) }}" />
+  <style>
+  {% if admin is defined %}
+    #field_widget_{{ admin.uniqid }}_verification .nav-tabs
+    {
+      display:  none;
+    }
+  {% endif %}
+  </style>
+{% endblock %}
+
+{% block body_attributes %}class="sonata-bc skin-black sidebar-collapse"{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+      $(document).ajaxStart(function()
+        {
+            var target = $('.overlay');
+            $('.fa-spin').show();
+            target.show();
+
+        });
+        $(document).ajaxStop(function()
+        {
+            var target = $('.overlay');
+            $('.fa-spin').hide();
+            target.hide();
+
+        });
+    </script>
+{% endblock %}
+{% block side_bar_nav %}
+  {{ parent() }}
+    <ul class="sidebar-menu">
+      <li>
+        <a href="/admin/user-guide">
+            User Guide
+        </a>
+      </li>
+    </ul>
+{% endblock side_bar_nav %}
+{% block side_bar_after_nav_content %}
+    <a href="#" rel="noreferrer" target="_blank">Powered by Techno-Logic Software</a>
+{% endblock %}

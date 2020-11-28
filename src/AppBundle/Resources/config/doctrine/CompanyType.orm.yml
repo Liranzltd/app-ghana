@@ -1,0 +1,21 @@
+AppBundle\Entity\CompanyType:
+  type: entity
+  table:  company_types
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+  oneToMany:
+    requiredDocuments:
+      targetEntity: CompanyTypeDocumentation
+      mappedBy: companyType
+      cascade:  [persist]
+      orphanRemoval:  true
+    companies:
+      targetEntity: Company
+      mappedBy: companyType

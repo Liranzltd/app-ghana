@@ -1,0 +1,202 @@
+<h1>
+  APP Control panel
+  <small> - Main Dashboard</small>
+</h1>
+
+<link href="{{ asset('bundles/app/css/dash.css') }}" rel="stylesheet" />
+<section class="content_wrap">
+
+  <!-- BEGIN LIST -->
+  <ul class="box">
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-1-font glyphicon glyphicon-star"></div>
+          <div class="price color-1-font"><span class="total">ENTITIES</span></div>
+          <div class="description">Registered Suppliers, Buyers and Users</div>
+        </div><!-- end div .front -->
+        <div class="popular color-1-font glyphicon glyphicon-star"></div>
+        <div class="back color-1-bg info">
+          <!-- <div class="title">Entities</div> -->
+          <div class="description">
+            <p><a href="{{ path('admin_app_member_list') }}">Users</a></p>
+            <p><a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Supplier"}) }}">Suppliers</a></p>
+            <p><a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Buyer"}) }}">Buyers</a></p>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-1-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-2-font glyphicon glyphicon-user"></div>
+          <div class="price color-2-font"><span class="total">USERS</span></div>
+          <div class="description">Logged in, Confirmed Emails, Currently Online</div>
+        </div><!-- end div .front -->
+        <div class="popular color-2-font glyphicon glyphicon-user"></div>
+        <div class="back color-2-bg info">
+          <!-- <div class="title">Code</div> -->
+          <div class="description">
+            <p>Logged in Users</p>
+            <p>Confirmed Emails</p>
+            <p>Currently Online</p>
+            <a href="/admin/dashboard/users" class="btn btn-danger">Dashboard</a>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-1-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-3-font glyphicon glyphicon-tag"></div>
+          <div class="price color-3-font"><span class="total">SUPPLIERS</span></div>
+          <div class="description">Registration and verification status</div>
+        </div><!-- end div .front -->
+        <div class="popular color-3-font glyphicon glyphicon-tag"></div>
+        <div class="back color-3-bg info">
+          <!-- <div class="title">SUPPLIERS</div> -->
+          <div class="description">
+            <p>On-going Registrations</p>
+            <p>Completed Registrations</p>
+            <p>Verified Suppliers</p>
+            <p>Suppliers Status</p>
+            <a href="/admin/dashboard/suppliers" class="btn btn-danger">Dashboard</a>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-3-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-4-font glyphicon glyphicon-time"></div>
+          <div class="price color-4-font"><span class="total">BUYERS</span></div>
+          <div class="description">Applications, Buyers status</div>
+        </div><!-- end div .front -->
+        <div class="popular color-4-font glyphicon glyphicon-time"></div>
+        <div class="back color-4-bg info">
+          <!-- <div class="title">Pair</div> -->
+          <div class="description">
+            <p>New Applications</p>
+            <p>Registered Buyers</p>
+            <p>Buyer Stats</p>
+            <a href="/admin/dashboard/buyers" class="btn btn-danger">Dashboard</a>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-4-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-5-font glyphicon glyphicon-folder-open"></div>
+          <div class="price color-5-font"><span class="total">DOCUMENTS</span></div>
+          <div class="description">Buyer and Supplier Records</div>
+        </div><!-- end div .front -->
+        <div class="popular color-5-font glyphicon glyphicon-folder-open"></div>
+        <div class="back color-5-bg info">
+          <!-- <div class="title">Pair</div> -->
+          <div class="description">
+            <p>Buyer Records</p>
+            <p><a href="{{ path('admin_app_companydocumentation_list') }}">Supplier Records</a></p>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-4-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-6-font fa fa-money"></div>
+          <div class="price color-6-font"><span class="total">PAYMENTS</span></div>
+          <div class="description">Registration, renewals</div>
+        </div><!-- end div .front -->
+        <div class="popular color-6-font fa fa-money"></div>
+        <div class="back color-6-bg info">
+          <!-- <div class="title">Pair</div> -->
+          <div class="description">
+            <p>Registration</p>
+            <p>Renewals</p>
+            <a href="/admin/dashboard/finance" class="btn btn-danger">Dashboard</a>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-4-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-7-font glyphicon glyphicon-stats"></div>
+          <div class="price color-7-font"><span class="total">Reports & Analytics</span></div>
+          <div class="description">Verification TAT, Supplier / Buyer History</div>
+        </div><!-- end div .front -->
+        <div class="popular color-7-font glyphicon glyphicon-stats"></div>
+        <div class="back color-7-bg info">
+          <!-- <div class="title">Pair</div> -->
+          <div class="description">
+            <p>Verification TAT</p>
+            <p>Supplier History</p>
+            <p>Buyer History</p>
+            <a href="#" class="btn btn-danger">Dashboard</a>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-4-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-8-font fa fa-info-circle"></div>
+          <div class="price color-8-font"><span class="total">HELP & SUPPORT</span></div>
+        </div><!-- end div .front -->
+        <div class="popular color-8-font fa fa-info-circle"></div>
+        <div class="back color-8-bg info">
+          <!-- <div class="title">Pair</div> -->
+          <div class="description">
+            <p><a href="{{ path('user-guide') }}">APP User Guide</a></p>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-4-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  <!-- BEGIN LIST ELEMENT -->
+    <li>
+      <div class="circle">
+        <div class="front front-popular">
+          <div class="title color-10-font glyphicon glyphicon-cog"></div>
+          <div class="price color-10-font"><span class="total">APP ADMIN</span></div>
+          <div class="description">Staff, Promo Codes, Verification Flow</div>
+        </div><!-- end div .front -->
+        <div class="popular color-10-font glyphicon glyphicon-cog"></div>
+        <div class="back color-10-bg info">
+          <!-- <div class="title">Pair</div> -->
+          <div class="description">
+            <p><a href="{{ path('admin_app_staff_list') }}">IIA Staff</a></p>
+            <p><a href="{{ path('admin_app_verificationstage_list') }}">Verification Flow</a></p>
+            <p><a href="{{ path('admin_app_promocode_list') }}">Promo Codes</a></p>
+          </div><!-- end div .description -->
+        </div><!-- end div .back color-4-bg info -->
+      </div><!-- end div .circle -->
+    </li>
+  <!-- END LIST ELEMENT -->
+  </ul>
+<!--END LIST -->
+</section>
+
+<script>
+//Add optional jQuery  so animation works on click for mobile devices
+
+$(".box").click(function(){
+ $(this).box().toggleClass("circle");
+});
+</script>

@@ -1,0 +1,89 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block pagetitle %}Welcome to the APP!{% endblock %}
+{% block crumbtitle %}
+  {% if tier_id == 2 %}
+    <img src="{{ asset('bundles/app/images/badges/silver.png') }}" style="float:left;" />
+  {% endif %}
+  {% if tier_id == 3 %}
+    <img src="{{ asset('bundles/app/images/badges/gold.png') }}" style="float:left;" />
+  {% endif %}
+  {% if tier_id == 4 %}
+    <img src="{{ asset('bundles/app/images/badges/platinum.png') }}" style="float:left;margin-right:10px;" />
+  {% endif %}
+    This is an overview of your account, please click on any button to interact with the APP platform. <br/><br/>Quick tasks: <br/>
+     - complete your company profile<br/>
+     - views available procurement requests<br/>
+     - add colleagues<br/>
+     - check all your documents are in order<br/>
+  {% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('bundles/app/css/dashboard.css?ver='~random(5)) }}">
+{% endblock %}
+
+{% block body %}
+{% set today = 0 %} 
+{% set closing = 0 %}
+{% set active = 0 %}
+{% set decision = 0 %}
+{% set won = 0 %}
+{% set day = "now"|date('w') %}
+{% set weekStart = "now"|date_modify("-#{day} days")|date('m-d-Y') %}
+{% set weekEnd = "now"|date_modify("+#{6-day} days")|date('m-d-Y') %}
+{% for request in requests %}
+  {%  if date(request.publishDate) > weekStart and date(request.publishDate) < weekEnd  %}
+  {%  set today = today + 1  %}
+  {%  endif %}
+  {%  if date(request.publishDate) <= "now"|date('-2days') %}
+  {%  set closing = closing +1 %}
+  {%  endif %}
+  {%  if request.status == 'Awaiting Decision' %}
+  {%  set decision = decision +1 %}
+  {%  endif %}
+{% endfor %}
+<div class="main-panel">
+  <div class="container">
+    <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
+        <div class="col-md-4">
+            <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="py-20 text-center">
+                        <div class="mb-10">
+                            <i class="fa fa-user-circle-o fa-3x text-corporate"></i>
+                        </div>
+                        <div class="font-size-h4 font-w600">{{ requests|length }} Total Requests</div>
+                        <div class="text-muted">{{ today }} were published this week!</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="py-20 text-center">
+                        <div class="mb-10">
+                            <i class="fa fa-calendar fa-3x text-elegance"></i>
+                        </div>
+                        <div class="font-size-h4 font-w600">{{ active }} Active Requests</div>
+                        <div class="text-muted">{{ closing }} closing soon!</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="block block-rounded block-bordered block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="py-20 text-center">
+                        <div class="mb-10">
+                          <i class="fas fa-3x fa-trophy"></i>
+                        </div>
+                        <div class="font-size-h4 font-w600">{{ won }} requests won</div>
+                        <div class="text-muted">{{ decision }} under review</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

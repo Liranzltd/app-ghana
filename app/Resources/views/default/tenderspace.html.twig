@@ -1,0 +1,57 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Tenders{% endblock %}
+{% block leadingtext %}Access market opportunities{% endblock %}
+{% block crumbtitle %}Opportunities{% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/tenders.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+
+{% block body %}
+<div id="page-body">
+    <div class="flat-row pad-top0px">
+      <div class="container">
+        <div class="row">
+          <div class="flat-wrapper">
+            <div class="col-lg-4">
+              <aside class="widget woocommerce widget_product_categories">
+                <h3 class="widget-title">FILTER BY CATEGORY</h3>
+                <ul class="sectors-list mt20">
+                  {% if app.request.attributes.get('category') != null %}
+                    <li><em style="font-style: italic;"><a href="/tenderspace">BACK TO BROAD CATEGORIES</a></em></li>
+                  {% endif %}
+                {% for category in categories %}
+                  <li class="cat-item"><a href="/tenderspace/{{ category.parent == null ? category.slug : category.parent.slug ~ '/' ~ category.slug }}">{{ category.name }}</a></li>
+                {% endfor %}
+                </ul>
+                <img src={{ asset('bundles/app/images/tenders-small.jpg') }} class="img-responsive" />
+              </aside> <!-- /.widget_product_categories -->
+            </div>
+            <div class="col-lg-8">
+              <main class="post-wrap">
+                {% if requests|length > 0 %}
+                  <div class="content-tab">
+                    <div class="content-inner">
+                      <ul class="layer" data-layer="list">
+                        {% for request in requests %}
+                        <li class="content clickable" id="article-2">
+                          <div class="bg" data-flip-key="bg-2"></div>
+                          <div class="avatar" data-flip-key="avatar-2"><img src="{{  asset('uploads/documents/'~request.buyer.name~'/'~request.buyer.logo )}}" alt="images" /></div>
+                          <div class="title" data-flip-key="title-2"><a href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}" target="_blank">{{ request.name }}</a></div>
+                          <p>Deadline: {{ request.deadline|date('D M j Y G:i T') }} Published on {{ request.publishDate|date('D M j Y') }}</p>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                  {% else %}
+                    <h4>No procurement requests found</h4>
+                    <p>We currently do not have active requests {{ (selected_cat != null ? 'under <strong><em>' ~ selected_cat ~ '</em></strong> category' : '')|raw  }}. </p>
+                    <p>If you are a registered supplier, you will receive notification through SMS and email whenever a new procurement request under your sectors of interest are posted.</p>
+                  {% endif %}
+              </main> <!-- /.post-wrap -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

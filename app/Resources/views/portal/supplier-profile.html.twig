@@ -1,0 +1,298 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ buyer.name }} APP: {{ supplier.name }} Profile{% endblock %}
+{% block crumbtitle %}
+  {% if supplier.IsTraceCertified == 1 %}
+    <img src="{{ asset('bundles/app/images/badges/trace.jpg') }}" style="float:left;" />
+  {% endif %}
+  In this section, you will see all information pertaining to your chosen supplier   {% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="left-vertical-tabs">
+            <ul class="nav nav-stacked" role="tablist">
+                <li class="active">
+                    <a href="#general" role="tab" data-toggle="tab">
+                         General Infomation
+                    </a>
+                </li>
+                <li>
+                    <a href="#location" role="tab" data-toggle="tab">
+                         Location
+                   </a>
+                </li>
+                <li>
+                    <a href="#contacts" role="tab" data-toggle="tab">
+                         Contacts
+                   </a>
+                </li>
+                <li>
+                   <a href="#areas" role="tab" data-toggle="tab">
+                        Boundaries of supply
+                   </a>
+                </li>
+                <li>
+                   <a href="#structure" role="tab" data-toggle="tab">
+                        Organisation Structure
+                   </a>
+                </li>
+                <li>
+                   <a href="#ownership" role="tab" data-toggle="tab">
+                        Ownership Structure
+                   </a>
+                </li>
+                <li>
+                   <a href="#references" role="tab" data-toggle="tab">
+                        Commercial References
+                   </a>
+                </li>
+                <li>
+                   <a href="#documents" role="tab" data-toggle="tab">
+                        Documents
+                   </a>
+                </li>
+            </ul>
+          </div>
+          <div class="right-text-tabs">
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="general">
+                <h2 class="content-heading text-black">General Information</h2>
+                <div class="form-group">
+                  <label class="control-label">Organisation Type</label>
+                  {{ supplier.companyType }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Registration Number</label>
+                  {{ supplier.registrationNumber }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">GRA TIN Number</label>
+                  {{ supplier.graTinNumber }}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Registration Date</label>
+                  {{ supplier.registrationDate|date('d/m/Y') }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Company Description</label>
+                  {{ supplier.description }}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Website</label>
+                    <a href="{{ supplier.website }}" target="_blank">{{ supplier.website  }}</a>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Nature of business</label>
+                  {{ supplier.natureOfBusiness }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Approximate turnover during the last financial year</label>
+                  {{ supplier.approxTurnover }}
+                </div>
+              </div>
+              <div class="tab-pane" id="location">
+                <h2 class="content-heading text-black">Location Information</h2>
+                <div class="form-group">
+                    <label class="control-label">Building Number</label>
+                    {% if supplier.addresses|length > 0 %} {{supplier.addresses.buildingNumber}} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Building Name</label>
+                    {% if supplier.addresses|length > 0 %} {{ supplier.addresses.buildingName }} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Street</label>
+                    {% if supplier.addresses|length > 0 %} {{ supplier.addresses.street }} {% endif %}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Predominant Landmark</label>
+                  {% if supplier.addresses|length > 0 %} {{ supplier.addresses.predominantLandmark }} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">City/Town</label>
+                    {% if supplier.addresses|length > 0 %} {{ supplier.addresses.town }} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Region</label>
+                    {% if supplier.addresses|length > 0 %} {{ supplier.addresses.region is not null ? supplier.addresses.region.name : '' }} {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Country</label>
+                    {% if supplier.addresses|length > 0 %} {{ supplier.addresses.country }} {% endif %}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Postal Address</label>
+                  {% if supplier.addresses|length > 0 %} {{supplier.addresses.postalAddress}} {% endif %}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Postal Code</label>
+                  {% if supplier.addresses|length > 0 %} {{supplier.addresses.postalCode}} {% endif %}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">No. of branches in Ghana</label>
+                  {% if supplier.addresses|length > 0 %} {{supplier.numberOfBranches}} {% endif %}
+                </div>
+              </div>
+              <div class="tab-pane" id="contacts">
+                <h2 class="content-heading text-black">Contacts</h2>
+                <div class="form-group ">
+                    <label class="control-label">Contact Name</label>
+                    {{ supplier.contacts|length > 0 ? supplier.contacts[0].name : '' }}
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Contact Role</label>
+                    {{ supplier.contacts|length > 0 ? supplier.contacts[0].designation : '' }}
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Contact Phone</label>
+                    {{ supplier.contacts|length > 0 ? supplier.contacts[0].phone : '' }}
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Contact Mobile</label>
+                    {{ supplier.contacts|length > 0 ? supplier.contacts[0].mobile : '' }}
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Contact Email</label>
+                    {{ supplier.contacts|length > 0 ? supplier.contacts[0].email : '' }}
+                </div>
+                <div class="form-group ">
+                  <label class="control-label">Contact Address</label>
+                  {{ supplier.contacts|length > 0 ? supplier.contacts[0].contactAddress : '' }}
+                </div>
+              </div>
+              <div class="tab-pane" id="areas">
+                <h2 class="content-heading text-black">Boundaries of supply</h2>
+                {% for province in supplier.provinces %}
+                  <p>{{ province.name }}</p>
+                {% endfor %}
+              </div>
+              <div class="tab-pane" id="structure">
+                <h2 class="content-heading text-black">Organisation Structure</h2>
+                <div class="form-group">
+                  <label class="control-label">Number of employees</label>
+                  {{ supplier.numberOfEmployees }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Employs any persons with disabilities?</label>
+                  {{ supplier.employDisabled == 1 ? 'Yes' : 'No' }}
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 class="content-heading text-black">Details of all directors</h2>
+                    <table id="bootstrap-table" class="table">
+                      <thead>
+                        <tr>
+                          <th data-field="details">Full names</th>
+                          <th data-field="publishDate" data-sortable="true">Role</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for director in supplier.directors %}
+                        <td data-field="details">{{ director.name }}</td>
+                        <td data-field="publishDate" data-sortable="true">{{ director.role }}</td>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="ownership">
+                <h2 class="content-heading text-black">Ownership Structure</h2>
+                <div class="form-group">
+                    <label class="control-label">Ghanaian Ownership Percentage</label>
+                    {{ supplier.ghanaianOwnershipPercentage }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">A woman-owned business?</label>
+                  {{ supplier.ownershipWomen == 1 ? 'Yes' : 'No' }}
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Any of owners under 35?</label>
+                  {{ supplier.ownershipUnder30 == 1 ? 'Yes' : 'No' }}
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 class="content-heading text-black">Company owners detail</h2>
+                    <table id="bootstrap-table" class="table">
+                      <thead>
+                        <tr>
+                          <th data-field="details">Name</th>
+                          <th data-field="publishDate" data-sortable="true">Nationality</th>
+                          <th data-field="deadline" data-sortable="true">Shares</th>
+                          <th data-field="status" data-sortable="true">Percentage</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for shareholder in supplier.shareholders %}
+                        <td data-field="details">{{ shareholder.name }}</td>
+                        <td data-field="publishDate" data-sortable="true">{{ shareholder.nationality }}</td>
+                        <td data-field="deadline" data-sortable="true">{{ shareholder.shares }}</td>
+                        <td data-field="status" data-sortable="true">{{ shareholder.percentage }}</td>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="references">
+                <h2 class="content-heading text-black">Commercial References</h2>
+                {% for reference in supplier.references %}
+                  <h5>Reference {{loop.index}}</h5>
+                  <div class="form-group ">
+                      <label class="control-label">Client</label>
+                      {{ reference.client }}
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Contact Name</label>
+                    {{ reference.contactPerson }}
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Contact Telephone</label>
+                    {{ reference.telephone }}
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Contact Email</label>
+                    {{ reference.email }}
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Contact Designation</label>
+                    {{ reference.designation }}
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Approximate value of contract</label>
+                    {{ reference.currency ~ ' ' ~ reference.valueOfContract|number_format(2, '.', ',') }}
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="tab-pane" id="documents">
+                <h2 class="content-heading text-black">Documents</h2>
+                <table id="bootstrap-table" class="table">
+                  <thead>
+                    <tr>
+                      <th data-field="details">Type of Document</th>
+                      <th data-field="details">Uploaded Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for document in supplier.documents %}
+                    <tr>
+                      <td data-field="details">{{ document.documentType.documentType.name }}</td>
+                      <td data-field="details">{{ document.createdAt|date('d/m/Y') }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

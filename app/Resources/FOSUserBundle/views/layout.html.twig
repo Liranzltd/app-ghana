@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name='keywords' content='africa, partnership, platform, social, tenders, ghana, business linkage, business growth, investment in ghana'>
+        <meta name='description' content="The African Partner Pool brings businesses together. It connects companies across sectors in Ghana with the local business partners they need to get the job done.">
+        <meta name='author' content='Invest in Africa'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Fonts Online -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <!-- Style Sheet -->
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/owl.carousel.css?ver='~random(5)) }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/main-style.css?ver='~random(5)) }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css?ver='~random(5)) }}">
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/custom.css?ver='~random(5)) }}">
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style>
+          .tp-banner h3 {
+            padding: 4px 0;
+            color: #4285F4;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+          .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 0 0 20px;
+        }
+        .form-group label {
+            display: block;
+            margin: 0 0 10px;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+        }
+        .form-group input {
+            outline: none;
+            display: block;
+            background: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            border: 0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 12px 20px;
+            color: rgba(0, 0, 0, 0.6);
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: 500;
+            line-height: inherit;
+            transition: 0.3s ease;
+        }
+        .form-group button {
+            outline: none;
+            background: #4285F4;
+            width: 100%;
+            border: 0;
+            border-radius: 4px;
+            padding: 12px 20px;
+            color: #FFFFFF;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: 500;
+            line-height: inherit;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .form-header h1 {
+            padding: 4px 0;
+            color: rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .warning
+        {
+          color: #FF0051;
+        }
+        .background-image
+        {
+
+          height: 100vh;
+          position: fixed;
+          -webkit-filter: blur(1px);
+          -moz-filter: blur(1px);
+          -o-filter: blur(1px);
+          -ms-filter: blur(1px);
+          filter: blur(1px);
+          left: 0;
+          right: 0;
+          z-index: 1;
+          display: block;
+          top: 128px;
+      }
+      .login-container
+      {
+        /* position: fixed; */
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        max-width: 600px;
+        /* opacity: 0.95; */
+      }
+    </style>
+  </head>
+    <body>
+      <div id="main-wrapper">
+        {% include 'header.html.twig' %}
+        <!-- SUB Banner -->
+        <section class="profile-company-content main-user pt60" style="background-image: url('{{ asset('bundles/app/images/login.jpeg') }}');background-size: cover;background-repeat: no-repeat;min-height:800px;">
+          <div class="background-image"></div>
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        {% block fos_user_content %}{% endblock fos_user_content %}
+        </section>
+      </div>
+      {% include 'footer.html.twig' %}
+      {% block javascripts %}{% endblock %}
+  </body>
+</html>

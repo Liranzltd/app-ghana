@@ -1,0 +1,77 @@
+{% extends 'AppBundle::standard_layout.html.twig' %}
+
+
+{% block sonata_page_content %}
+<article>
+  <!-- Content Header (Page header) -->
+  <header class="content-header container-fluid">
+      <div class="row">
+          <div class="col-lg-8">
+              <h1 class="content-max-width">User Guide</h1>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="content container-fluid">
+      <div class="row">
+        <div class="col-lg-5">
+        <h3>Table of Contents</h3>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="{{ path('user-guide',{'id': 2}) }}">Creating Records</a></li>
+                <li><a href="{{ path('user-guide',{'id': 3}) }}">Editing existing Records</a></li>
+                <li><a href="{{ path('user-guide',{'id': 4}) }}">Deleting Records</a></li>
+                <li><a href="{{ path('user-guide',{'id': 1}) }}">Listing Records</a></li>
+                <li><a href="{{ path('user-guide',{'id': 5}) }}">Searching for Records</a></li>
+                <li>Exporting Records</li>
+              </ul>
+            </li>
+            <li>Supplier Management
+              <ul>
+                <li>Supplier Records</li>
+                <li>Required Documents Management</li>
+                <li>Supplier Contacts</li>
+                <li>Company Types</li>
+              </ul>
+            </li>
+            <li>Tender Management</li>
+            <li>Staff Management</li>
+            <li>User Management
+              <ul>
+                <li>View Records</li>
+                <li>Disabling Members</li>
+              </ul>
+            </li>
+            <li>Promo code Management</li>
+            <li>Verification Module</li>
+          </ul>
+        </div>
+          <div class="col-lg-5">
+              <section class="content-max-width">
+                  <section id="installation">
+                  {% if content %}
+                  <h3>{{ content.title }}</h3>
+                  <p>{{ content.description }}</p>
+                    {% if content.contentType == 'Video' %}
+                    <video width="640" height="480" controls>
+                      <source src="{{ asset('bundles/app/vids/'~content.content)|striptags }}" type="video/{{content.content|striptags|split('.')|last}}">
+                      Your browser does not support the video tag.
+                    </video>
+                    {% else %}
+                    {% endif %}
+                  {% else %}
+                  <h3>Introduction</h3>
+                    <p>
+                        This is a technical communication document intended to give assistance to people using the APP System. This guide is in form of short video clips that illustrate the basic functions of performing intended tasks. However, some areas may comprise of a combination of video and text or text only as context demands
+                    </p>
+                  {% endif %}
+                  </section>
+              </section>
+          </div>
+      </div>
+  <div>
+<!-- /.content -->
+</article>
+{% endblock %}

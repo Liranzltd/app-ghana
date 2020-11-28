@@ -1,0 +1,32 @@
+AppBundle\Entity\RequestUpdate:
+  type: entity
+  table:  request_updates
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: IDENTITY
+  fields:
+    status:
+      type: string
+      length: 20
+    remarks:
+      type: string
+      length: 300
+    actionDate:
+      type: datetime
+  manyToOne:
+    request:
+      targetEntity: Request
+      inversedBy: updates
+      joinColumn:
+        request_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    member:
+      targetEntity: BuyerMembership
+      inversedBy: null
+      joinColumn:
+        buyer_member_id:
+          referencedColumnName: id
+        onDelete: CASCADE

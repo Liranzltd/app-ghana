@@ -1,0 +1,427 @@
+AppBundle\Entity\Company:
+  type: entity
+  table:  companies
+  repositoryClass: AppBundle\Repository\CompanyRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    registrationNumber:
+      type: string
+      length: 40
+      nullable: true
+    graTinNumber:
+      type: string
+      length: 20
+      nullable: true
+    registrationDate:
+      type: date
+      nullable: true
+    natureOfBusiness:
+      type: string
+      length: 100
+      nullable: true
+    tradingName:
+      type: string
+      length: 100
+      nullable: true
+    membershipCategory:
+      type: string
+      length: 25
+      nullable: true
+    parentCompany:
+      type: string
+      length: 100
+      nullable: true
+    description:
+      type: string
+      length: 13000
+      nullable: true
+    website:
+      type: string
+      length: 255
+      nullable: true
+    slug:
+      type: string
+      length: 255
+      nullable: true
+    companyLogo:
+      type: string
+      length: 255
+      nullable: true
+    memberType:
+      type: string
+      nullable: true
+      length: 12
+    powerOfAttorney:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    powerOfAttorneyFile:
+      type: string
+      length: 255
+      nullable: true
+    numberOfBranches:
+      type: integer
+      length: 2
+      nullable: true
+      options:
+        default:  1
+    numberOfEmployees:
+      type: integer
+      length: 5
+      nullable: true
+      options:
+        default:  0
+    shareOfGhanaianEmployees:
+      type: string
+      length: 12
+      nullable: true
+    shareOfGhanaianManagementEmployees:
+      type: integer
+      length: 2
+      nullable: true
+      options:
+        default:  0
+    womanOwnershipPercentage:
+      type: string
+      length: 15
+      nullable: true
+    shareOfGhanaianDirectors:
+      type: string
+      length: 12
+      nullable: true
+    localContent:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    disabledNo:
+      type: integer
+      length: 4
+      nullable: true
+      options:
+        default:  0
+    localContentFile:
+      type: string
+      length: 255
+      nullable: true
+    ghanaianOwnershipPercentage:
+      type: integer
+      length: 2
+      nullable: true
+      options:
+        default:  0
+    issuedCapital:
+      type: decimal
+      scale: 2
+      precision: 15
+      nullable: true
+      options:
+        default:  0.00
+    authorisedCapital:
+      type: decimal
+      scale: 2
+      precision: 15
+      nullable: true
+      options:
+        default:  0.00
+    ownershipWomen:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    ownershipUnder30:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    employDisabled:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    bankName:
+      type: string
+      length: 80
+      nullable: true
+    bankBranch:
+      type: string
+      length: 80
+      nullable: true
+    bankruptcy:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    creditChecks:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    bankTel:
+      type: string
+      length: 20
+      nullable: true
+    approxTurnover:
+      type: string
+      length: 40
+      nullable: true
+    auditedStatements:
+      type: string
+      length: 255
+      nullable: true
+    debarred:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    criminalOffence:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    conflictOfInterest:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    conflictOfInterestIIA:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    declareTrue:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    understandRisks:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    isOnSourceDogg:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    amountDue:
+      type: decimal
+      scale: 2
+      precision: 15
+      nullable: true
+      options:
+        default:  0.00
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    subscriptionDate:
+      type: datetime
+      nullable: true
+    paymentReference:
+      type: string
+      length: 255
+    status:
+      type: string
+      length: 30
+    currentSubscriptionStatus:
+      type: string
+      length: 30
+    paymentReceived:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    isFullyPaidUp:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    isInvoiced:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    isReceipted:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    iiaValidated:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    crbChecked:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    hiveBriteId:
+      type: integer
+      length: 12
+      nullable: true
+    hiveBriteNetworkId:
+      type: integer
+      length: 12
+      nullable: true
+    section1Complete:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    section2Complete:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    section3Complete:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    section4Complete:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    section5Complete:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+    learnAboutUs:
+      type: string
+      length: 300
+      nullable: true
+    isTraceCertified:
+      type: boolean
+      nullable: true
+      options:
+        default:  false
+  manyToOne:
+    companyType:
+      targetEntity: CompanyType
+      inversedBy: companies
+      joinColumn:
+        company_type_id:
+          referencedColumnName: id
+    registeredBy:
+      targetEntity: Member
+      inversedBy: registeredCompanies
+      joinColumn:
+        registered_by_id:
+            referencedColumnName: id
+        onDelete: CASCADE
+    promoCode:
+      targetEntity: PromoCode
+      inversedBy: companies
+      joinColumn:
+        promo_code_id:
+            referencedColumnName: id
+        onDelete: SET NULL
+    tier:
+      targetEntity: Tier
+      inversedBy: null
+      joinColumn:
+        tier_id:
+          referencedColumnName: id
+  oneToOne:
+    addresses:
+      targetEntity: CompanyAddress
+      mappedBy: company
+  oneToMany:
+    gat:
+      targetEntity: CompanyGAT
+      mappedBy: company
+    subscription:
+      targetEntity: CompanySubscription
+      mappedBy: company
+      orderBy:
+        id: DESC
+    # transactions:
+    #   targetEntity: Transaction
+    #   mappedBy: company
+    payments:
+      targetEntity: Payment
+      mappedBy: company
+    documents:
+      targetEntity: CompanyDocumentation
+      mappedBy: company
+    contacts:
+      targetEntity: CompanyContact
+      mappedBy: company
+    references:
+      targetEntity: CompanyReference
+      mappedBy: company
+    directors:
+      targetEntity: CompanyDirector
+      mappedBy: company
+    shareholders:
+      targetEntity: CompanyShareholding
+      mappedBy: company
+    verification:
+      targetEntity: CompanyVerification
+      mappedBy: company
+    requests:
+      targetEntity: CompanyRequest
+      mappedBy: company
+    teamMembers:
+      targetEntity: CompanyMembership
+      mappedBy: company
+  manyToMany:
+    categories:
+      targetEntity: Category
+      inversedBy: companies
+      joinTable:
+        name: company_categories
+        joinColumns:
+          company_id:
+            referencedColumnName: id
+            onDelete: CASCADE
+        inversedJoinColumns:
+          category_id:
+            referencedColumnName: id
+    provinces:
+      targetEntity: Province
+      inversedBy: companies
+      cascade: ["all"]
+      joinTable:
+        name: company_provinces
+        joinColumns:
+          company_id:
+            referencedColumnName: id
+            onDelete: CASCADE
+        inversedJoinColumns:
+          province_id:
+            referencedColumnName: id
+    specialGroups:
+      targetEntity: SpecialGroup
+      inversedBy: companies
+      cascade:  ["persist","remove"]
+      joinTable:
+        name: company_special_groups
+        joinColumns:
+          company_id:
+            referencedColumnName: id
+            onDelete: CASCADE
+        inversedJoinColumns:
+          special_group_id:
+            referencedColumnName: id
+            onDelete: CASCADE
+    members:
+      targetEntity: Member
+      onDelete: CASCADE
+      mappedBy: companies
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

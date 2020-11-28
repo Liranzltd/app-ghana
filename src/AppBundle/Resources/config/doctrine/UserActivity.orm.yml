@@ -1,0 +1,25 @@
+AppBundle\Entity\UserActivity:
+  type: entity
+  table:  user_activities
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    activity:
+      type: string
+      length: 300
+    module:
+      type: string
+      length: 30
+    createdAt:
+      type: datetime
+  manyToOne:
+    member:
+      targetEntity: Member
+      inversedBy: activity
+      joinColumn:
+        member_id:
+          referencedColumnName: id
+        onDelete: CASCADE

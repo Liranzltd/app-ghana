@@ -1,0 +1,149 @@
+{% extends "AppBundle::standard_layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/app/css/dataTables.bootstrap.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="dasheader">
+  APP Control panel
+  <small> - Payments Dashboard</small>
+</h1>
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{ transactions|length }}</h3>
+        <p>Total Transactions</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      <a href="{{ path('app_dashboard_payment') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+      {% set total, mpesa, equity = 0,0,0 %}
+      {% for transaction in transactions %}
+        {% set total = total + transaction.amount %}
+        {% if transaction.mode == 'M-PESA' %}
+          {% set mpesa = mpesa + 1 %}
+        {% endif %}
+        {% if transaction.mode == 'Equity' %}
+          {% set equity = equity + 1 %}
+        {% endif %}
+      {% endfor %}
+        <h3>{{ total|number_format(2,'.',',') }}</h3>
+        <p>Amount Paid-in</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-document-text"></i>
+      </div>
+      <a href="{{ path('app_dashboard_payment') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{ mpesa }}</h3>
+
+        <p>Upcoming Renewals</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-search-strong"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{ equity }}</h3>
+
+        <p>Amount Due in Renewals</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-checkmark"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Payments</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="payments" class="table table-bordered table-striped datatables">
+          <thead>
+            <tr><td>Company</td><td>Transaction Date</td><td>Transaction Reference</td><td>Mode</td><td>Amount Paid</td><td>Status</td><td>Promo Code</td></tr>
+          <thead>
+          <tbody>
+            {% for transaction in transactions %}
+            <tr><td>{{ transaction.company }}</td><td><span class="hidden">{{ transaction.transactionTime|date('Ymdhis') }}</span> {{ transaction.transactionTime|date('d/m/Y h:i:s') }}</td><td>{{ transaction.paymentReference }}</td><td>{{ transaction.mode }}</td><td>{{ transaction.amount|number_format(2,'.',',') }}</td><td>{{ transaction.status }}</td><td>{{ transaction.promoCode }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Expiring subscriptions</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="payments" class="table table-bordered table-striped datatables">
+          <thead>
+            <tr><td>Company</td><td>Expiry Date</td><td>Amount</td><td>Status</td></tr>
+          <thead>
+          <tbody>
+            {% for expiry in expiring %}
+            <tr><td>{{ expiry.company }}</td><td><span class="hidden">{{ expiry.expiryDate|date('Ymdhis') }}</span> {{ expiry.expiryDate|date('d/m/Y') }}</td><td>{{ expiry.company.amountDue }}</td><td>{{ expiry.company.currentSubscriptionStatus }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{asset('bundles/app/js/datatables.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('bundles/app/js/dataTables.bootstrap.min.js')}}"></script>
+  <script>
+    $(function() {
+      var options = {
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "language": {
+          "emptyTable": $(this).data('empty')
+          }
+        };
+      $('#payments').DataTable({"order": [[ 1, "desc" ]]},options);
+
+    });
+  </script>
+{% endblock %}

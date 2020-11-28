@@ -1,0 +1,177 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ buyer.name }} APP: New Request{% endblock %}
+{% block crumbtitle %}In this section, you can post and edit requests to specific or all APP suppliers {% endblock %}
+{% block body %}
+<div class="main-panel">
+  <div class="content">
+    <div class="container">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+              <h4 class="card-title">Post new request</h4>
+          </div>
+          <div class="card-content">
+            <form class="mdl-grid" name="new-request" action="{{ path('save-request') }}"  enctype="multipart/form-data" method="POST">
+              <div class="form-group">
+                <label>Name of request</label>
+                <input type="text" id="name" name="name" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Type of Request</label>
+                  <select class="selectpicker" data-style="btn btn-danger btn-block" data-size="7" id="requestType" name="requestType">
+                    <option value=""></option>
+                    {% for type in requestType %}
+                    <option value="{{ type.id }}">{{ type.name }}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>Request summary</label>
+                <textarea class="form-control" placeholder="Provide summary of the request for suppliers" rows= "8" id="summary" name="summary"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Request details</label>
+                <textarea class="form-control" placeholder="Provide detailed information of the request for suppliers" rows= "15" id="description" name="description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label>Submission Instructions</label>
+                <textarea class="form-control" placeholder="How are suppliers to submit their responses?" rows= "5" id="submissionInstructions" name="submissionInstructions" required></textarea>
+              </div>
+              <div class="form-group">
+                <label>Response deadline</label>
+                <input type="text" class="form-control datetimepicker" placeholder="Deadline" id="deadline" name="deadline" required />
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                    <h5>Sectors</h5>
+                    {% for sector in sectors %}
+                    <div class="checkbox col-md-4 col-xs-12 col-sm-6">
+                     <input id="sector-{{sector.id}}" type="checkbox" name="sectors[]" value="{{sector.name}}">
+                     <label for="sector-{{sector.id}}">
+                        {{sector.name}}
+                      </label>
+                     </div>
+                    {% endfor %}
+                  </div>
+               </div>
+               <div class="row">
+                <div class="col-lg-12" id="docs">
+                    <h5>Documents</h5>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Document name or title</label>
+                            <input type="text" name="docs[filename][]" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Attach file</label>
+                            <input type="file" id="FileAttachment" class="upload" name="docs[FileAttachment][]">
+                            <input type="text" class="fileuploadurl" readonly placeholder="Maximum file size is 32MB" name="docs[fileuploadurl][]">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="row">
+                 <div class="col-lg-12">
+                  <button type="button" class="btn btn-wd btn-danger btn-xs" id="add-upload">
+                       <span class="btn-label">
+                           <i class="fas fa-plus"></i>
+                       </span>
+                       Add Document
+                   </button>
+                 </div>
+               </div>
+               <br/>
+               <div class="row">
+                <div class="col-lg-12">
+                  <input type="hidden" value="{{ buyer.id }}" name="buyer"/>
+                   <button type="submit" class="btn btn-wd btn-fill btn-info">
+                      <span class="btn-label">
+                        <i class="fa fa-check"></i>
+                        </span>
+                        Save Draft
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/app/js/moment.min.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-datetimepicker.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-selectpicker.js') }}"></script>
+  <script type="text/javascript">
+    var CKEDITOR_BASEPATH = "/bundles/ivoryckeditor/";
+  </script>
+  <script type="text/javascript" src="{{ asset('/bundles/ivoryckeditor/ckeditor.js') }}"></script>
+  <script>
+    var cnt = 0;
+    $(".upload").on('change',function() {
+      $(this).parent().next().val(this.value.replace(/C:\\fakepath\\/i, ''));
+    });
+
+    if (CKEDITOR.instances["description"]) { CKEDITOR.instances["supplier_remarks"].destroy(true); delete CKEDITOR.instances["description"]; }
+    CKEDITOR.replace("description", {"toolbar":[["Cut","Copy","Paste","PasteText","PasteFromWord","-","Undo","Redo"],["Scayt"],["Link","Unlink","Anchor"],["Image","Table","HorizontalRule","SpecialChar"],["Maximize"],["Source"],"\/",["Bold","Italic","Strike","-","RemoveFormat"],["NumberedList","BulletedList","-","Outdent","Indent","-","Blockquote"],["Styles","Format","About"]],"uiColor":"#ffffff","language":"en"});
+
+    if (CKEDITOR.instances["summary"]) { CKEDITOR.instances["supplier_remarks"].destroy(true); delete CKEDITOR.instances["summary"]; }
+    CKEDITOR.replace("summary", {"toolbar":[["Cut","Copy","Paste","PasteText","PasteFromWord","-","Undo","Redo"],["Scayt"],["Link","Unlink","Anchor"],["Image","Table","HorizontalRule","SpecialChar"],["Maximize"],["Source"],"\/",["Bold","Italic","Strike","-","RemoveFormat"],["NumberedList","BulletedList","-","Outdent","Indent","-","Blockquote"],["Styles","Format","About"]],"uiColor":"#ffffff","language":"en"});
+
+
+    jQuery('.datetimepicker').datetimepicker(
+    {
+      format: 'DD/MM/YYYY HH:mm',
+      icons: {
+            time: 'fas fa-clock',
+            date: 'fas fa-calendar-alt',
+            up: 'fas fa-angle-up',
+            down: 'fas fa-angle-down',
+            previous: 'fas fa-angle-left',
+            next: 'fas fa-angle-right',
+            today: 'far fa-calendar-check',
+            clear: 'far fa-calendar-times',
+            close: 'far fa-window-close'
+        }
+    }
+    );
+    $('#add-upload').on('click',function(e)
+    {
+      cnt++;
+      e.preventDefault();
+      var html='<div class="row doc-row" id="row'+cnt+'">'+
+        '<div class="col-lg-6">'+
+        '  <div class="form-group">'+
+        '    <label>Document name or title</label>'+
+        '    <input type="text" name="docs[filename][]" class="form-control">'+
+        '  </div>'+
+        '</div>'+
+        '<div class="col-lg-4">'+
+        '  <div class="form-group">'+
+      '      <label>Attach file</label>'+
+      '       <input type="file" id="FileAttachment" class="upload" name="docs[FileAttachment][]">'+
+      '       <input type="text" class="fileuploadurl" readonly placeholder="Maximum file size is 32MB" name="docs[fileuploadurl][]">'+
+      '    </div>'+
+      '</div>'+
+      '<div class="col-lg-2">'+
+      '  <button class="btn btn-xs btn-fill delete" data-id="'+cnt+'" id="delete-'+cnt+'"><i class="far fa-trash-alt"></i></button>'+
+      '</div>'+
+      '</div>';
+      $('#docs').append(html);
+      componentHandler.upgradeDom();
+    });
+    $(document).on('click','.delete',function(e)
+    {
+      e.preventDefault();
+      $('#row'+$(this).data('id')).remove();
+    });
+  </script>
+{% endblock %}

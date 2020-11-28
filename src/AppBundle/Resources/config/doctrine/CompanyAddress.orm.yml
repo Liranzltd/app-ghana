@@ -1,0 +1,60 @@
+AppBundle\Entity\CompanyAddress:
+  type: entity
+  table:  company_addresses
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    buildingNumber:
+      type: string
+      length: 255
+      nullable: true
+    buildingName:
+      type: string
+      length: 255
+      nullable: true
+    street:
+      type: string
+      length: 255
+    town:
+      type: string
+      length: 255
+    country:
+      type: string
+      length: 40
+    postalAddress:
+      type: string
+      length: 255
+    postalCode:
+      type: string
+      length: 8
+      nullable: true
+    predominantLandmark:
+      type: string
+      length: 255
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  oneToOne:
+    company:
+      targetEntity: Company
+      inversedBy: addresses
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  manyToOne:
+    region:
+      targetEntity: Province
+      inversedBy: null
+      joinColumn:
+        region_id:
+          referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

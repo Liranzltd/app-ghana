@@ -1,0 +1,64 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+  {% if object.status == 'Wrong reference number provided' and is_granted('ROLE_SUPER_ADMIN') %}
+  <a href="#" class="wrongpmt" data-id="{{ object.id }}" >{{ object.status }}</a>
+  {% else %}
+  {{ object.status }}
+  {% endif %}
+  <script>
+  $(function()
+  {
+    $('.wrongpmt').on('click',function(e)
+    {
+      e.preventDefault();
+      $('#modal-payment-'+$(this).data('id')).modal();
+    });
+    $('#correctP-{{ object.id }}').on('click',function(e)
+    {
+      $.ajax({
+        url: '/admin/actions/apportion',
+        data: {company: $('#company-{{ object.id }}').val(), payment: '{{ object.id }}'},
+        success:  function(response)
+        {
+          if(response.status == 'Success')
+          {
+            location.reload();
+          }
+          else
+          {
+            $('#modal-payment-{{ object.id }} .modal-body').prepend('<div class="alert alert-danger alert-dismissible">'+
+              '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                '<h4><i class="icon fa fa-ban"></i> Alert!</h4>'+ response.status +'</div>');
+          }
+        }
+      });
+    });
+  });
+  </script>
+  <div class="modal fade" id="modal-payment-{{ object.id }}" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+              <h4 class="modal-title">Payment correction for {{ object.paymentReference }}</h4>
+            </div>
+            <div class="modal-body">
+              <select id="company-{{ object.id }}">
+                <option>Select Company</option>
+                {% for company in admin.data %}
+                <option value="{{ company.id }}">{{ company.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="correctP-{{ object.id }}">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+{% endblock %}

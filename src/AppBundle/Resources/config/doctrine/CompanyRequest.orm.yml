@@ -1,0 +1,50 @@
+AppBundle\Entity\CompanyRequest:
+  type: entity
+  table:  company_requests
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    invitationDate:
+      type: datetime
+      nullable: true
+    responseDate:
+      type: datetime
+      nullable: true
+    status:
+      type: string
+    buyerRemarks:
+      type: text
+      nullable: true
+    score:
+      type: string
+      nullable: true
+    supplierRemarks:
+      type: text
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    request:
+      targetEntity: Request
+      inversedBy: responses
+      joinColumn:
+        request_id:
+          referencedColumnName: id
+    company:
+      targetEntity: Company
+      inversedBy: requests
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+  oneToMany:
+    documents:
+      targetEntity: CompanyRequestDocument
+      mappedBy: response
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate: [setUpdatedAtValue]

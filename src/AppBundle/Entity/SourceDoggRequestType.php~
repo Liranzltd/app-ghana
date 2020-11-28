@@ -1,0 +1,105 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * SourceDoggRequestType
+ */
+class SourceDoggRequestType
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $requests;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->requests = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return SourceDoggRequestType
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add request
+     *
+     * @param \AppBundle\Entity\SourceDoggRequest $request
+     *
+     * @return SourceDoggRequestType
+     */
+    public function addRequest(\AppBundle\Entity\SourceDoggRequest $request)
+    {
+        $this->requests[] = $request;
+
+        return $this;
+    }
+
+    /**
+     * Remove request
+     *
+     * @param \AppBundle\Entity\SourceDoggRequest $request
+     */
+    public function removeRequest(\AppBundle\Entity\SourceDoggRequest $request)
+    {
+        $this->requests->removeElement($request);
+    }
+
+    /**
+     * Get requests
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRequests()
+    {
+        return $this->requests;
+    }
+
+    public function __toString()
+    {
+      return $this->getName() == null ? 'New' :  $this->getName();
+    }
+}

@@ -1,0 +1,29 @@
+AppBundle\Entity\Tier:
+  type: entity
+  table:  tiers
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    description:
+      type: string
+      length: 100
+      nullable: true
+    subscriptionFee:
+      type: decimal
+      scale:  2
+      precision:  13
+    membershipCategory:
+      type: string
+      length: 25
+  oneToMany:
+    benefits:
+      targetEntity: TierBenefit
+      cascade:  [persist]
+      orphanRemoval:  true
+      mappedBy: tier

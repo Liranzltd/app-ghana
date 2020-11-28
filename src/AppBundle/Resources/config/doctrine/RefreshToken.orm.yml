@@ -1,0 +1,22 @@
+AppBundle\Entity\RefreshToken:
+  type: entity
+  table:  refresh_tokens
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  manyToOne:
+    client:
+      targetEntity:   AppBundle\Entity\Client
+      inversedBy: null
+      joinColumn:
+        nullable: false
+        client_id:
+            referencedColumnName:   id
+    user:
+      targetEntity:   Application\Sonata\UserBundle\Entity\User
+      inversedBy: null
+      joinColumn:
+        user_id:
+            referencedColumnName:   id

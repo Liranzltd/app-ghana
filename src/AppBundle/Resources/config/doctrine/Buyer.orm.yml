@@ -1,0 +1,156 @@
+AppBundle\Entity\Buyer:
+  type: entity
+  table:  buyers
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    natureOfBusiness:
+      type: string
+      length: 100
+      nullable: true
+    numberOfBranches:
+      type: integer
+      length: 2
+      nullable: true
+      options:
+        default:  1
+    contactPerson:
+      type: string
+      length: 100
+      nullable: true
+    designation:
+      type: string
+      length: 80
+      nullable: true
+    officePhone:
+      type: string
+      length: 30
+      nullable: true
+    mobile:
+      type: string
+      length: 30
+      nullable: true
+    officialEmailAddress:
+      type: string
+      length: 40
+      nullable: true
+    gender:
+      type: string
+      length: 6
+      nullable: true
+    address:
+      type: string
+      length: 50
+      nullable: true
+    city:
+      type: string
+      length: 30
+      nullable: true
+    country:
+      type: string
+      length: 30
+      nullable: true
+    hasEProcurementSystem:
+      type: boolean
+      options:
+        default:  false
+      nullable: true
+    eProcurementSystem:
+      type: string
+      length: 255
+      nullable: true
+    noOfAppUsers:
+      type: integer
+      length: 3
+      nullable: true
+    status:
+      type: string
+      length: 30
+      nullable: true
+      options:
+        default:  'New'
+    buyerType:
+      type: string
+      length: 30
+      nullable: true
+    logo:
+      type: string
+      length: 255
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    slug:
+      type: string
+      length: 255
+      nullable: true
+    description:
+      type: text
+      nullable: true
+    website:
+      type: string
+      length: 80
+      nullable: true
+    showOnWebsite:
+      type: boolean
+      options:
+        default:  false
+  oneToMany:
+    teamMembers:
+      targetEntity: BuyerMembership
+      mappedBy: buyer
+    postedRequests:
+      targetEntity: Request
+      mappedBy: buyer
+    resources:
+      targetEntity: BusinessGrowthHub
+      mappedBy: buyer
+    pools:
+      targetEntity: BuyerSupplierPool
+      mappedBy: buyer
+  manyToOne:
+    sector:
+      targetEntity: Category
+      inversedBy: null
+      joinColumn:
+        category_id:
+    companyType:
+      targetEntity: CompanyType
+      inversedBy: null
+      joinColumn:
+        company_type_id:
+          referencedColumnName: id
+  manyToMany:
+    regions:
+      targetEntity: Province
+      inversedBy: null
+      joinTable:
+        name: buyer_regions
+        joinColumns:
+          buyer_id:
+            referencedColumnName: id
+        inversedJoinColumns:
+          category_id:
+            referencedColumnName: id
+    sectors:
+      targetEntity: Category
+      inversedBy: null
+      joinTable:
+        name: buyer_categories
+        joinColumns:
+          buyer_id:
+            referencedColumnName: id
+        inversedJoinColumns:
+          category_id:
+            referencedColumnName: id
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue, lifecycleFileUpload ]
+      preUpdate:    [ lifecycleFileUpload ]

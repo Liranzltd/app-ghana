@@ -1,0 +1,23 @@
+AppBundle\Entity\CompanyDirector:
+  type: entity
+  table:  companies_directors
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+    role:
+      type: string
+      length: 255
+  manyToOne:
+    company:
+      targetEntity: Company
+      inversedBy: directors
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE

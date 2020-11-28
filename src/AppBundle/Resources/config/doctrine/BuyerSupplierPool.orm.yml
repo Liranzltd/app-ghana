@@ -1,0 +1,31 @@
+AppBundle\Entity\BuyerSupplierPool:
+  type: entity
+  table:  buyer_supplier_pool
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+  manyToOne:
+    buyer:
+      targetEntity: Buyer
+      inversedBy: pools
+      joinColumn:
+        buyer_id:
+          referencedColumnName: id
+  manyToMany:
+    suppliers:
+      targetEntity: Company
+      inversedBy: null
+      joinTable:
+        name: buyer_pool_suppliers
+        joinColumns:
+          buyer_pool_id:
+            referencedColumnName: id
+        inversedJoinColumns:
+          company_id:
+            referencedColumnName: id

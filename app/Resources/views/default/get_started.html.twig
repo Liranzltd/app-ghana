@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="/bundles/app/css/style.css?ver=4">
+<style>
+.platinum {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMzE3LjExMyAzMTcuMTEzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMTcuMTEzIDMxNy4xMTM7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDAgLTExMCkiPjxnPgoJPHBvbHlnb24gcG9pbnRzPSIyOTEuOTI3LDEzNi4wMTkgMjkxLjkyNywxODEuMDkyIDMxNy4xMTMsMTgxLjA5MiAzMDYuNTA5LDE1Ny4yOTMgMzE3LjExMywxMzYuMDE5ICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNFNUU0RTIiLz4KCTxwb2x5Z29uIHBvaW50cz0iMjYyLjQ4NCwxODcuOTk5IDI4Ni42MjQsMTg3Ljk5OSAyODYuNjI0LDE4MS4wOTIgMjg2LjYyNCwxMzYuMDE5IDI4Ni42MjQsMTI5LjExMSAyNjIuNDg0LDEyOS4xMTEgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0U1RTRFMiIvPgoJPHBvbHlnb24gcG9pbnRzPSIyNS4xODcsMTgxLjA5MiAyNS4xODcsMTM2LjAxOSAwLDEzNi4wMTkgMTAuNjA0LDE1Ny45NTYgMCwxODEuMDkyICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNFNUU0RTIiLz4KCTxwb2x5Z29uIHBvaW50cz0iMzAuNDg5LDE4MS4wOTIgMzAuNDg5LDE4Ny45OTkgNTQuNjI5LDE4Ny45OTkgNTQuNjI5LDEyOS4xMTEgMzAuNDg5LDEyOS4xMTEgMzAuNDg5LDEzNi4wMTkgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0U1RTRFMiIvPgoJPHBvbHlnb24gcG9pbnRzPSI1OS45MzIsMTIzLjgwOSA1OS45MzIsMTI2LjQ2IDU5LjkzMiwxMjkuMTExIDU5LjkzMiwxODcuOTk5IDU5LjkzMiwxOTAuNjUgNTkuOTMyLDE5My4zMDIgNTkuOTMyLDE5OS44MjYgICAgMjU3LjE4MiwxOTkuODI2IDI1Ny4xODIsMTkzLjMwMiAyNTcuMTgyLDE5MC42NSAyNTcuMTgyLDE4Ny45OTkgMjU3LjE4MiwxMjkuMTExIDI1Ny4xODIsMTI2LjQ2IDI1Ny4xODIsMTIzLjgwOSAyNTcuMTgyLDExNy4yODcgICAgNTkuOTMyLDExNy4yODcgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0U1RTRFMiIvPgo8L2c+PC9nPiA8L3N2Zz4K') !important
+}
+.bronze {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMzE3LjExMyAzMTcuMTEzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMTcuMTEzIDMxNy4xMTM7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDAgLTExMCkiPjxnPgoJPHBvbHlnb24gcG9pbnRzPSIyOTEuOTI3LDEzNi4wMTkgMjkxLjkyNywxODEuMDkyIDMxNy4xMTMsMTgxLjA5MiAzMDYuNTA5LDE1Ny4yOTMgMzE3LjExMywxMzYuMDE5ICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNDRDdGMzIiLz4KCTxwb2x5Z29uIHBvaW50cz0iMjYyLjQ4NCwxODcuOTk5IDI4Ni42MjQsMTg3Ljk5OSAyODYuNjI0LDE4MS4wOTIgMjg2LjYyNCwxMzYuMDE5IDI4Ni42MjQsMTI5LjExMSAyNjIuNDg0LDEyOS4xMTEgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0NEN0YzMiIvPgoJPHBvbHlnb24gcG9pbnRzPSIyNS4xODcsMTgxLjA5MiAyNS4xODcsMTM2LjAxOSAwLDEzNi4wMTkgMTAuNjA0LDE1Ny45NTYgMCwxODEuMDkyICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNDRDdGMzIiLz4KCTxwb2x5Z29uIHBvaW50cz0iMzAuNDg5LDE4MS4wOTIgMzAuNDg5LDE4Ny45OTkgNTQuNjI5LDE4Ny45OTkgNTQuNjI5LDEyOS4xMTEgMzAuNDg5LDEyOS4xMTEgMzAuNDg5LDEzNi4wMTkgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0NEN0YzMiIvPgoJPHBvbHlnb24gcG9pbnRzPSI1OS45MzIsMTIzLjgwOSA1OS45MzIsMTI2LjQ2IDU5LjkzMiwxMjkuMTExIDU5LjkzMiwxODcuOTk5IDU5LjkzMiwxOTAuNjUgNTkuOTMyLDE5My4zMDIgNTkuOTMyLDE5OS44MjYgICAgMjU3LjE4MiwxOTkuODI2IDI1Ny4xODIsMTkzLjMwMiAyNTcuMTgyLDE5MC42NSAyNTcuMTgyLDE4Ny45OTkgMjU3LjE4MiwxMjkuMTExIDI1Ny4xODIsMTI2LjQ2IDI1Ny4xODIsMTIzLjgwOSAyNTcuMTgyLDExNy4yODcgICAgNTkuOTMyLDExNy4yODcgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0NEN0YzMiIvPgo8L2c+PC9nPiA8L3N2Zz4K')
+  }
+
+  .silver {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMzE3LjExMyAzMTcuMTEzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMTcuMTEzIDMxNy4xMTM7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDAgLTExMCkiPjxnPgoJPHBvbHlnb24gcG9pbnRzPSIyOTEuOTI3LDEzNi4wMTkgMjkxLjkyNywxODEuMDkyIDMxNy4xMTMsMTgxLjA5MiAzMDYuNTA5LDE1Ny4yOTMgMzE3LjExMywxMzYuMDE5ICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNDMEMwQzAiLz4KCTxwb2x5Z29uIHBvaW50cz0iMjYyLjQ4NCwxODcuOTk5IDI4Ni42MjQsMTg3Ljk5OSAyODYuNjI0LDE4MS4wOTIgMjg2LjYyNCwxMzYuMDE5IDI4Ni42MjQsMTI5LjExMSAyNjIuNDg0LDEyOS4xMTEgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0MwQzBDMCIvPgoJPHBvbHlnb24gcG9pbnRzPSIyNS4xODcsMTgxLjA5MiAyNS4xODcsMTM2LjAxOSAwLDEzNi4wMTkgMTAuNjA0LDE1Ny45NTYgMCwxODEuMDkyICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNDMEMwQzAiLz4KCTxwb2x5Z29uIHBvaW50cz0iMzAuNDg5LDE4MS4wOTIgMzAuNDg5LDE4Ny45OTkgNTQuNjI5LDE4Ny45OTkgNTQuNjI5LDEyOS4xMTEgMzAuNDg5LDEyOS4xMTEgMzAuNDg5LDEzNi4wMTkgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0MwQzBDMCIvPgoJPHBvbHlnb24gcG9pbnRzPSI1OS45MzIsMTIzLjgwOSA1OS45MzIsMTI2LjQ2IDU5LjkzMiwxMjkuMTExIDU5LjkzMiwxODcuOTk5IDU5LjkzMiwxOTAuNjUgNTkuOTMyLDE5My4zMDIgNTkuOTMyLDE5OS44MjYgICAgMjU3LjE4MiwxOTkuODI2IDI1Ny4xODIsMTkzLjMwMiAyNTcuMTgyLDE5MC42NSAyNTcuMTgyLDE4Ny45OTkgMjU3LjE4MiwxMjkuMTExIDI1Ny4xODIsMTI2LjQ2IDI1Ny4xODIsMTIzLjgwOSAyNTcuMTgyLDExNy4yODcgICAgNTkuOTMyLDExNy4yODcgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0MwQzBDMCIvPgo8L2c+PC9nPiA8L3N2Zz4K')
+  }
+
+  .gold {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMzE3LjExMyAzMTcuMTEzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMTcuMTEzIDMxNy4xMTM7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDAgLTExMCkiPjxnPgoJPHBvbHlnb24gcG9pbnRzPSIyOTEuOTI3LDEzNi4wMTkgMjkxLjkyNywxODEuMDkyIDMxNy4xMTMsMTgxLjA5MiAzMDYuNTA5LDE1Ny4yOTMgMzE3LjExMywxMzYuMDE5ICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNGRkQ3MDAiLz4KCTxwb2x5Z29uIHBvaW50cz0iMjYyLjQ4NCwxODcuOTk5IDI4Ni42MjQsMTg3Ljk5OSAyODYuNjI0LDE4MS4wOTIgMjg2LjYyNCwxMzYuMDE5IDI4Ni42MjQsMTI5LjExMSAyNjIuNDg0LDEyOS4xMTEgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0ZGRDcwMCIvPgoJPHBvbHlnb24gcG9pbnRzPSIyNS4xODcsMTgxLjA5MiAyNS4xODcsMTM2LjAxOSAwLDEzNi4wMTkgMTAuNjA0LDE1Ny45NTYgMCwxODEuMDkyICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNGRkQ3MDAiLz4KCTxwb2x5Z29uIHBvaW50cz0iMzAuNDg5LDE4MS4wOTIgMzAuNDg5LDE4Ny45OTkgNTQuNjI5LDE4Ny45OTkgNTQuNjI5LDEyOS4xMTEgMzAuNDg5LDEyOS4xMTEgMzAuNDg5LDEzNi4wMTkgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0ZGRDcwMCIvPgoJPHBvbHlnb24gcG9pbnRzPSI1OS45MzIsMTIzLjgwOSA1OS45MzIsMTI2LjQ2IDU5LjkzMiwxMjkuMTExIDU5LjkzMiwxODcuOTk5IDU5LjkzMiwxOTAuNjUgNTkuOTMyLDE5My4zMDIgNTkuOTMyLDE5OS44MjYgICAgMjU3LjE4MiwxOTkuODI2IDI1Ny4xODIsMTkzLjMwMiAyNTcuMTgyLDE5MC42NSAyNTcuMTgyLDE4Ny45OTkgMjU3LjE4MiwxMjkuMTExIDI1Ny4xODIsMTI2LjQ2IDI1Ny4xODIsMTIzLjgwOSAyNTcuMTgyLDExNy4yODcgICAgNTkuOTMyLDExNy4yODcgICIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgZmlsbD0iI0ZGRDcwMCIvPgo8L2c+PC9nPiA8L3N2Zz4K')
+    }
+.pricing-tables {
+  margin: 50px auto;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+.pricing-table {
+  float: left;
+  width: 25%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: white;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px silver;
+  z-index: 0;
+  box-sizing: border-box;
+  min-height: 850px;
+  background-position: 1% 20%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none !important;
+}
+.pop-out {
+  transform: scale(1.05);
+  transition: 0.3s;
+  z-index: 2;
+  box-shadow: 0px 0px 20px silver;
+}
+.pricing-table li {
+  list-style: none;
+  line-height: 2em;
+  text-align: left;
+  padding: 7px;
+}
+.pricing-table .title {
+  font-weight: bold;
+  background-color: #FFF;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.1em;
+  border: none;
+  text-align: center;
+  text-transform: capitalize;
+}
+.pricing-table .title span
+{
+  display: block;
+    font-weight: normal;
+}
+.pricing-table .price {
+  font-size: 1.6em;
+  border: none;
+  text-align: center;
+}
+.pricing-table .description {
+  font-size: 0.9em;
+  color: #666;
+  border: none;
+  font-style: italic;
+  text-align: center;
+}
+.pricing-table .deliverables {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+.pricing-table .cta-button {
+  border: none;
+  border-radius: 0 0 9px 9px;
+  background-color: #008fef;
+  padding: 0;
+  position: absolute;
+/* border: 0px; */
+  width: 100%;
+  bottom: 0px;
+}
+.started {
+  display: block;
+  width: 100%;
+  line-height: 4;
+  color: #FFF;
+  font-weight: bold;
+  text-align: center;
+}
+.cta-button:hover {
+  background-color: #CCC;
+  transition-duration: 0.3s;
+}
+#international .pricing-table
+{
+  width: 45%;
+}
+</style>
+{% endblock %}
+  {% block body %}
+  <div class="container">
+    <section class="profile-company-content main-user pt60">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a href="#local" class="nav-link active" data-toggle="tab">Join as Local Suppliers</a>
+        </li>
+        <li class="nav-item">
+            <a href="#international" class="nav-link" data-toggle="tab">Join as an International Suppliers</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="local">
+          <div class="row">
+            <div class="pricing-tables">
+            {% for tier in tiers %}
+            {% if tier.membershipCategory == "Local Suppliers" %}
+              <ul class="pricing-table {{ tier.name|lower }}">
+                <li class="title">{{ tier.name|lower }} <span>{{ tier.membershipCategory   }}</a></li>
+                <li class="price">GHS {{ tier.subscriptionFee|number_format(0, '.', ',') }} / year</li>
+                <li class="description">{{ tier.description }} </li>
+                {% for benefit in tier.benefits %}
+                  <li>{{ benefit.title|raw }}</li>
+                {% endfor %}
+                <li class="cta-button"><a href="{{ path('user-register',{'t':tier.id}) }}" class="started">Get Started</a></li>
+              </ul>
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="international">
+          <div class="row">
+            <div class="pricing-tables">
+          {% for tier in tiers|sort|reverse %}
+          {% if tier.membershipCategory == "International Suppliers" %}
+            <ul class="pricing-table {{ tier.name|lower }}">
+              <li class="title">{{ tier.name|lower }} <span>{{ tier.membershipCategory   }}</a></li>
+              <li class="price">GHS {{ tier.subscriptionFee|number_format(0, '.', ',') }} / year</li>
+              <li class="description">{{ tier.description }} </li>
+              {% for benefit in tier.benefits %}
+                <li>{{ benefit.title|raw }}</li>
+              {% endfor %}
+              <li class="cta-button"><a href="{{ path('user-register',{'t':tier.id}) }}" class="started">Get Started</a></li>
+            </ul>
+            {% endif %}
+          {% endfor %}
+          </div>
+          </div>
+        </div>
+    </div>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/app/css/intlTelInput.css')}}">
+<link rel="stylesheet" href="{{ asset('bundles/app/css/jquery-ui.css')}}">
+<link rel="stylesheet" href="{{ asset('bundles/app/css/rfi.css')}}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="tp-banner-container">
+      <div class="tp-banner" >
+        <h3>Account Confirmation</h3>
+        <h5>Please enter your email address to continue. All fields are required</h5>
+        <div class="form-content">
+      <form>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required="required">
+        </div>
+        <div class="form-group">
+          <button type="submit" id="proceed">Proceed</button>
+        </div>
+        <div class="form-header hidden">
+          <h4></h4>
+          <h6>Please update details below to proceed.</h6>
+        </div>
+        <div class="hidden">
+          <div class="form-group">
+            <label for="firstName">First Name*</label>
+            <input type="text" id="firstName" name="firstName" required="required">
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname*</label>
+            <input type="text" id="surname" name="surname" required="required">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="officialEmailAddress" name="officialEmailAddress" required="required">
+          </div>
+          <div class="form-group">
+            <label>Telephone number*</label>
+            <input type="text" name="phone" id="phone" required>
+            <input type="hidden" name="mobile" />
+            <small id="phoneHelp" class="form-text text-muted invalid"></small>
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Gender*</label>
+              <select name="gender" id="gender" required>
+                <option value="">Select One</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password*</label>
+            <input type="password" id="password" name="password" required="required">
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password*</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required="required">
+          </div>
+          <input type="hidden" id="companyId" name="companyId">
+          <input type="hidden" id="slug" name="slug">
+          <div class="form-group">
+            <button type="submit" id="confirm">Confirm Details</button>
+          </div>
+        </div>
+      </form>
+    </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent () }}
+  <script type="text/javascript" src="{{ asset('bundles/app/js/intlTelInput.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/app/js/defaultCountryIp.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-ui.js') }}"></script>
+  <script>
+    $('#proceed').on('click',function()
+    {
+      $.ajax({
+        url:  '{{ path('get_company_details') }}',
+        data: { email: $('#email').val() },
+        success:  function(response)
+        {
+          $('.form-header').removeClass("hidden");
+          if(response.company == "not found")
+          {
+
+            $('.form-header h4').addClass("warning");
+            $('.form-header h4').html("<span class=''>Could not locate your company, please check the email address provided.</span>");
+          }
+          else
+          {
+            $('#companyId').val(response.id);
+            $('#slug').val(response.slug);
+            $('#firstName').val(response.firstName);
+            $('#surname').val(response.surname);
+            $('#slug').val(response.slug);
+            $('#officialEmailAddress').val($('#email').val());
+            $('.form-header h4').html(response.company);
+            $('div.hidden').removeClass("hidden");
+            $('#proceed').addClass('hidden');
+            var iti = $('#phone');
+            $('input[name="mobile"]').val(response.tel);
+            iti.intlTelInput("setNumber",response.tel);
+          }
+        }
+      });
+    });
+    $('#confirm').on('click',function(e)
+    {
+      e.preventDefault();
+      if($('#password').val() == $('#confirmPassword').val())
+      {
+        $.ajax({
+          url:  '{{ path('update_login_details') }}',
+          data: { officialEmailAddress: $('#officialEmailAddress').val(),companyId: $('#companyId').val(), gender: $('#gender').val(), email: $('#email').val(), password: $('#password').val(), firstName: $('#firstName').val(), surname: $('#surname').val(), mobile: $('input[name="mobile"]').val()  },
+          success:  function(response)
+          {
+            if(response.status == "success")
+            {
+              var url = "/portal";
+              window.location = url;
+            }
+            else
+            {
+              alert('A problem occured while updating your password. Kindly try again.');
+            }
+          }
+        });
+      }
+      else
+      {
+        alert('Passwords do not match');
+      }
+    });
+    $('#phone').on('focusout',function()
+    {
+      var input = $('#phone');
+      console.log(input.intlTelInput("getNumber"));
+      if(input.intlTelInput("getNumber"))
+      {
+        if(input.intlTelInput("isValidNumber"))
+        {
+          input.closest('.form-group').removeClass('has-error');
+          $('.mobile').text(input.data('label'));
+          $('input[name="mobile"]').val(input.intlTelInput("getNumber"));
+        }
+        else
+        {
+          $('#mobile').closest('.form-group').addClass('has-error');
+          $('.mobile').text('Invalid mobile number');
+        }
+      }
+    });
+  </script>
+{% endblock %}

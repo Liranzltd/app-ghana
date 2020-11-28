@@ -1,0 +1,32 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Who is MIKE-BERG AFU?{% endblock %}
+{% block leadingtext %}The APP supports and empowers local businesses with its innovative functions{% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/about.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 col-sm-12">
+      <img src="{{ asset('bundles/app/images/about-small.jpg') }}" />
+    </div>
+    <div class="col-lg-7 col-sm-12">
+      <p>The African Partner Pool brings businesses together. It connects companies across sectors in Ghana with the local business partners they need to get the job done.</p>
+      <p>The APP directory allows Ghanaian businesses to promote the products and services they can deliver and the standards they can deliver to. This makes it easier for big companies to find the right suppliers in Ghana.</p>
+      <p>Companies operating in Ghana need local suppliers to work effectively. But Ghanaian businesses often struggle to make themselves visible to these companies. The APP is a community where buyers and suppliers across Ghana can engage one another, discover new opportunities and grow their business.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h6>Suppliers promote their business and access opportunities</h6>
+      <p>Businesses in Ghana who register as APP suppliers get the chance to display their products and services to a range of international and domestic buyers. They can also view live tender opportunities and register their interest.</p>
+      <p>What’s more, the APP’s Business Growth Hub is full of practical guides on how to work with big companies and what it takes to gain a competitive advantage.</p>
+    </div>
+    <div class="col-sm-6">
+      <h6>Buyers find the right local business partners</h6>
+      <p>APP Buyers get access to a pool of independently validated businesses from across sectors. Suppliers can be searched for by the products and services they deliver and can be filtered by a range of key criteria.</p>
+      <p>Those who register as APP Buyers reduce the time, cost and effort of finding the right supplier to do the job and demonstrate commitment to the local economy.</p>
+      <p>The APP is developed by Invest in Africa together with its private and public sector partners.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

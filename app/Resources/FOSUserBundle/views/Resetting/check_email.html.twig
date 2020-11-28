@@ -1,0 +1,37 @@
+{% extends "base-inner.html.twig" %}
+
+{% block pagetitle %}Password Reset{% endblock %}
+{% block title %}Reset your password{% endblock %}
+
+{% block crumbtitle %}@Biashara-Network{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+  .uou-block-5b blockquote:before
+  {
+    content:  '';
+  }
+  </style>
+{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="uou-block-5b">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+            <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+            <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+          </svg>
+          <blockquote class="first active">
+            {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+          </blockquote>
+
+        </div><!-- /.col-md-12 -->
+      </div><!-- /.row -->
+  </div><!-- /.container -->
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+AppBundle\Entity\CompanyMembership:
+  type: entity
+  table:  company_membership
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    isAdmin:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+    isDisabled:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+    position:
+      type: string
+      length: 100
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    member:
+      targetEntity: Member
+      inversedBy: membership
+      joinColumn:
+        member_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+    company:
+      targetEntity: Company
+      inversedBy: teamMembers
+      joinColumn:
+        company_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+      prePersist: [setCreatedAtValue ]
+      preUpdate:    [ setUpdatedAtValue ]

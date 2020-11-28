@@ -1,0 +1,233 @@
+{% extends "AppBundle::standard_layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/app/css/dataTables.bootstrap.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="dasheader">
+  APP Control panel
+  <small> - Supplier Dashboard</small>
+</h1>
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{  incomplete_registrations|length + verification_companies|length + verified|length }}</h3>
+        <p>Total Suppliers</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{ incomplete_registrations|length }}</h3>
+
+        <p>New / RFI Stage</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-document-text"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list', {'filter[status][value]':"New"}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{ verification_companies|length }}</h3>
+
+        <p>Awaiting Verification</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-search-strong"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list', {'filter[status][value]':"Awaiting Verification"}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{ verified|length }}</h3>
+
+        <p>Verified</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-checkmark"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list', {'filter[status][value]':"Verified"}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Incomplete Registrations</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="incomplete_registrations" class="table table-bordered table-striped datatables">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Registration Date</th>
+              <th>Section 1</th>
+              <th>Section 2</th>
+              <th>Section 3</th>
+              <th>Section 4</th>
+              <th>Section 5</th>
+              <th>Section 6</th>
+              <th>Section 7</th>
+              <th>Section 8</th>
+              <th>Section 9</th>
+              <th>Section 10</th>
+              <th>Section 11</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if incomplete_registrations|length > 0 %}
+              {% for company in incomplete_registrations %}
+              <tr>
+                <td><a href="{{ path('admin_app_company_edit',{id: company.id }) }}">{{ company.name }}</a></td>
+                <td><span class="hidden">{{ company.createdAt|date('Ymd') }}</span> {{ company.createdAt|date('d/m/Y') }}</td>
+                <td>{{ company.section1Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section2Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section3Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section4Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section5Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section6Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section7Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section8Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section9Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section10Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+                <td>{{ company.section11Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="14">No companies in the middle of registration</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Verification status of companies that have completed RFI</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="verifications" class="table table-bordered table-striped datatables">
+          <thead>
+          <tr>
+            <th>Company</th>
+            <th>APP Registration Date</th>
+            <th>Last Verification Update</th>
+            <th>Stage</th>
+            <th>Step</th>
+            <th>Status</th>
+            <!--<th>Verified By</th> -->
+          </tr>
+        </thead>
+        <tbody>
+        {% if verification_companies|length > 0 %}
+          {% for company in verification_companies %}
+            {% set latest = company.getValidationStatus('sort')|first %}
+          <tr>
+            <td><a href="{{ path('admin_app_company_edit',{id: company.id }) }}">{{ company.name }}</a></td>
+            <td>{{ company.createdAt|date('d/m/Y') }}</td>
+            <td><span class="hidden">{{ company.createdAt|date('Ymdhis') }}</span> {{ latest.date is defined ? latest.date|date('d/m/Y h:i A') : '' }}</td>
+            <td>{{ latest.step is defined ? latest.step.stage }}</td>
+            <td>{{ latest.step is defined ? latest.step }}</td>
+            <td>{{ latest.status is defined ? latest.status }}</td>
+            <!--  <td>{{ latest.by_who is defined ? latest.by_who }}</td> -->
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="6">No companies awaiting verification</td>
+          </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Verified Suppliers</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="verified" class="table table-bordered table-striped datatables" data-empty="No verified companies">
+          <thead>
+          <tr>
+            <th>Company</th>
+            <th>APP Registration Date</th>
+            <th>Verification Date</th>
+            <th>Verified By</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if verification_companies|length > 0 %}
+          {% for company in verified %}
+            {% set latest = company.getValidationStatus('sort')|first %}
+          <tr>
+            <td><a href="{{ path('admin_app_company_edit',{id: company.id }) }}">{{ company.name }}</a></td>
+            <td>{{ company.createdAt|date('d/m/Y') }}</td>
+            <td><span class="hidden">{{ latest != null ? latest.date|date('Ymdhis') : '' }}</span> {{ latest != null ? latest.date|date('d/m/Y h:i A') : '' }}</td>
+            <td>{{ latest != null ? latest.by_who : '' }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="6">No verified companies</td>
+          </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{asset('bundles/app/js/datatables.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('bundles/app/js/dataTables.bootstrap.min.js')}}"></script>
+  <script>
+    $(function() {
+      var options = {
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "language": {
+          "emptyTable": $(this).data('empty')
+          }
+        };
+      $('#incomplete_registrations').DataTable({"order": [[ 1, "desc" ]]},options);
+      $('#verifications').DataTable({"order": [[ 2, "desc" ]]},options);
+      $('#verified').DataTable({"order": [[ 2, "desc" ]]},options);
+
+    });
+  </script>
+{% endblock %}

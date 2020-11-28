@@ -1,0 +1,373 @@
+<?php
+
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SourceDoggRequestDocument
+ */
+class SourceDoggRequestDocument
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $token;
+
+    /**
+     * @var string
+     */
+    private $type;
+
+    /**
+     * @var string
+     */
+    private $extension;
+
+    /**
+     * @var string
+     */
+    private $url;
+
+    /**
+     * @var boolean
+     */
+    private $isLatest;
+
+    /**
+     * @var boolean
+     */
+    private $useLatest = false;
+
+    /**
+     * @var integer
+     */
+    private $size;
+
+    /**
+     * @var \AppBundle\Entity\SourceDoggRequest
+     */
+    private $request;
+
+    public $file;
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set isLatest
+     *
+     * @param boolean $isLatest
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setIsLatest($isLatest)
+    {
+        $this->isLatest = $isLatest;
+
+        return $this;
+    }
+
+    /**
+     * Get isLatest
+     *
+     * @return boolean
+     */
+    public function getIsLatest()
+    {
+        return $this->isLatest;
+    }
+
+    /**
+     * Set useLatest
+     *
+     * @param boolean $useLatest
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setUseLatest($useLatest)
+    {
+        $this->useLatest = $useLatest;
+
+        return $this;
+    }
+
+    /**
+     * Get useLatest
+     *
+     * @return boolean
+     */
+    public function getUseLatest()
+    {
+        return $this->useLatest;
+    }
+
+    /**
+     * Set size
+     *
+     * @param integer $size
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set request
+     *
+     * @param \AppBundle\Entity\SourceDoggRequest $request
+     *
+     * @return SourceDoggRequestDocument
+     */
+    public function setRequest(\AppBundle\Entity\SourceDoggRequest $request = null)
+    {
+        $this->request = $request;
+
+        return $this;
+    }
+
+    /**
+     * Get request
+     *
+     * @return \AppBundle\Entity\SourceDoggRequest
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/tenders/documents';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->url ? null : '/'.$this->getUploadDir().'/'.$this->url;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->url ? null : $this->getUploadRootDir().'/'.$this->url;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+         if (null !== $this->file) {
+             $this->url = uniqid().'.'.$this->file->guessExtension();
+         }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // If there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->url);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if(file_exists($file)) {
+            if ($file = $this->getAbsolutePath()) {
+                unlink($file);
+            }
+        }
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDocumentId()
+    {
+      if (null == $this->id) {
+        $digits = 9;
+        $this->id = rand(pow(10, $digits-1), pow(10, $digits)-1);
+      }
+    }
+}

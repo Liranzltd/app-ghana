@@ -1,0 +1,71 @@
+{% extends 'base-inner.html.twig' %}
+
+{% block pagetitle %}Business Growth Hub{% endblock %}
+{% block leadingtext %}Practical ‘how-to’ guides to support Ghanaian businesses {% endblock %}
+{% block bannerimage %}style="background-image: url('{{ asset('/bundles/app/images/banners/growth-hub.jpg') }}');background-size: cover;background-repeat: no-repeat;"{% endblock %}
+{% block body %}
+<div class="blog-content hub">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <article class="uou-block-7f blog-post-content">
+          <div class="meta">
+            <span class="time-ago">Added: {{ content.createdAt|date('d/m/Y') }}</span>
+            <span class="category">Posted in: <a href="#">{{ cat.name }}</a></span>
+            <a href="#" class="comments">{{ content.clicks }} view {{ content.clicks == 1 ? '(s)' : 's' }}</a>
+          </div>
+
+          <h1><a href="#">{{ content.title }}</a></h1>
+
+          {{ content.content|raw }}
+
+          {% if content.contentType == 'eBook' %}
+            <a href="/uploads/growthub/{{ content.filename }}" class="btn mb20 btn-medium btn-transparent-primary" target="_blank"><i class="fas fa-download"></i> Download File</a> <br/>
+          {% endif %}
+
+          <a class="btn btn-primary" href="{{ path('business-growth-hub') }}">Back To List</a>
+        </article>
+      </div>
+      <div class="col-md-3">
+        <div class="uou-sidebar">
+          {% if related|length > 0 %}
+          <h5 class="sidebar-title">Related Content</h5>
+
+          <div class="list-widget">
+
+            <ul>
+              {% for article in related %}
+              <li><a href="{{ path('business-growth-hub-show',{'slug': content.slug, 'category': cat.slug}) }}">{{ article.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          <h5 class="sidebar-title">Submit an Enquiry</h5>
+          <img src="https://www.appghana.com/content/FAQ1-300x227.png" />
+          <p>Demonstrate your commitment to local businesses and building capacity by submitting a guide or interview for the 'Business Growth Hub'. <a href="/contact">Contact us</a> for further details.</p>
+
+          <h5 class="sidebar-title">Connect With Us</h5>
+
+          <div class="social-widget">
+            <div class="uou-block-4b">
+
+              <ul class="social-icons">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+              </ul>
+
+            </div> <!-- end .uou-block-4b -->
+          </div> <!-- end social widget -->
+
+          <h5 class="sidebar-title">Join Us</h5>
+
+          <p>Become a member of the African Partner Pool and ensure that your company can find and be found by suppliers and buyers looking to do business in Ghana.</p>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

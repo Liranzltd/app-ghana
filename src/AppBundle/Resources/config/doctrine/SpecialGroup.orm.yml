@@ -1,0 +1,42 @@
+AppBundle\Entity\SpecialGroup:
+  type: entity
+  table:  special_groups
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 100
+    slug:
+      type: string
+      length: 300
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+  manyToOne:
+    parent:
+      targetEntity: SpecialGroup
+      inversedBy: children
+      joinColumn:
+        parent_id:
+          referencedColumnName: id
+  oneToMany:
+    children:
+      targetEntity: SpecialGroup
+      mappedBy: parent
+  manyToMany:
+    companies:
+      targetEntity: Company
+      mappedBy: specialGroups
+    requests:
+      targetEntity: Request
+      mappedBy: specialGroups
+  lifecycleCallbacks:
+    prePersist: ['setSlugValue','setCreatedAtValue']
+    preUpdate: ['setSlugValue','setUpdateAtValue']

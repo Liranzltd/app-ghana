@@ -1,0 +1,21 @@
+AppBundle\Entity\RenewalReminder:
+  type: entity
+  table:  renewal_reminders
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    modeOfReminder:
+      type: string
+      length: 20
+    timeSent:
+      type: datetime
+  manyToOne:
+    subscription:
+      targetEntity: CompanySubscription
+      inversedBy: null
+      joinColumn:
+        subscription_id:
+          referencedColumnName: id

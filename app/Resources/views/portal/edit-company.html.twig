@@ -1,0 +1,722 @@
+{% extends 'base-portal.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+  {% stylesheets 'bundles/app/css/rfi.css' 'bundles/app/css/bootstrap-formhelpers.min.css' 'bundles/app/css/sweetalert2.min.css' filter='minifycsscompressor' filter='cssrewrite'%}
+      <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
+{% endblock %}
+
+{% block logo %}
+  {% if company.companyLogo != '' %} <img src="/uploads/documents/{{company.name}}/{{company.companyLogo}}" width="175px" style="float: left;margin-left:10px;" /> {% endif %}
+{% endblock %}
+
+{% block pagetitle %}Edit {{ company.name }}'s Information{% endblock %}
+
+{% block title %}Edit Company Information{% endblock %}
+
+{% block body %}
+<div class="container">
+  <section>
+    <ul class="tabs">
+      <li class="hover"></li>
+      <li class="tab active" data-tab="companyInformation">Section A {{ company.section1Complete == 1 ? '<i class="fa fa-check" aria-hidden="true"></i>
+  ': ''}}</li>
+      <li class="tab" data-tab="companyStructure">Section B {{ company.section2Complete == 1 ? '<i class="fa fa-check" aria-hidden="true"></i>
+  ': ''}}</li>
+      <li class="tab" data-tab="industry">Section C {{ company.section3Complete == 1 ? '<i class="fa fa-check" aria-hidden="true"></i>
+  ': ''}}</li>
+      <li class="tab" data-tab="companyDocumentation">Section D {{ company.section4Complete == 1 ? '<i class="fa fa-check" aria-hidden="true"></i>
+  ': ''}}</li>
+      <li class="tab" data-tab="declarations">Section E {{ company.section5Complete == 1 ? '<i class="fa fa-check" aria-hidden="true"></i>
+  ': ''}}</li>
+    </ul>
+    <form role="form" id="company-registration" action="{{ path('save-company')}}" enctype="multipart/form-data"  method="post" novalidate>
+      <input type="hidden" name="company_id" id="company_id" value="{{company.id}}" />
+      <div id="companyInformation" class="slider">
+        <h2>General Information</h2>
+        <div class="form-group col-xs-12">
+          <label class="control-label">Company Description <span class="text-danger">(required)</span></label>
+          <textarea name="description" id="description" placeholder="Briefly describe your organisation" required>{{ company.description }}</textarea>
+        </div>
+        <div class="form-group col-xs-12">
+          <h4>Location</h4>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label class="control-label">Building Number</label>
+            <input type="text" class="form-control" name="buildingNumber" value="{% if company.addresses|length > 0 %} {{company.addresses.buildingNumber}} {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label class="control-label">Building Name</label>
+            <input type="text" class="" name="buildingName" value="{% if company.addresses|length > 0 %} {{ company.addresses.buildingName }} {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Predominant Landmark</label>
+          <input type="text" class="form-control" name="predominantLandmark" value="{% if company.addresses|length > 0 %} {{ company.addresses.predominantLandmark }} {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label class="control-label">Street <span class="text-danger">(required)</span></label>
+            <input type="text" required class="" placeholder="Street / Road" name="street" value="{% if company.addresses|length > 0 %} {{ company.addresses.street }} {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label class="control-label">City/Town <span class="text-danger">(required)</span></label>
+            <input type="text" required class="" name="town"  value="{% if company.addresses|length > 0 %} {{ company.addresses.town }} {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label class="control-label">Region  <span class="text-danger">(required)</span></label>
+            <select class="" name="region" required>
+              <option value="" disabled selected>Select your region</option>
+              {%  for region in regions %}
+              <option value="{{ region.id }}" {% if company.addresses|length > 0  and company.addresses.region %} {{ region.id == company.addresses.region.id ?  'selected' : ''  }} {% endif %}>{{ region.name }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Postal Address <span class="text-danger">(required)</span></label>
+          <input type="text" required maxlength="10" class="" name="postalAddress" value="{% if company.addresses|length > 0 %} {{company.addresses.postalAddress}} {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Postal Code</label>
+          <input type="number" maxlength="5" class="" name="postalCode" value="{% if company.addresses|length > 0 %}{{company.addresses.postalCode}}{% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">No. of branches in Ghana <span class="text-danger">(required)</span></label>
+          <input type="text" required="required" class="form-control" name="numberOfBranches" value="{% if company.addresses|length > 0 %} {{company.numberOfBranches}}" {% endif %}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Company Logo</label>
+          <input type="file" name="companyLogo" id="companyLogo" class="form-control input-lg"  accept=".gif,.jpg,.jpeg,.png">
+          {% if company.companyLogo != '' %} <img src="/uploads/documents/{{company.name}}/{{company.companyLogo}}" /> {% endif %}
+        </div>
+        <div class="form-group col-xs-12">
+          <h4>Contact Information</h4>
+        </div>
+        <fieldset class="col-lg-12">
+          <legend>Company Contact Person(s) <span class="text-danger">(required)</span></legend>
+          {% if company.contacts|length > 0 %}
+            {% for contact in company.contacts %}
+            <a id="btnMinus" class="btn removeExisting" data-id="{{contact.id}}" data-component="contact" title="Remove entry" href="" style="float: right; background: rgb(189, 65, 71); color: rgb(255, 255, 255); cursor: pointer; border-width: 0px; border-radius: 0px; margin-top: 30px;"><i class="fas fa-times"></i></a>
+            <div class="form-grid row">
+              <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                <label for="">Name <span class="text-danger">(required)</span></label>
+                <input type="text" required class="" name="contacts[name][]" value="{{ contact.name }}"/>
+              </div>
+
+              <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                <label for="">Designation <span class="text-danger">(required)</span></label>
+                <input type="text" required class="" name="contacts[designation][]" value="{{ contact.designation }}"/>
+              </div>
+
+              <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                <label for="">Telephone <span class="text-danger">(required)</span></label>
+                <input type="text" required class="" name="contacts[phone][]" value="{{ contact.phone }}"/>
+              </div>
+
+              <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                <label for="">Email <span class="text-danger">(required)</span></label>
+                <input type="email" required class="" name="contacts[email][]" value="{{ contact.email }}"/>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="dynamic-rows">
+              <div class="first">
+                <div class="recordset">
+                  <div class="form-grid row">
+                    <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                      <label for="">Name <span class="text-danger">(required)</span></label>
+                      <input type="text" required class="" name="contacts[name][]" value=""/>
+                    </div>
+
+                    <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                      <label for="">Designation <span class="text-danger">(required)</span></label>
+                      <input type="text" required class="" name="contacts[designation][]" value=""/>
+                    </div>
+
+                    <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                      <label for="">Telephone <span class="text-danger">(required)</span></label>
+                      <input type="text" required class="" name="contacts[phone][]" value=""/>
+                    </div>
+
+                    <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                      <label for="">Email <span class="text-danger">(required)</span></label>
+                      <input type="email" required class="" name="contacts[email][]" value=""/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <input type="text" class="requiredCheck" required />
+          <div class="dynamic-rows">
+            <div class="first">
+              <div class="recordset">
+                <div class="form-grid row">
+                  <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                    <label for="">Name <span class="text-danger">(required)</span></label>
+                    <input type="text" required class="" name="contacts[name][]" value=""/>
+                  </div>
+
+                  <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                    <label for="">Designation <span class="text-danger">(required)</span></label>
+                    <input type="text" required class="" name="contacts[designation][]" value=""/>
+                  </div>
+
+                  <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                    <label for="">Telephone <span class="text-danger">(required)</span></label>
+                    <input type="text" required class="" name="contacts[phone][]" value=""/>
+                  </div>
+
+                  <div class="form-group col-xs-12 col-md-6 col-lg-3">
+                    <label for="">Email <span class="text-danger">(required)</span></label>
+                    <input type="email" required class="" name="contacts[email][]" value=""/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </fieldset>
+        <div class="form-group col-xs-12">
+          <h4>Sectors</h4>
+        </div>
+        <!-- start categories row -->
+        <div class="col-xs-12"><label>Please select the broad sector of product or services that your business provides.</label></div>
+        <hr/>
+        <div class="col-xs-12">
+            {% for child in categories | sortbyfield('name') %}
+            <div class="checkbox col-sm-4 col-xs-6">
+              <input value="{{ child.id }}" name="categories[]" type="checkbox"  {% for category in company.categories if category.id == child.id %} checked {% endfor %}>
+              <label>
+                 {{ child.name }}
+              </label>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- end categories row -->
+        <div class="form-group col-xs-12">
+          <button type="button" class="saveBtn" data-btn="1" data-section="companyInformation">Save Section</button>
+        </div>
+      </div>
+      <!-- end section a --!>
+      <!-- start section b --!>
+      <div id="companyStructure" class="slider">
+        <h2>Company Structure  & Ownership Structure</h2>
+        <div class="form-group col-xs-12 col-sm-6">
+            <label class="control-label">How many employees do you have? <span class="text-danger">(required)</span></label>
+            <input type="number" required class="" name="numberOfEmployees" value="{{ company.numberOfEmployees }}"/>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label>What is the percentage of Ghanaian Directors in your company</label>
+          <select name="shareOfGhanaianDirectors" id="shareOfGhanaianDirectors" required class="">
+            <option value="" disabled selected>Select One</option>
+            {%  for i in range(0, 90, 10) %}
+            {% set val = (i+1) ~ '-' ~ (i+10) ~ '%' %}
+            <option value="{{ i+1 }}-{{ i + 10 }}%" {{ company.shareOfGhanaianDirectors == val ? 'selected' : '' }}>{{ i+1 }}-{{ i + 10 }}%</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">What is the percentage of Ghanaian Employees in your company</label>
+          <select name="shareOfGhanaianEmployees" id="shareOfGhanaianEmployees" required class="">
+            <option value="" disabled selected>Select One</option>
+            {%  for i in range(0, 90, 10) %}
+            {% set val = (i+1) ~ '-' ~ (i+10) ~ '%' %}
+            <option value="{{ i+1 }}-{{ i + 10 }}%" {{ company.shareOfGhanaianEmployees == val ? 'selected' : '' }}>{{ i+1 }}-{{ i + 10 }}%</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Do you employ any persons with disabilities?</label>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="employDisabledYes" value="Yes" name="employDisabled" data-reveal="disabledNoRow" class="toggleHidden" type="radio" {{ company.employDisabled == 1 ? 'checked' : '' }}>Yes
+                </label>
+              </div>
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="employDisabledNo" value="No" name="employDisabled" data-reveal="disabledNoRow" class="toggleHidden" type="radio" {{ company.employDisabled == 0 ? 'checked' : '' }}>No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-xs-12 col-md-6 hidden" id="disabledNoRow">
+          <label class="control-label">How many disabled people are employeed at {{ company.name }}?  <span class="text-danger">required. (Select no in the previous question if you do not have this)</span></label>
+          <input id="disabledNo" value="{{ company.disabledNo }}" name="disabledNo" type="number" required/>
+        </div>
+        <div class="form-group col-xs-12 col-md-6">
+          <label class="control-label">Do you have a local content policy? <span class="text-danger">(A policy guiding on the use of local manpower and local resources)</span></label>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="localContentYes" value="Yes" name="localContent" data-reveal="localContentRow" class="toggleHidden" type="radio" {{ company.localContent == 1 ? 'checked' : '' }}>Yes
+                </label>
+              </div>
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="localContentNo" value="No" name="localContent" data-reveal="localContentRow" class="toggleHidden" type="radio"  {{ company.localContent == 0 ? 'checked' : '' }}>No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-xs-12 col-xs-6 hidden" id="localContentRow">
+          <label>Please attach local content policy document <span class="text-danger">required. (Select no in the previous question if you do not have this)</span></label>
+          <input type="file" class="form-control" name="localContentFile" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf" }}/>
+          {% if company.localContentFile != '' %} <a href="/uploads/documents/{{company.name}}/{{company.localContentFile}}" target="_blank">View uploaded file</a> {% endif %}
+        </div>
+        <fieldset class="col-lg-12">
+          <legend>Give details of all directors as follows <span class="text-danger">(required)</span></legend>
+          {% if company.directors|length > 0 %}
+            {% for role in company.directors %}
+            <a id="btnMinus" class="btn removeExisting" data-id="{{role.id}}" data-component="role" title="Remove entry" href="" style="float: right; background: rgb(189, 65, 71); color: rgb(255, 255, 255); cursor: pointer; border-width: 0px; border-radius: 0px; margin-top: 30px;"><i class="fas fa-times"></i></a>
+            <div class="form-grid row">
+              <div class="form-group col-xs-12 col-md-6">
+                <label for="">Name</label>
+                <input type="text" class="" name="roles[name][]" value="{{ role.name }}" />
+              </div>
+              <div class="form-group col-xs-12 col-md-6">
+                <label for="">Role</label>
+                <input type="text" class="" name="roles[role][]" value="{{ role.role }}"  />
+              </div>
+            </div>
+            {% endfor %}
+            <div class="dynamic-rows">
+              <div class="first">
+                <div class="recordset">
+                  <div class="form-grid row">
+                    <div class="form-group col-xs-12 col-md-6">
+                      <label for="">Name</label>
+                      <input type="text" class="" name="roles[name][]" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                      <label for="">Role</label>
+                      <input type="text" class="" name="roles[role][]" required />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <input type="text" class="requiredCheck" required />
+          <div class="dynamic-rows">
+            <div class="first">
+              <div class="recordset">
+                <div class="form-grid row">
+                  <div class="form-group col-xs-12 col-md-6">
+                    <label for="">Name</label>
+                    <input type="text" class="" name="roles[name][]" required/>
+                  </div>
+                  <div class="form-group col-xs-12 col-md-6">
+                    <label for="">Role</label>
+                    <input type="text" class="" name="roles[role][]" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </fieldset>
+        <div class="form-group col-xs-12">
+          <h4>Ownership Structure</h4>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Are you a woman-owned business?</label>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="ownershipWomenYes" value="Yes" name="ownershipWomen" data-reveal="ownershipWomenRow,ownershipUnder30Row" class="toggleHidden" type="radio" {{ company.ownershipWomen == 1 ? 'checked' : '' }}>Yes
+                </label>
+              </div>
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="ownershipWomenNo" value="No" name="ownershipWomen" data-reveal="ownershipWomenRow,ownershipUnder30Row" class="toggleHidden" type="radio" {{ company.ownershipWomen == 0 ? 'checked' : '' }}>No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 hidden" id="ownershipWomenRow">
+          <label>State the number of shares owned by a woman/women at {{ company.name }} <span class="text-danger">required. (Select no in the previous question if you do not have this)</span></label>
+          <select name="womanOwnershipPercentage" id="womanOwnershipPercentage" required class="">
+            <option value="" disabled selected>Select One</option>
+            {%  for i in range(0, 99, 50) %}
+            {% set val = (i+1) ~ '-' ~ (i+50) ~ '%' %}
+            <option value="{{ i+1 }}-{{ i + 50 }}%" {{ company.womanOwnershipPercentage == val ? 'selected' : '' }}>{{ i+1 }}-{{ i + 50 }}%</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label">Are any of your ownership under 35?</label>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="ownershipUnder30Yes" value="Yes" name="ownershipUnder30"  type="radio" {{ company.ownershipUnder30 == 1 ? 'checked' : '' }}>Yes
+                </label>
+              </div>
+              <div class="col-sm-4 col-xs-6">
+                <label class="radio-inline">
+                  <input id="ownershipUnder30No" value="No" name="ownershipUnder30"  type="radio" {{ company.ownershipUnder30 == 0 ? 'checked' : '' }}>No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-xs-12">
+          <button class="saveBtn" data-btn="2" data-section="companyStructure">Save Section</button>
+        </div>
+      </div>
+      <!-- end section b --!>
+      <!-- start section c --!>
+      <div id="industry" class="slider">
+        <h2>Commercial References and Financial Information</h2>
+        <fieldset class="col-lg-12">
+          <legend>Share holder details <span class="text-danger">(required)</span></legend>
+          {% if company.shareholders|length > 0 %}
+            {% for shareholder in company.shareholders %}
+            <a id="btnMinus" class="btn removeExisting" data-id="{{shareholder.id}}" data-component="shareholder" title="Remove entry" href="" style="float: right; background: rgb(189, 65, 71); color: rgb(255, 255, 255); cursor: pointer; border-width: 0px; border-radius: 0px; margin-top: 30px;"><i class="fas fa-times"></i></a>
+            <div class="form-grid row">
+              <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                <label for="">Name</label>
+                <input type="text" class="" name="shareholding[name][]" value="{{ shareholder.name }}" />
+              </div>
+              <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                <label for="">Nationality</label>
+                <input type="text" class="" name="shareholding[nationality][]" value="{{ shareholder.nationality }}"  />
+              </div>
+              <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                <label for="">Shares</label>
+                <input type="text" class="" name="shareholding[shares][]" value="{{ shareholder.shares }}"  />
+              </div>
+            </div>
+            {% endfor %}
+            <div class="dynamic-rows">
+              <div class="first">
+                <div class="recordset">
+                  <div class="form-grid row">
+                    <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                      <label for="">Name</label>
+                      <input type="text" class="" name="shareholding[name][]" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                      <label for="">Nationality</label>
+                      <input type="text" class="" name="shareholding[nationality][]" required />
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                      <label for="">Shares</label>
+                      <input type="text" class="" name="shareholding[shares][]" required />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <input type="text" class="requiredCheck" required />
+          <div class="dynamic-rows">
+            <div class="first">
+              <div class="recordset">
+                <div class="form-grid row">
+                  <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                    <label for="">Name</label>
+                    <input type="text" class="" name="shareholding[name][]" required/>
+                  </div>
+                  <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                    <label for="">Nationality</label>
+                    <input type="text" class="" name="shareholding[nationality][]" required />
+                  </div>
+                  <div class="form-group col-xs-12 col-md-6 col-lg-4">
+                    <label for="">Shares</label>
+                    <input type="text" class="" name="shareholding[shares][]" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </fieldset>
+        <fieldset class="col-lg-12">
+          <legend>Commercial References <span class="text-danger">(required)</span></legend>
+          {% if company.references|length > 0 %}
+            {% for reference in company.references %}
+            <a id="btnMinus" class="btn removeExisting" data-id="{{reference.id}}" data-component="reference" title="Remove entry" href="" style="float: right; background: rgb(189, 65, 71); color: rgb(255, 255, 255); cursor: pointer; border-width: 0px; border-radius: 0px; margin-top: 30px;"><i class="fas fa-times"></i></a>
+            <div class="form-grid row">
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Company Name <span class="text-danger">(required)</span></label>
+                <input name="references[client][]" type="text" required value="{{ reference.client }}">
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Contact Name <span class="text-danger">(required)</span></label>
+                <input name="references[contactPerson][]" type="text" required value="{{ reference.contactPerson }}"/>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Contact Telephone <span class="text-danger">(required)</span></label>
+                <input class="tel" name="references[telephone][]" type="text" required value="{{ reference.telephone }}"/>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Contact Email <span class="text-danger">(required)</span></label>
+                <input name="references[email][]" type="email" required value="{{ reference.email }}"/>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Contact Designation <span class="text-danger">(required)</span></label>
+                <input name="references[designation][]" type="text" required value="{{ reference.designation }}"/>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Approximate value of contract (US$/GHS)</label>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="currency" name="references[currency][]">
+                      <option value="GHS" {{ reference.currency == 'GHS' ? 'selected' : '' }}>GHS</option>
+                      <option value="USD" {{ reference.currency == 'USD' ? 'selected' : '' }}>USD</option>
+                    </select>
+                  </div><!-- /btn-group -->
+                  <input type="number" class="" name="references[valueOfContract][]" value="{{ reference.valueOfContract  }}"/>
+                </div><!-- /input-group -->
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Contract reference and brief description of goods/services supplied <span class="text-danger">(required)</span></label>
+                <textarea name="references[description][]" required>{{ reference.description  }}</textarea>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label">Attach evidence of existence of contract/SLAs/LSOs/LPOs. </label>
+                  <input type="file" id="references_file_{{ loop.index }}" name="references[file][]" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf" class="uploads" data-url="/portal/singleUpload"/>
+                  {% if reference.document != '' %}
+                  <a href="/portal/downloadfile/{{reference.document.id}}" target="_blank">View uploaded file</a>
+                  {% endif %}
+              </div>
+              <input type="hidden" name="references[documentType][]" value="50" />
+              <input type="hidden" name="references[referenceNumber][]" value="Company Reference" />
+              <input type="hidden" name="references[id][]" value="{{ reference.id  }}" />
+            </div>
+            {% endfor %}
+            <div class="dynamic-rows">
+              <div class="first">
+                <div class="recordset">
+                <div class="col-xs-12">
+                  <div class="row rowcont">
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Company Name <span class="text-danger">(required)</span></label>
+                      <input name="references[client][]" type="text" required>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Contact Name <span class="text-danger">(required)</span></label>
+                      <input name="references[contactPerson][]" type="text" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Contact Telephone <span class="text-danger">(required)</span></label>
+                      <input class="tel" name="references[telephone][]" type="text" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Contact Email <span class="text-danger">(required)</span></label>
+                      <input name="references[email][]" type="email" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Contact Designation <span class="text-danger">(required)</span></label>
+                      <input name="references[designation][]" type="text" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Approximate value of contract (US$/GHS)</label>
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <select class="currency" name="references[currency][]">
+                            <option value="GHS">GHS</option>
+                            <option value="USD">USD</option>
+                          </select>
+                        </div><!-- /btn-group -->
+                        <input type="number" class="" name="references[valueOfContract][]"/>
+                      </div><!-- /input-group -->
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Contract reference and brief description of goods/services supplied <span class="text-danger">(required)</span></label>
+                      <textarea name="references[description][]" required>{{ company.references|length > 0 ? company.references[0].description : ''  }}</textarea>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label class="control-label">Attach evidence of existence of contract/SLAs/LSOs/LPOs. </label>
+                        <input type="file" name="references[file][]" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf" class="uploads" data-url="/portal/singleUpload"/>
+                    </div>
+                    <input type="hidden" name="references[documentType][]" value="50" />
+                    <input type="hidden" name="references[referenceNumber][]" value="Company Reference" />
+                    <input type="hidden" name="references[id][]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <input type="text" class="requiredCheck" required />
+          <div class="dynamic-rows">
+            <div class="first">
+              <div class="recordset">
+              <div class="col-xs-12">
+                <div class="row rowcont">
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Company Name <span class="text-danger">(required)</span></label>
+                    <input name="references[client][]" type="text" required>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Contact Name <span class="text-danger">(required)</span></label>
+                    <input name="references[contactPerson][]" type="text" required/>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Contact Telephone <span class="text-danger">(required)</span></label>
+                    <input class="tel" name="references[telephone][]" type="text" required/>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Contact Email <span class="text-danger">(required)</span></label>
+                    <input name="references[email][]" type="email" required/>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Contact Designation <span class="text-danger">(required)</span></label>
+                    <input name="references[designation][]" type="text" required/>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Approximate value of contract (US$/GHS) <span class="text-danger">(required, no commas)</span></label>
+                    <div class="input-group">
+                      <div class="input-group-btn">
+                        <select class="currency" name="references[currency][]">
+                          <option value="GHS">GHS</option>
+                          <option value="USD">USD</option>
+                        </select>
+                      </div><!-- /btn-group -->
+                      <input type="number" class="" name="references[valueOfContract][]" required/>
+                    </div><!-- /input-group -->
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Contract reference and brief description of goods/services supplied <span class="text-danger">(required)</span></label>
+                    <textarea name="references[description][]" required>{{ company.references|length > 0 ? company.references[0].description : ''  }}</textarea>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6">
+                    <label class="control-label">Attach evidence of existence of contract/SLAs/LSOs/LPOs. </label>
+                      <input type="file" name="references[file][]" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf" class="uploads" data-url="/portal/singleUpload"/>
+                  </div>
+                  <input type="hidden" name="references[documentType][]" value="23" />
+                  <input type="hidden" name="references[referenceNumber][]" value="Company Reference" />
+                  <input type="hidden" name="references[id][]" />
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </fieldset>
+        <fieldset class="col-lg-12">
+          <legend>Financial Information <span class="text-danger">(required)</span></legend>
+          <div class="row">
+            <div class="form-group col-xs-12 col-xs-6">
+              <label class="control-label">Please state what was the approximate turnover during the last financial year  <span class="text-danger">(required)</span></label>
+              <select name="approxTurnover" id="approxTurnover" required>
+                <option value="" disabled selected>Choose one</option>
+                <option value="Below 500,000 GHS"  {{ company.approxTurnover == 'Below 500,000 GHS' ? 'selected' : '' }}>Below 500,000 GHS</option>
+                <option value="500,000 – 1 million GHS"  {{ company.approxTurnover == '500,000 – 1 million GHS' ? 'selected' : '' }}>500,000 – 1 million GHS</option>
+                <option value="1 million - 5 million GHS"  {{ company.approxTurnover == '1 million - 5 million GHS' ? 'selected' : '' }}>1 million - 5 million GHS</option>
+                <option value="5 million - 25 million GHS" {{ company.approxTurnover == '5 million - 25 million GHS' ? 'selected' : '' }}>5 million - 25 million GHS</option>
+                <option value="25 million - 50 million GHS" {{ company.approxTurnover == '25 million - 50 million GHS' ? 'selected' : '' }}>25 million - 50 million GHS</option>
+                <option value="50 million - 100 million GHS" {{ company.approxTurnover == '50 million - 100 million GHS' ? 'selected' : '' }}>50 million - 100 million GHS</option>
+                <option value="100 million - 250 million GHS" {{ company.approxTurnover == '100 million - 250 million GHS' ? 'selected' : '' }}>100 million - 250 million GHS</option>
+                <option value="250 million - 500 million GHS" {{ company.approxTurnover == '250 million - 500 million GHS' ? 'selected' : '' }}>250 million - 500 million GHS</option>
+              </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6">
+              <label class="control-label">Do you give your approval for credit checks to be run on your company?</label>
+              <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-6">
+                      <label class="radio-inline">
+                        <input type="radio" id="creditChecksYes" value="Yes" name="creditChecks" {{ company.creditChecks == 1 ? 'checked' : ''}}>Yes
+                      </label>
+                    </div>
+                    <div class="col-sm-4 col-xs-6">
+                      <label class="radio-inline">
+                        <input type="radio" id="creditChecksNo" value="No" name="creditChecks" {{ company.creditChecks == 0 ? 'checked' : ''}}>No
+                      </label>
+                    </div>
+                </div>
+              </div>
+            </div> <!-- /.form-group -->
+          </div>
+        </fieldset>
+        <div class="form-group col-xs-12 margin-t-50">
+          <button class="saveBtn" data-btn="3" data-section="industry">Save Section</button>
+        </div>
+      </div>
+      <!-- end section c --!>
+      <!-- start section d --!>
+      <div id="companyDocumentation" class="slider">
+        <h2>Company Documentation</h2>
+        <div id="docs_container">
+          <h3>Please select type of company on Section A to update this page</h3>
+        </div>
+        <div class="form-group col-xs-12">
+          <!-- <button data-btn="4" id="fcount" data-section="companyDocumentation">files uploaded</button> -->
+          <button type="button" class="saveBtn" id="fcount" data-btn="4" data-section="companyDocumentation">Save Section</button>
+        </div>
+      </div>
+      <!-- end section d --!>
+      <!-- start section e --!>
+      <div id="declarations" class="slider">
+        <h2>Declarations</h2>
+        <div class="form-group col-xs-12"><h5>Debarment</h5></div>
+        <div class="checkbox col-lg-12">
+          <input type="checkbox" name="debarred" value="1" {{ company.debarred == 1 ? 'checked' : '' }}>
+          <label>
+             I/We declare that I/We have not been debarred from any procurement proceeding and shall not engage in any fraudulent or corrupt acts with regard to any procurement proceeding by IIA Ghana and any other public or private institutions.
+          </label>
+        </div>
+        <div class="form-group col-xs-12"><h5>Conflict Of Interest</h5><hr/></div>
+        <div class="checkbox col-lg-12">
+          <input type="checkbox" name="conflictOfInterest" value="1" {{ company.conflictOfInterest == 1 ? 'checked' : '' }}>
+          <label>
+             I/We state that I / We have no conflict of interest in relation to participating in a procurement proceeding.
+          </label>
+        </div>
+        <div class="form-group col-xs-12 margint2">
+          <label class="control-label">Is there any person/persons in Invest In Africa-Ghana or any other public institution who has interest in this firm?</label>
+          <div class="col-xs-12">
+            <div class="row">
+                <div class="col-sm-4 col-xs-6">
+                  <div class="radio">
+                    <input type="radio" name="conflictOfInterestIIA" id="conflictOfInterestIIAYes" value="Yes" {{ company.conflictOfInterestIIA == 1 ? 'checked' : '' }}>
+                    <label for="radio1">Yes</label>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-xs-6">
+                  <div class="radio">
+                    <input type="radio" name="conflictOfInterestIIA" id="conflictOfInterestIIANo" value="Yes" {{ company.conflictOfInterestIIA == 0 ? 'checked' : '' }}>
+                    <label for="radio1">No</label>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div> <!-- /.form-group -->
+        <div class="form-group col-xs-12"><h5>Declaration</h5><hr/></div>
+        <div class="checkbox col-lg-12">
+          <input type="checkbox" name="declareTrue" value="1"  {{ company.declareTrue == 1 ? 'checked' : '' }}>
+          <label>
+             By submitting this information I/We declare that all submissions and uploaded documents are a true and accurate representation of our company. I/We also give INVEST IN AFRICA the authority to have the right to check and validate any element of the submitted information for accuracy from whatever sources deemed relevant, e.g. Office of the Registrar of Companies, Bankers, etc.
+          </label>
+        </div>
+        <div class="checkbox col-lg-12">
+          <input type="checkbox" name="understandRisks" value="1" {{ company.understandRisks == 1 ? 'checked' : '' }}>
+          <label>
+            I/We understand that if any submitted information is found to be untrue or is deemed to be wilfully misleading, it may result in our company's removal from the APP database.
+          </label>
+        </div>
+        <div class="form-group col-xs-12">
+          <input type="hidden" name="current_page" id="current_page" value="{{current_page}}"/>
+          <button data-btn="5" data-section="declarations" class="saveBtn">Finish</button>
+        </div>
+      </div>
+      <!-- end section e --!>
+    </form>
+  </section>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent () }}
+  {% javascripts '@AppBundle/Resources/public/js/jquery.czMore-1.5.3.2.js' '@AppBundle/Resources/public/js/jquery-ui.js' '@AppBundle/Resources/public/js/jquery.form.min.js' '@AppBundle/Resources/public/js/jquery.ui.widget.js' '@AppBundle/Resources/public/js/jquery.iframe-transport.js' '@AppBundle/Resources/public/js/jquery.fileupload.js' '@AppBundle/Resources/public/js/sweetalert2.min.js' '@AppBundle/Resources/public/js/functions.js' '@AppBundle/Resources/public/js/rfijs.js' filter='?jsqueeze' %}
+      <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+{% endblock %}

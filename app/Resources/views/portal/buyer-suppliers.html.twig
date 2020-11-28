@@ -1,0 +1,289 @@
+{% extends 'base-buyer-portal.html.twig' %}
+
+{% block pagetitle %}{{ buyer.name }} APP: Suppliers <i id="total">{{ pool_details.name != '' ? 'in' ~ pool_details.name : '' }} {{ '('~suppliers|length~')' }}</i>{% endblock %}
+{% block crumbtitle %}In this section, you can post and edit requests to APP suppliers, view responses and update individual response status   {% endblock %}
+
+{% block body %}
+<div class="main-panel">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="card">
+          <div class="card-content">
+            <div class="tb pull-right">
+              <button class="btn btn-xs btn-fill" id="showAdvancedSearch">Advanced Search</button>
+            </div>
+            <div class="col-lg-12 hidden" id="advancedSearch">
+              <div class="form-group">
+                <label>Type of Company</label>
+                  <select multiple class="selectpicker filterField" data-style="" data-size="7" id="companyType" name="companyType[]">
+                    <option value=""></option>
+                    {% for type in companyTypes %}
+                    <option value="{{ type.name }}">{{ type.name }}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>Sectors</label>
+                  <select multiple class="selectpicker filterField" data-style="" data-size="7" id="sectors" name="sectors">
+                    <option value=""></option>
+                    {% for sector in sectors %}
+                    <option value="{{ sector.name }}">{{ sector.name }}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>Boundaries of supply</label>
+                  <select multiple class="selectpicker filterField" data-style="" data-size="7" id="regions" name="regions">
+                    <option value=""></option>
+                    {% for region in regions %}
+                    <option value="{{ region.name }}">{{ region.name }}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Approximate turnover during the last financial year</label>
+                <select name="approxTurnover" id="approxTurnover"  multiple class="selectpicker filterField" data-style="" data-size="7">
+                  <option value="Below 500,000 GHS">Below 500,000 GHS</option>
+                  <option value="500,000 – 1 million GHS">500,000 – 1 million GHS</option>
+                  <option value="1 million- 5 million GHS">1 million- 5 million GHS</option>
+                  <option value="5 million - 25 million GHS">5 million - 25 million GHS</option>
+                  <option value="25 million - 50 million GHS">25 million - 50 million GHS</option>
+                  <option value="50 million - 100 million GHS">50 million - 100 million GHS</option>
+                  <option value="100 million - 250 million GHS">100 million - 250 million GHS</option>
+                  <option value="250 million - 500 million GHS">250 million - 500 million GHS</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-4">
+                  <label class="control-label">Trace Certified</label>
+                  <input type="checkbox" class="switch-icon filterField" name="IsTraceCertified" id="IsTraceCertified"/>
+                </div>
+                <div class="col-lg-4">
+                  <label class="control-label">Women Owned</label>
+    							<input type="checkbox" class="switch-icon filterField" name="ownershipWomen" id="ownershipWomen"/>
+                </div>
+                <div class="col-lg-4">
+                  <label class="control-label">Employs Disabled</label>
+    							<input type="checkbox" class="switch-icon filterField" name="employDisabled" id="employDisabled"/>
+                </div>
+                <div class="col-lg-4">
+                  <label class="control-label">Any of owners under 35?</label>
+    							<input type="checkbox" class="switch-icon filterField" name="ownershipUnder35" id="ownershipUnder35"/>
+                </div>
+              </div>
+            </div>
+            <table id="bootstrap-table" class="table">
+              <thead>
+                  <tr>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="details">Name</th>
+                    <th data-field="registrationDate" data-sortable="true">Registration Date</th>
+                    <th data-field="companyType" data-sortable="true">Company Type</th>
+                    <th data-field="regions" data-visible="false">Region</th>
+                    <th data-field="sectors">Sectors</th>
+                    <th data-field="natureOfBusiness" data-visible="false">Nature Of Business</th>
+                    <th data-field="approxTurnover" data-visible="false">Turnover</th>
+                    <th data-field="IsTraceCertified" data-visible="false">Trace Certified</th>
+                    <th data-field="ownershipWomen" data-visible="false">Women Owned</th>
+                    <th data-field="ownershipUnder35" data-visible="false">Ownership Under 35</th>
+                    <th data-field="employDisabled" data-visible="false">Employs Disabled</th>
+                    <th data-field="totalResponses">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for supplier in suppliers %}
+                <tr data-id="{{ supplier.id }}">
+                  <td></td>
+                  <td>{{ supplier.name }}</td>
+                  <td>{{ supplier.registrationDate|date('d/m/Y') }}</td>
+                  <td>{{ supplier.companyType }}</td>
+                  <td>{% for area in supplier.provinces %}{{ area.name }}, {% endfor %}</td>
+                  <td>{% for sector in supplier.categories %}{{ sector.name }}, {% endfor %}</td>
+                  <td>{{ supplier.natureOfBusiness }}</td>
+                  <td>{{ supplier.approxTurnover }}</td>
+                  <td>{{ supplier.IsTraceCertified }}</td>
+                  <td>{{ supplier.ownershipWomen }}</td>
+                  <td>{{ supplier.ownershipUnder30 }}</td>
+                  <td>{{ supplier.employDisabled }}</td>
+                  <td><a href="{{ path('supplier-profile',{"id": supplier.id, "buyer": buyer.id}) }}" class="btn btn-danger"><i class="fas fa-info-circle"></i></a></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="info_dialog" class="modal modal__bg">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <div class="modal__title">
+          <h2 class="modal__title-text"></h2>
+        </div>
+      </div>
+      <div class="modal__text">
+        <div id="supplier-content"></div>
+      </div>
+      <div class="modal__footer">
+        <a class="mdl-button mdl-button--colored mdl-js-button  modal__close">
+          &nbsp;
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<dialog class="mdl-dialog" id="pool-dialog">
+  <h6 class="mdl-dialog__title">Pool Suppliers</h6>
+  <div class="mdl-dialog__content">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="pool-name" pattern="[A-Z,a-z,0-9, ]*">
+      <label class="mdl-textfield__label" for="j-source">Name of supplier pool</label>
+      <span class="mdl-textfield__error">Letters, numbers and spaces only</span>
+    </div>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-shadow--2dp" id="save-pool">Save</button>
+    <button type="button" class="mdl-button close">Close</button>
+  </div>
+</dialog>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/app/js/bootstrap-table.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-selectpicker.js') }}"></script>
+  <script src="{{ asset('bundles/app/js/bootstrap-switch-tags.js') }}"></script>
+  <script>
+    var $table = $('#bootstrap-table');
+      function operateFormatter(value, row, index) {
+          return [
+			'<div class="table-icons">',
+                '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
+					'<i class="ti-image"></i>',
+				'</a>',
+                '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
+                    '<i class="ti-pencil-alt"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+                    '<i class="ti-close"></i>',
+                '</a>',
+			'</div>',
+          ].join('');
+      }
+
+      $().ready(function(){
+          window.operateEvents = {
+              'click .view': function (e, value, row, index) {
+                  info = JSON.stringify(row);
+
+                  swal('You click view icon, row: ', info);
+                  console.log(info);
+              },
+              'click .edit': function (e, value, row, index) {
+                  info = JSON.stringify(row);
+
+                  swal('You click edit icon, row: ', info);
+                  console.log(info);
+              },
+              'click .remove': function (e, value, row, index) {
+                  console.log(row);
+                  $table.bootstrapTable('remove', {
+                      field: 'id',
+                      values: [row.id]
+                  });
+              }
+          };
+
+          $table.bootstrapTable({
+              toolbar: ".tb",
+              clickToSelect: true,
+              showRefresh: false,
+              search: true,
+              showToggle: true,
+              showColumns: false,
+              pagination: true,
+              searchAlign: 'left',
+              pageSize: 8,
+              clickToSelect: false,
+              pageList: [8,10,25,50,100],
+
+              formatShowingRows: function(pageFrom, pageTo, totalRows){
+                  //do nothing here, we don't want to show the text "showing x of y from..."
+              },
+              formatRecordsPerPage: function(pageNumber){
+                  return pageNumber + " rows visible";
+              },
+              icons: {
+                  toggle: 'fas fa-list',
+                  columns: 'fas fa-columns',
+                  detailOpen: 'fa fa-plus-circle',
+                  detailClose: 'ti-close'
+              }
+          });
+
+          $('.filterField').on('change', function () {
+            advancedFilter();
+          });
+
+          $(document).on('switchChange.bootstrapSwitch','.switch-icon',function(event, state)
+          {
+            advancedFilter();
+          });
+          function advancedFilter()
+          {
+            var q = [];
+            $('.filterField').each(function(i,item){
+              if($(item).is('select'))
+              {
+                if($(item).val() != null)
+                {
+                  q.push({[$(item).attr('id')]: $(item).val().join(', ')});
+                }
+              }
+              if($(item).is('input'))
+              {
+                if($(item).bootstrapSwitch('state'))
+                {
+                  var para = 1;
+                  q.push({[$(item).attr('id')]: [para.toString()]});
+                }
+              }
+            });
+            $table.bootstrapTable('filterBy', q);
+            $('#total').text('('+$table.bootstrapTable('getData').length+')');
+          }
+
+          //activate the tooltips after the data table is initialized
+          $('[rel="tooltip"]').tooltip();
+
+          $(window).resize(function () {
+              $table.bootstrapTable('resetView');
+          });
+			});
+      $('#showAdvancedSearch').on('click',function(e)
+      {
+        e.preventDefault();
+        if($('#advancedSearch').hasClass('hidden'))
+        {
+          $('#advancedSearch').removeClass('hidden');
+          $(this).text('Hide advanced search')
+        }
+        else
+        {
+          $('#advancedSearch').addClass('hidden')
+          $(this).text('Advanced search')
+        }
+      });
+      if($(".selectpicker").length != 0){
+        $(".selectpicker").selectpicker();
+      }
+      $('.switch-icon').bootstrapSwitch({
+          onColor:'',
+          onText: '<i class="fa fa-check"></i>',
+          offText: '<i class="fa fa-times"></i>'
+      });
+  </script>
+{% endblock %}

@@ -1,0 +1,76 @@
+AppBundle\Entity\Article:
+  type: entity
+  table:  articles
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+      length: 300
+    summary:
+      type: text
+      nullable: true
+    contentType:
+      type: text
+      length: 10
+    content:
+      type: text
+      nullable: true
+    media:
+      type: string
+      length: 255
+      nullable: true
+    author:
+      type:   string
+      length: 255
+      nullable: true
+    media_type:
+      type:   string
+      length: 10
+      nullable: true
+    publishDate:
+      type: datetime
+      nullable: true
+    createdAt:
+      type: datetime
+    updatedAt:
+      type: datetime
+      nullable: true
+    isPublished:
+      type: boolean
+      options:
+        default:  false
+    caption:
+      type:   string
+      length: 255
+      nullable:   true
+    slug:
+      type: string
+      length: 255
+      nullable: true
+    externalLink:
+      type: string
+      length: 300
+      nullable: true
+  oneToOne:
+    photo:
+      targetEntity: Photo
+      mappedBy: article
+  manyToMany:
+    categories:
+      targetEntity: ContentCategory
+      inversedBy: ujuzihub
+      joinTable:
+        name: articles_categories
+        joinColumns:
+          articles_id:
+            referencedColumnName: id
+        inversedJoinColumns:
+          category_id:
+            referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [setCreatedAtValue]
+    preUpdate:  [setUpdatedAtValue]

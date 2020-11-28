@@ -1,0 +1,53 @@
+AppBundle\Entity\RequestDocument:
+  type: entity
+  table:  request_documents
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: NONE
+  fields:
+    name:
+      type: string
+      length: 300
+    token:
+      type: string
+      length: 300
+      nullable: true
+    type:
+      type: string
+      length: 20
+      nullable: true
+    extension:
+      type: string
+      length: 7
+      nullable: true
+    url:
+      type: string
+      length: 300
+    isLatest:
+      type: boolean
+      nullable: true
+    useLatest:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+    size:
+      type: integer
+      length: 15
+      nullable: true
+  manyToOne:
+    request:
+      targetEntity: Request
+      inversedBy: documents
+      joinColumn:
+        request_id:
+          referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks:
+        prePersist: [ preUpload,'setDocumentId']
+        preUpdate: [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate: [ upload ]
+        postRemove: [ removeUpload ]

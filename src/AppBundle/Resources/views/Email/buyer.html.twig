@@ -1,0 +1,36 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>African Partner Pool Application</title>
+
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <p>Dear {{ options.name }}</p>
+    <p>You have been successfully registered to use the African Partner Pool Application by {{ options.buyer.name }}.</p>
+    {% if options.password != '' %}
+    <p>Please click on the link below to create a password for your account.</p>
+    <p><a href="{{options.link}}">Proceed  to password change</a></p>
+    {% else %}
+    <p><a href="{{options.link}}">Proceed as account</a></p>
+    {% endif %}
+    <p>Kind regards,<br/>
+    APP Ghana Team</p>
+
+  </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,471 @@
+<h4>
+  Dashboard
+  <small>Control panel</small>
+</h4>
+
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{ companies|length }}</h3>
+        <p>Total Companies</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div><!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{ buyers|length }}</h3>
+        <p>Buyers</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Buyer"}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div><!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{ suppliers|length }}</h3>
+        <p>Suppliers</p>
+      </div>
+      <div class="icon">
+      <i class="ion ion-pie-graph"></i>
+      </div>
+      <a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Supplier"}) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div><!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{ members|length }}</h3>
+        <p>Members</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
+
+      </div>
+      <a href="{{ path('admin_app_member_list')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div><!-- ./col -->
+</div><!-- /.row -->
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box bg-aqua">
+      <a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Supplier", 'filter[status][value]':"Active"}) }}">
+        <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Active Suppliers</span>
+          <span class="info-box-number">{% set active = 0 %}
+          {% for supplier in suppliers if supplier.status == 'Active' and supplier.isFullyPaidUp == true  %}
+            {% set active = active + 1 %}
+          {% endfor %}
+          {{ active }}</span>
+
+          <div class="progress">
+            <div class="progress-bar" style="width: {{ active > 0 ? active/suppliers|length*100 : 0 }}%"></div>
+          </div>
+              <span class="progress-description">
+                {{ active > 0 ? active/suppliers|length*100 : 0 }}%
+              </span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box bg-green">
+      <a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Supplier", 'filter[status][value]':"Awaiting Validation"}) }}">
+        <span class="info-box-icon"><i class="fa fa-clock-o"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Suppliers Awaiting Validation</span>
+          <span class="info-box-number">{% set in_progress = 0 %}{% for supplier in suppliers if supplier.status == 'Awaiting Validation'  %} {% set in_progress = in_progress + 1 %} {% endfor %} {{ in_progress }}</span>
+
+          <div class="progress">
+            <div class="progress-bar" style="width: {{ in_progress > 0 ? in_progress/suppliers|length*100 : 0 }}0%"></div>
+          </div>
+              <span class="progress-description">
+                {{ in_progress > 0 ? in_progress/suppliers|length*100 : 0 }}%
+              </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </a>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box bg-yellow">
+      <a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Supplier", 'filter[status][value]':"Validation in Progress"}) }}">
+        <span class="info-box-icon"><i class="fa fa-tasks"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Suppliers Validation in Progress </span>
+          <span class="info-box-number">{% set in_progress = 0 %}{% for supplier in suppliers if supplier.status == 'Validation in Progress'  %} {% set in_progress = in_progress + 1 %} {% endfor %} {{ in_progress }}</span>
+
+          <div class="progress">
+            <div class="progress-bar" style="width: {{ in_progress > 0 ? in_progress/suppliers|length*100 : 0 }}%"></div>
+          </div>
+              <span class="progress-description">
+                {{ in_progress > 0 ? in_progress/suppliers|length*100 : 0 }}%
+              </span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box bg-red">
+      <a href="{{ path('admin_app_company_list', {'filter[memberType][value]':"Supplier", 'filter[status][value]':"Rejected"}) }}">
+        <span class="info-box-icon"><i class="fa fa-ban"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Rejected Suppliers</span>
+          <span class="info-box-number">{% set rejected = 0 %}{% for supplier in suppliers if supplier.status == 'Rejected'  %} {% set rejected = rejected + 1 %} {% endfor %} {{ rejected }}</span>
+
+          <div class="progress">
+            <div class="progress-bar" style="width: {{ rejected > 0 ? rejected/suppliers|length*100 : 0 }}%"></div>
+          </div>
+              <span class="progress-description">
+                {{ rejected > 0 ? rejected/suppliers|length*100 : 0 }}%
+              </span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+</div>
+<div class="row">
+  <div class="col-lg-3">
+    <div class="mockup-content">
+      <span></span><span></span><span></span><span></span>
+      <div class="morph-button morph-button-modal morph-button-modal-1 morph-button-fixed">
+        <button type="button">Companies Menu<span>Companies, Contacts & Documents</span></button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-text">
+              <span class="icon icon-close">Close the dialog</span>
+              <h2>Access Companies and related information</h2>
+              <p><a href="{{ path('admin_app_company_list') }}">View all companies, open company RFI for verification</a></p>
+              <p><a href="{{ path('admin_app_companydocumentation_list') }}">View & verify uploaded documents</a></p>
+              <p><a href="{{ path('admin_app_companycontact_list') }}">Access Company Contacts</a></p>
+            </div>
+          </div>
+        </div>
+      </div><!-- morph-button -->
+      <span></span>
+      <span></span>
+    </div><!-- /form-mockup -->
+  </div>
+  <div class="col-lg-3">
+    <div class="mockup-content">
+      <span></span><span></span><span></span><span></span>
+      <div class="morph-button morph-button-modal morph-button-modal-1 morph-button-fixed">
+        <button type="button">Financial Transactions Menu<span>View Payments & Manage Promo Codes</span></button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-text">
+              <span class="icon icon-close">Close the dialog</span>
+              <h2>Financial Transactions Menu</h2>
+              <p><a href="{{ path('admin_app_payment_list') }}">View payments made</a></p>
+              <p><a href="{{ path('admin_app_promocode_list') }}">Create promo codes and view or edit existing ones</a></p>
+            </div>
+          </div>
+        </div>
+      </div><!-- morph-button -->
+      <span></span>
+      <span></span>
+    </div><!-- /form-mockup -->
+  </div>
+  <div class="col-lg-3">
+    <div class="mockup-content">
+      <span></span><span></span><span></span><span></span>
+      <div class="morph-button morph-button-modal morph-button-modal-1 morph-button-fixed">
+        <button type="button">Tenders Menu<span>Requests Posted on SourceDogg </span></button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-text">
+              <span class="icon icon-close">Close the dialog</span>
+              <h2>Tenders information</h2>
+              <p><a href="{{ path('admin_app_sourcedoggrequest_list') }}">View tenders posted on SourceDogg and available on APP @Tenda-spaces</a></p>
+              <p><a href="{{ path('admin_app_sourcedoggrequesttype_list') }}">Create, edit or view SourceDogg Request Types</a></p>
+            </div>
+          </div>
+        </div>
+      </div><!-- morph-button -->
+      <span></span>
+      <span></span>
+    </div><!-- /form-mockup -->
+  </div>
+  <div class="col-lg-3">
+    <div class="mockup-content info-box bg-aqua">
+      <span></span><span></span><span></span><span></span>
+      <div class="morph-button morph-button-modal morph-button-modal-1 morph-button-fixed">
+        <button type="button">Settings Menu<span>Registered members, IIA Staff, Company Types</span></button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-text">
+              <span class="icon icon-close">Close the dialog</span>
+              <h2>Access Companies and related information</h2>
+              <p><a href="">View registered Members</a></p>
+              <p><a href="">Manage company types, required documents and verification stages for each company type</a></p>
+              <p><a href="">Manage IIA Staff</a></p>
+            </div>
+          </div>
+        </div>
+      </div><!-- morph-button -->
+      <span></span>
+      <span></span>
+    </div><!-- /form-mockup -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Recently Signed-up Suppliers</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <ul class="products-list product-list-in-box">
+          {% for supplier in suppliers %}
+            {% if supplier.createdAt|date('d/m/Y') == "now"|date('d/m/Y') %}
+            <li class="item">
+              <div class="product-img">
+                <img src="{{  asset('uploads/documents/'~supplier.name~'/'~supplier.companyLogo )}}" alt="Logo">
+              </div>
+              <div class="product-info">
+                <a href="{{ path('admin_app_company_edit',{id: supplier.id }) }}" class="product-title">{{ supplier.name }}
+                  <span class="label label-warning pull-right"></span></a>
+                    <span class="product-description">
+                      {{ supplier.natureOfBusiness }}
+                    </span>
+              </div>
+            </li>
+            {% endif %}
+          <!-- /.item -->
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer text-center">
+        <a href="{{ path('admin_app_company_list') }}" class="uppercase">View All Suppliers</a>
+      </div>
+      <!-- /.box-footer -->
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Payments made today</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <ul class="products-list product-list-in-box">
+          {% for payment in payments %}
+            <li class="item">
+              <div class="product-img">
+                <img src="{{  asset('uploads/documents/'~payment.company.name~'/'~payment.company.companyLogo )}}" alt="Product Image">
+              </div>
+              <div class="product-info">
+                <a href="{{ path('admin_app_payment_edit',{id: payment.company.id }) }}" class="product-title">{{ payment.company.name }}
+                  <span class="label label-warning pull-right">{{ payment.amount }}</span></a>
+                    <span class="product-description">
+                      {{ payment.company.natureOfBusiness }}
+                    </span>
+              </div>
+            </li>
+          <!-- /.item -->
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer text-center">
+        <a href="{{ path('admin_app_payment_list') }}" class="uppercase">View All Payments</a>
+      </div>
+      <!-- /.box-footer -->
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Incomplete Registrations</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="incomplete_registrations" class="table table-bordered table-striped datatables">
+          <thead>
+          <tr>
+            <th>Company</th>
+            <th>Registration Date</th>
+            <th>Registered By</th>
+            <th>Section 1</th>
+            <th>Section 2</th>
+            <th>Section 3</th>
+            <th>Section 4</th>
+            <th>Section 5</th>
+            <th>Section 6</th>
+            <th>Section 7</th>
+            <th>Section 8</th>
+            <th>Section 9</th>
+            <th>Section 10</th>
+            <th>Section 11</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if incomplete_registrations|length > 0 %}
+          {% for company in incomplete_registrations %}
+          <tr>
+            <td><a href="{{ path('admin_app_company_edit',{id: company.id }) }}">{{ company.name }}</a></td>
+            <td>{{ company.registrationDate|date('d/m/Y') }}</td>
+            <td>{{ company.registeredBy.firstName ~ ' ' ~ company.registeredBy.surname }}</td>
+            <td>{{ company.section1Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section2Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section3Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section4Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section5Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section6Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section7Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section8Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section9Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section10Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+            <td>{{ company.section11Complete == 1 ? '<span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>' : '<span class="label label-danger"><i class="fa fa-times" aria-hidden="true"></i></span>' }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+        <tr>
+          <td colspan="14">No companies awaiting verification</td>
+        </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Verification status of companies that have completed RFI</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table id="verifications" class="table table-bordered table-striped datatables">
+        <thead>
+        <tr>
+          <th>Company</th>
+          <th>APP Registration Date</th>
+          <th>Last Verification Update</th>
+          <th>Stage</th>
+          <th>Step</th>
+          <th>Verified By</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% if verification_companies|length > 0 %}
+        {% for company in verification_companies %}
+            {% set latest = company.getValidationStatus('sort')|first %}
+        <tr>
+          <td><a href="{{ path('admin_app_company_edit',{id: company.id }) }}">{{ company.name }}</a></td>
+          <td>{{ company.createdAt|date('d/m/Y') }}</td>
+          <td>{{ latest.date|date('d/m/Y h:i A') }}</td>
+          <td>{{ latest.step.stage }}</td>
+          <td>{{ latest.step }}</td>
+          <td>{{ latest.by_who }}</td>
+        </tr>
+        {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan="6">No companies awaiting verification</td>
+      </tr>
+      {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript" src="{{asset('bundles/app/js/datatables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/app/js/dataTables.bootstrap.min.js')}}"></script>
+<script>
+  (function() {
+    $('.datatables').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+    var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+    // trick to prevent scrolling when opening/closing button
+    function noScrollFn() {
+      window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+    }
+
+    function noScroll() {
+      window.removeEventListener( 'scroll', scrollHandler );
+      window.addEventListener( 'scroll', noScrollFn );
+    }
+
+    function scrollFn() {
+      window.addEventListener( 'scroll', scrollHandler );
+    }
+
+    function canScroll() {
+      window.removeEventListener( 'scroll', noScrollFn );
+      scrollFn();
+    }
+
+    function scrollHandler() {
+      if( !didScroll ) {
+        didScroll = true;
+        setTimeout( function() { scrollPage(); }, 60 );
+      }
+    };
+
+    function scrollPage() {
+      scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+      didScroll = false;
+    };
+
+    scrollFn();
+
+    var buttons = document.getElementsByClassName("morph-button");
+    for (var i = 0; i < buttons.length; i++)
+    {
+      var UIBtnn = new UIMorphingButton( buttons[i], {
+        closeEl : '.icon-close',
+        onBeforeOpen : function() {
+          // don't allow to scroll
+          noScroll();
+        },
+        onAfterOpen : function() {
+          // can scroll again
+          canScroll();
+        },
+        onBeforeClose : function() {
+          // don't allow to scroll
+          noScroll();
+        },
+        onAfterClose : function() {
+          // can scroll again
+          canScroll();
+        }
+      } );
+    }
+  })();
+</script>
