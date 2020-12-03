@@ -1,0 +1,279 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+    base_url: https://appghana.com/
+    write_to: %kernel.root_dir%/../web/bundles/app
+    documents_directory: '%kernel.root_dir%/../web/uploads/documents'
+    requests_directory: '%kernel.root_dir%/../web/uploads/requests'
+    uploads_directory: '%kernel.root_dir%/../web/uploads/'
+    buyer.registration.amount: 0
+    supplier.registration.amountl: 236.25
+    supplier.registration.amounti: 945.00
+    sourcedogg.supplierUrl: https://secure.sourcedogg.com/supplier-registration
+    sourcedogg.buyerUrl: https://www.sourcedogg.com/free-trial/
+    sourcedogg.login: https://secure.sourcedogg.com/
+    hiveBriteUrlAccessToken: https://kenya-app.hivebrite.com/oauth/token
+    hiveBriteUrlBaseUrl: https://kenya-app.hivebrite.com/api/admin/v1/
+    hiveBriteUUID:  57c2cb636833b3add9711c4940f04098dce5d27607e9eba9a781ce882267e460
+    hiveBriteSecret:  10e66c4f108212717f2871efe30c258e527a7cd3b84e6432f306ef132f6c6d45
+    hiveBriteGroupId: 13163
+    dthotKey: 375BABC02EEBFBCC43FCBA330321D38125F1670CEFE1A43C22A30A086D1C3474
+    dhotIV: 25A568F8521ED95BF7E198A1B72711C0
+    noreply:  no-reply@appghana.com
+    sendgrid_api_key: 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
+    hubtel_client_id: dhmqvhot
+    hubtel_secret: aimhebqi
+    hubtel_from:  APP
+    azureClientId: 5e24a69b-f667-4c76-99d5-5d3ee52fb8df
+    azureClientSecret:  08tc7OZj9*a_dN--ORSc+h4IxDnMz/AG
+    azureTenantId:  417f9f2c-0bb5-497d-bdb0-3c282099840f
+    azureSupplierGroupId: 60be1a3e-c5c7-4b07-b51f-ddcadfef9ba7
+    azureBuyerGroupId:  ba0ee40c-b3a4-450c-9d20-75a73811b275
+    azureAppId: 848a3d12-c856-4705-8640-ff701f57121f
+
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    cache: false
+    globals:
+      local_supplier_registration:  %supplier.registration.amountl%
+      international_supplier_registration:  %supplier.registration.amounti%
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        server_version: '5.7'
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        dql:
+            string_functions:
+                DATE: DoctrineExtensions\Query\Mysql\Date
+                TIMESTAMPDIFF:  DoctrineExtensions\Query\Mysql\TimestampDiff
+                NOW:  DoctrineExtensions\Query\Mysql\Now
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+expert_coder_swiftmailer_send_grid:
+    api_key: %sendgrid_api_key%
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        minifycsscompressor: ~
+        jsqueeze: ~
+
+monolog:
+    channels: ['hubtel','hivebrite','sms','email','azure','import','dumps']
+    handlers:
+        import:
+            # log all messages (since debug is the lowest level)
+            level:    debug
+            type:     stream
+            path:     '%kernel.logs_dir%/import.log'
+            channels: [import]
+
+        hivebrite:
+            # log all messages (since debug is the lowest level)
+            level:    debug
+            type:     stream
+            path:     '%kernel.logs_dir%/hivebrite.log'
+            channels: [hivebrite]
+
+        sms:
+          # log all messages (since debug is the lowest level)
+          level:    debug
+          type:     stream
+          path:     '%kernel.logs_dir%/sms.log'
+          channels: [sms]
+
+        email:
+          # log all messages (since debug is the lowest level)
+          level:    debug
+          type:     stream
+          path:     '%kernel.logs_dir%/email.log'
+          channels: [email]
+
+        hubtel:
+          # log all messages (since debug is the lowest level)
+          level:    debug
+          type:     stream
+          path:     '%kernel.logs_dir%/hubtel.log'
+          channels: [hubtel]
+
+        azure:
+          # log all messages (since debug is the lowest level)
+          level:    debug
+          type:     stream
+          path:     '%kernel.logs_dir%/azure.log'
+          channels: [azure]
+
+        dumps:
+          # log all messages (since debug is the lowest level)
+          level:    debug
+          type:     stream
+          path:     '%kernel.logs_dir%/dumps.log'
+          channels: [dumps]
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.text: # used to if you plan to use Sonata user routes
+        sonata.block.dash:
+
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+    from_email:
+        address: no-reply@appkenya.com
+        sender_name: African Partnership Pool
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    impersonating:
+        route: sonata_admin_dashboard
+    class:
+        user: Application\Sonata\UserBundle\Entity\User
+        group: Application\Sonata\UserBundle\Entity\Group
+
+sonata_admin:
+    title: 'APP Control Panel'
+    title_logo: bundles/app/images/app-logo.png
+    # options:
+    #     title_mode: "single_text"
+    templates:
+        layout: 'AppBundle::standard_layout.html.twig'
+
+    security:
+        handler: sonata.admin.security.handler.role
+
+    dashboard:
+        blocks:
+            -
+                position: top
+                type: sonata.block.dash
+                class: col-lg-12
+
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:    []
+    image:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
+        options:    []
+
+    temporary_folder: "%kernel.cache_dir%/snappy"
+
+
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: [main]
+    connect:
+      account_connector: azure.user_provider
+    fosub:
+      username_iterations: 30
+      properties:
+          azure:    azure_id
+    resource_owners:
+        azure:
+          type:          azure
+          client_id:     %azureClientId%
+          client_secret: %azureClientSecret%
+          options:
+              resource:    https://graph.microsoft.com
+              application: %azureTenantId%
+              csrf: true
+              infos_url: https://graph.microsoft.com/v1.0/me
+          paths:
+            identifier: email
+
+fos_oauth_server:
+    db_driver: orm       # Drivers available: orm, mongodb, or propel
+    client_class:        AppBundle\Entity\Client
+    access_token_class:  AppBundle\Entity\AccessToken
+    refresh_token_class: AppBundle\Entity\RefreshToken
+    auth_code_class:     AppBundle\Entity\AuthCode
+
+    service:
+        user_provider: fos_user.user_provider.username
+        options:
+            supported_scopes: user
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: standard
+            uiColor: "#000000"
+
+
