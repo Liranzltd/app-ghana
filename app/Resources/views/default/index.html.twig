@@ -118,17 +118,17 @@
             border-radius: 0 !important;
             border: none !important;
 
+        }
 
-
-        .blink{
+       /* .blink{
             width:200px;
             height: 50px;
             background-color: magenta;
             padding: 15px;
             text-align: center;
             line-height: 50px;
-        }
-        span{
+        }*/
+       /* span{
             font-size: 25px;
             font-family: cursive;
             color: white;
@@ -139,6 +139,23 @@
             50%{opacity: .5;}
             100%{opacity: 1;}
 
+        }
+*/
+        .evnt-box{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+             z-index: -1;
+            background-color: #000;
         }
 
 
@@ -408,13 +425,20 @@
                                                                 <p><b>{{ item.publishDate|date('F') }}
                                                                         | {{ item.publishDate|date('d') }}</b></p>
                                                             </div>
+
                                                             <p>
                                                                 {{ viewVars['BergyUtils'].limitText(item.title, 70) }}
                                                             </p>
 
+                                                            <article class="evnt-box" >
+                                                                {{ item.summary|striptags }}
+                                                            </article>
+
+
                                                             <p class="text-primary text-center">
                                                                 <a {{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}>Read
-                                                                    More</a></p>
+                                                                    More</a>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -446,8 +470,59 @@
                                         </div>
 
                                         <div style="margin-right: 20px; margin-bottom: 20px" class="row">
-
+                                            {% for testimonial in testimonies %}
                                                 <div style="height:300px; background: whitesmoke; margin:10px;" class="col-sm-3 boxshadow equal">
+                                                    <div class="card card-price">
+                                                        <div  class="card-img">
+                                                            <a href="{{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}" target="_new">
+                                                                <img style='height: 150px; object-fit: contain'
+                                                                     src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}" class="img-responsive">
+
+                                                            </a>
+                                                        </div>
+                                                        <div style='height: 100px; object-fit: contain' class="card-body">
+                                                            <div class="card-title text-center text-primary">
+                                                                <p>
+                                                                    <b>{{ testimonial.attribution }}</b>
+                                                                    <br>
+                                                                    <span class="text-primary">{{ testimonial.company }}</span>
+                                                                </p>
+
+                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                            </div>
+                                                            <article class="show-read-more  evnt-box" >
+                                                                {{ testimonial.testimony }}
+                                                            </article>
+                                                            <p class="text-primary text-center">
+                                                                <a href="#" data-toggle="modal" data-target="#flipFlop{{ testimonial.id }}">
+                                                                    Read more
+                                                                </a>
+                                                        </div>
+
+                                                        <!-- The modal -->
+                                                        <div class="modal fade" id="flipFlop{{ testimonial.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <h2><b>{{ testimonial.attribution }}</b></h2>
+                                                                        <span class="text-primary">{{ testimonial.company }}</span>
+                                                                        <img style='width: 100%; object-fit: contain'
+                                                                             src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}" class="img-responsive">
+
+                                                                        {{ testimonial.testimony }}
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                            {#    <div style="height:300px; background: whitesmoke; margin:10px;" class="col-sm-3 boxshadow equal">
                                                     <div class="card card-price">
                                                         <div  class="card-img">
                                                             <a href="https://thebftonline.com/2019/lifestylesports/lifesense-with-terry-mante-when-passion-meets-opportunity-thelma-kusi-and-the-colour-zone-journey/" target="_new">
@@ -458,7 +533,7 @@
                                                         <div style='height: 100px; object-fit: contain' class="card-body">
                                                             <div class="card-title text-center text-primary">
                                                                 <p><b>LifeSense with Terry Mante</b></p>
-                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                                #}{#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}{#
                                                             </div>
                                                             <article class="show-read-more" >
                                                                 When passion meets opportunity – Thelma Kusi and the Colour Zone journey
@@ -480,7 +555,7 @@
                                                         <div style='height: 100px; object-fit: contain' class="card-body">
                                                             <div class="card-title text-center text-primary">
                                                                 <p><b>Georgette Barnes</b></p>
-                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                                #}{#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}{#
                                                             </div>
                                                             <article class="show-read-more" >
                                                                 Seizing opportunities when it matters
@@ -502,7 +577,7 @@
                                                         <div style='height: 100px; object-fit: contain' class="card-body">
                                                             <div class="card-title text-center text-primary">
                                                                 <p><b>Forward and Upward: Trials</b></p>
-                                                                {#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}
+                                                                #}{#<p> When passion meets opportunity – Thelma Kusi and the Colour Zone journey</p>#}{#
                                                             </div>
                                                             <article class="show-read-more" >
                                                                 Triumphs and Prospects of Akate Farms
@@ -513,7 +588,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+#}
                                         </div>
 
                                         {#<div class="row">
@@ -703,6 +778,9 @@
                 </div>
             </div>
         </div>
+
+
+
     </section>
 
 
@@ -716,6 +794,9 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+
+
+
         $(document).ready(function(){
             var maxLength = 170;
             $(".show-read-more").each(function(){

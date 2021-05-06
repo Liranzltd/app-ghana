@@ -1590,7 +1590,7 @@ span.date {
 }
 
 .boxshadow{
-    box-shadow: 0.2em 0.2em 0.6em 0.2em white;
+    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(59, 57, 57, 0.07);
 }
 .equal {
     display: flex;
