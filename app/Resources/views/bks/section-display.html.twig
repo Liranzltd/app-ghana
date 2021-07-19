@@ -1,0 +1,312 @@
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 ftco-animate">
+                {% if tenders|length > 0 %}
+                    <div class="solu_title"
+                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; margin-right: 10px; margin-left: 10px; ">
+                        <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                        ><i aria-hidden="true" id="tender1" class="fa fa-exclamation">
+                            </i> LIVE TENDERS</h4>
+                        <hr>
+                    </div>
+                    {% for request in tenders %}
+
+                        <div class="solution_cards_box">
+                            <div class="solution_card">
+                                <div class="hover_color_bubble"></div>
+
+
+                                <div class="solu_title">
+                                    <h1 class="text-primary" style="font-weight: 700; font-size: 18px;">
+                                        <b>{{ request.name }}</b>
+                                    </h1>
+                                </div>
+                                <div class="solu_description">
+                                    <p>{{ request.summary|split('</p>')|first|raw }}</p>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                        <span><i class="fa fa-calendar text-primary"></i> <span class="text-primary">Deadline:</span>
+                                            {{ request.deadline|date('F d, Y') }}
+                                        </span>
+                                            <hr>
+
+                                            <span class="text-primary"><i class="fa fa-list text-primary"></i> Category</span>
+                                        </div>
+
+                                        <div class="col-6 text-right">
+                                            <a class="btn btn-primary"
+                                               href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}"
+                                               title="{{ request.name }}">View Request
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+
+                {# By3 #}
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="solu_title"
+                             style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                            <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                            >NEWS AND EVENTS</h4>
+                            <hr>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <div class="projects-slides owl-carousel" >
+                            <!-- Single Project Slide -->
+                            {% for item in articles %}
+                                <div class="single-project-slide {{  loop.index == 0 ? 'active' : '' }} bg-img"
+                                     style="background-image: url({{ item.media }});">
+                                    <!-- Project Text -->
+                                    <div class="project-content">
+                                        <div class="text">
+                                            <h6><b>{{ item.publishDate|date('F') }}
+                                                    | {{ item.publishDate|date('d') }}
+                                                    | {{ item.publishDate|date('Y') }}</b></h6>
+                                            <marquee behavior="scroll" direction="left"><span
+                                                        style="color: white; font-weight: bolder; "
+                                                        class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
+                                            </marquee>
+                                        </div>
+                                    </div>
+                                    <!-- Hover Effects -->
+                                    <div class="hover-effects">
+                                        <div class="text">
+                                            <h6><b>{{ item.publishDate|date('F') }}
+                                                    | {{ item.publishDate|date('d') }}
+                                                    | {{ item.publishDate|date('Y') }}</b></h6>
+                                            <marquee behavior="scroll" direction="left"><span
+                                                        style="color: white; font-weight: bolder; "
+                                                        class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
+                                            </marquee>
+                                            <article class="evnt-box">
+                                                {{ item.summary|striptags }}
+                                            </article>
+                                        </div>
+                                        <a href="{{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}" class="btn project-btn">Read more <i class="fa fa-long-arrow-right"
+                                                                                                                                                                                         aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+                {# By3 ends #}
+
+                {# By3 #}
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="solu_title"
+                             style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                            <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                            >STORIES AND STUDIES</h4>
+                            <hr>
+                        </div>
+                    </div>
+
+                    {% for testimonial in testimonies %}
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <a href="{{ testimonial.externalLink ? 'target=_blank href='~ testimonial.externalLink : 'href=/articles/'~ testimonial.slug }}">
+                                    <img src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
+                                         class="card-img-top">
+                                </a>
+
+                                <div class="card-body">
+                                    <div class="card-title text-center text-primary">
+                                        <marquee marquee behavior="scroll" direction="top">
+                                            <b>{{ testimonial.attribution }}</b>
+                                            <br>
+                                            <span class="text-primary">{{ testimonial.company }}</span>
+                                        </marquee>
+                                    </div>
+
+                                    <article class="show-read-more  evnt-box">
+                                        {{ testimonial.testimony }}
+                                    </article>
+
+
+                                    <a class="btn btn-outline-primary btn-sm my-2x" data-toggle="modal"
+                                       data-target="#flipFlop{{ testimonial.id }}">Read
+                                        More</a>
+
+                                    <div class="modal fade" id="flipFlop{{ testimonial.id }}" tabindex="-1"
+                                         role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h2><b>{{ testimonial.attribution }}</b></h2>
+                                                    <span class="text-primary">{{ testimonial.company }}</span>
+                                                    <img style='width: 100%; object-fit: contain'
+                                                         src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
+                                                         class="img-responsive">
+
+                                                    {{ testimonial.testimony }}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {# By3 ends #}
+
+
+                {# By3 #}
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="solu_title"
+                             style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                            <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                            >CURRENT BUYERS</h4>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="flat-clients slides owl-carousel">
+                                {% for buyer in buyers %}
+                                    <div class="client-featured">
+                                        <img src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
+                                             alt="{{ buyer.name }}"/>
+                                    </div>
+                                {% endfor %}
+                            </div><!-- /.flat-clients -->
+                        </div><!-- /.col-md-12 -->
+                    </div>
+
+                </div>
+                {# By3 ends #}
+
+
+            </div> <!-- .col-md-9 -->
+            <div class="col-lg-4 col-sm-12 sidebar pl-lg-5 ftco-animate">
+                <div class="embed-responsive embed-responsive-16by9 ">
+                    <iframe width="560" height="315" class="embed-responsive-item"
+                            src="https://www.youtube.com/embed/videoseries?list=PLe23eeD0_yjyaUUWjxrOKwSQeyclyPKxL"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+                <div class="row">
+                    <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+                        <!-- Carousel items -->
+                        <div style="height: 800px" class="carousel-inner">
+                            <div class="active item">
+                                <a href="http://phoenixtad.com/" target="_new"><img src="/uploads/ads/phoenix.jpg"
+                                                                                    class=" img-responsive"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://www.digicraft.gh.com" target="_new"><img
+                                            src="/uploads/ads/digicraft.jpg" class=" img-responsive"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://www.solartail.com" target="_new"><img src="/uploads/ads/solartail_b.jpg"
+                                                                                      class=" img-responsive"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://www.landmarksecurity.org" target="_new"><img
+                                            src="/uploads/ads/landmark2.jpg" class=" img-responsive"></a>
+                            </div>
+                            <div class="item">
+                                <a href="http://www.landmarksecurity.org" target="_new"><img
+                                            src="/uploads/ads/eagle-event-2.jpg" class=" img-responsive"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 800px" class="row">
+                    <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+                        <!-- Carousel items -->
+                        <div style="height: 800px" class="carousel-inner">
+                            <div class="active item">
+                                <a href="#" target="_new"><img src="/uploads/ads/1.jpg"
+                                                               class=" img-responsive"></a>
+                            </div>
+                            <div class="item">
+                                <a href="https://hrbureaugh.com/" target="_new"><img
+                                            src="/uploads/ads/2.jpg" class=" img-responsive"></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="roberto-cta-area section-padding-100-0">
+    <div class="row">
+        <div class="col-lg-9 col-sm-12 ftco-animate">
+            <div class="comment_area ml-50 clearfix">
+                <h2 style="color: #043d76; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif ">
+                    <i aria-hidden="true" id="tender1" class="fa fa-exclamation"></i> LIVE TENDERS</h2>
+
+                <ol>
+                    {% for request in tenders %}
+                        <!-- Single Comment Area -->
+                        <li class="single_comment_area p-3" style="border-radius: 5px; border: 1px solid black;">
+                            <!-- Comment Content -->
+                            <div class="comment-content d-flex">
+                                <!-- Comment Meta -->
+                                <div class="comment-meta">
+                                    <h5><b>{{ request.name }}</b></h5>
+                                    <p>{{ request.summary|split('</p>')|first|raw }}</p>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12">
+                                        <span><i class="fa fa-calendar text-primary"></i> <span class="text-primary">Deadline:</span>
+                                            {{ request.deadline|date('F d, Y') }}
+                                        </span>
+                                    <hr>
+
+                                    <span class="text-primary" ><i class="fa fa-list text-primary"></i> Category</span>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-12 text-right">
+                                    <a class="btn btn-primary"
+                                       href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}"
+                                       title="{{ request.name }}">View Request
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mt-4">
+            <div class="container">
+                <iframe style="width: 100%; " class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/videoseries?list=PLe23eeD0_yjyaUUWjxrOKwSQeyclyPKxL"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>

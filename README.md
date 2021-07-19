@@ -3,6 +3,7 @@
 ### Clear Cache on launch
 
 php bin/console cache:clear --no-warmup --env=prod
+php -S localhost:3000 -t public
 
 ### Database setup Here
 # This file is auto-generated during the composer install
@@ -17,4 +18,7 @@ php bin/console cache:clear --no-warmup --env=prod
     mailer_user: null
     mailer_password: null
     secret: c4f57dfa548af16401321584a770269cb6d8b6ec
+
+
+https://www.quackit.com/bootstrap/bootstrap_3/tutorial/bootstrap_carousel.cfm
 

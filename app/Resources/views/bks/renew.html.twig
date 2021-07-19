@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133880339-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-133880339-1');
+    </script>
+    <meta charset="UTF-8"/>
+    <meta name='keywords'
+          content='africa, partnership, platform, social, tenders, ghana, business linkage, business growth, investment in ghana'>
+    <meta name='description'
+          content="The African Partner Pool brings businesses together. It connects companies across sectors in Ghana with the local business partners they need to get the job done.">
+    <meta name='author' content='Invest in Africa'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Fonts Online -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('bundles/roberto/img/core-img/favicon.png') }}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('bundles/roberto/style.css') }}">
+    <style>
+        .single-welcome-slide {
+            height: 550px !important;
+        }
+
+        .comment_area h2 {
+            margin-bottom: 1px;
+        }
+
+        .section-padding-100-0 {
+            padding-top: 20px !important;
+            padding-bottom: 0;
+        }
+
+        .btn-primary {
+            background-color: #06478d !important;
+            border-color: #06478d !important;
+        }
+
+        .text-primary {
+            color: #06478d !important;
+        }
+
+        .single-project-slide {
+            height: 400px !important;
+
+        }
+
+
+
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .berg-row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: 0!important;
+                margin-left: -15px;
+
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            .berg-row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: 0!important;
+                margin-left: -15px;
+
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        /* Medium devices (landscape tablets, 768px and up) */
+        @media only screen and (min-width: 768px) {
+            .berg-row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: 100px!important;
+                margin-left: 100px;
+
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        /* Large devices (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 992px) {
+            .berg-row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: 100px!important;
+                margin-left: 100px;
+
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+            .berg-row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: 100px!important;
+                margin-left: 100px;
+
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+
+        /* .container {
+             width: 100%;
+              padding-right: 15px;
+              padding-left: 15px;
+              margin-right: 100px;
+              margin-left: 100px;
+         }*/
+    </style>
+
+    <style>
+        .ftco-section {
+            padding: 3em 0 !important;
+            position: relative;
+        }
+
+        .gh {
+            /*  width: 100%;
+              margin-left: 100px;
+              margin-right: 20px;
+              margin-block-end: auto;
+              margin-block-start: auto;*/
+        }
+
+        .section_our_solution .row {
+            align-items: center;
+        }
+
+        .our_solution_category {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .our_solution_category .solution_cards_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .solution_cards_box .solution_card {
+            flex: 0 50%;
+            background: #fff;
+            box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+            0 5px 15px 0 rgba(37, 44, 97, 0.15);
+            border-radius: 15px;
+            margin: 8px;
+            padding: 10px 15px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            min-height: 265px;
+            transition: 0.7s;
+        }
+
+        .solution_cards_box .solution_card:hover {
+            background: #a5f5f5;
+            color: #0e0000;
+            transform: scale(1.1);
+            z-index: 9;
+        }
+
+        .solution_cards_box .solution_card:hover::before {
+            background: rgb(85 108 214 / 10%);
+        }
+
+        .solution_cards_box .solution_card:hover .solu_title h3,
+        .solution_cards_box .solution_card:hover .solu_description p {
+            color: #0e0000;
+        }
+
+        .solution_cards_box .solution_card:before {
+            content: "";
+            position: absolute;
+            background: rgb(85 108 214 / 5%);
+            width: 170px;
+            height: 400px;
+            z-index: -1;
+            transform: rotate(42deg);
+            right: -56px;
+            top: -23px;
+            border-radius: 35px;
+        }
+
+        .solution_cards_box .solution_card:hover .solu_description button {
+            background: #fff !important;
+            color: #309df0;
+        }
+
+        .solution_card .so_top_icon {
+        }
+
+        .solution_card .solu_title h3 {
+            color: #212121;
+            font-size: 1.3rem;
+            margin-top: 13px;
+            margin-bottom: 13px;
+        }
+
+        .solution_card .solu_description p {
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .solution_card .solu_description button {
+            border: 0;
+            border-radius: 15px;
+            background: linear-gradient(
+                    140deg,
+                    #42c3ca 0%,
+                    #42c3ca 50%,
+                    #42c3cac7 75%
+            ) !important;
+            color: #000;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 5px 16px;
+        }
+
+        .our_solution_content h1 {
+            text-transform: capitalize;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .our_solution_content p {
+        }
+
+        .hover_color_bubble {
+            position: absolute;
+            background: rgb(54 81 207 / 15%);
+            width: 100rem;
+            height: 100rem;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            top: 16rem;
+            border-radius: 50%;
+            transform: rotate(-36deg);
+            left: -18rem;
+            transition: 0.7s;
+        }
+
+        .solution_cards_box .solution_card:hover .hover_color_bubble {
+            top: 0rem;
+        }
+
+        .solution_cards_box .solution_card .so_top_icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .solution_cards_box .solution_card .so_top_icon img {
+            width: 40px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        /*start media query*/
+        @media screen and (min-width: 320px) {
+            .sol_card_top_3 {
+                position: relative;
+                top: 0;
+            }
+
+            .our_solution_category {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .our_solution_category .solution_cards_box {
+                flex: auto;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .our_solution_category .solution_cards_box {
+                flex: 1;
+            }
+        }
+
+        @media only screen and (min-width: 1024px) {
+            .sol_card_top_3 {
+                position: relative;
+                top: -3rem;
+            }
+
+            .our_solution_category {
+                width: 50%;
+                margin: 0 auto;
+            }
+        }
+
+    </style>
+    <style>
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            background-color: #000;
+        }
+
+        .evnt-box {
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            margin: 0 0 1rem;
+
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        img::after {
+            content: 'Click to Load Image';
+            width: 100%;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 8vw;
+            color: #fff;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .my-2x:hover {
+            color: white !important;
+        }
+
+        /*  .instruct {
+              display: inline-block;
+          }
+
+          .extra {
+              display: none;
+          }
+
+          .instruct:hover .extra {
+              display: inline-block;
+          }*/
+    </style>
+
+</head>
+
+<body>
+<!-- Preloader -->
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<!-- /Preloader -->
+
+<!-- Header Area Start -->
+<header class="header-area">
+    <!-- Search Form -->
+    <div class="search-form d-flex align-items-center">
+        <div class="container">
+            <form action="index.html" method="get">
+                <input type="search" name="search-form-input" id="searchFormInput" placeholder="Type your keyword ...">
+                <button type="submit"><i class="icon_search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Top Header Area Start -->
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-4">
+                    <div class="top-header-content">
+                        <a href="https://www.facebook.com/investinafrica1/" class="fa fa-facebook" target="_blank"></a>
+                        <a href="https://twitter.com/investin_africa" class="fa fa-twitter" target="_blank"></a>
+                        <a href="https://www.youtube.com/user/lnvestlnAfrica" class="fa fa-youtube" target="_blank"></a>
+                    </div>
+                </div>
+
+                <div class="col-8">
+                    <div class="top-header-content">
+                        <!-- Top Social Area -->
+                        <div class="top-social-area ml-auto">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="#">Welcome {{ app.user.member.firstname }}</a>
+                                <a href="/portal" title="Dashboard">Dashboard</a>
+                                <a href="/portal/notifications" title="Notifications">{{ render(controller('AppBundle:Portal:notificationsMenu')) }}</a>
+                                <a href="/logout">Sign Out</a>
+                            {% else %}
+                                <a href="/connect/azure">Login</a>
+                                <a href="/get-started">Join</a>
+                            {% endif %}
+                            <a href="/contact">Contact</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Top Header Area End -->
+
+    <!-- Main Header Start -->
+    <div class="main-header-area">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Classy Menu -->
+                <nav class="classy-navbar justify-content-between" id="robertoNav">
+
+                    <!-- Logo -->
+                    <a class="nav-brand" href="index.html"><img src="{{ asset('bundles/app/images/app-logo.png') }}"
+                                                                style="height: 60px;" alt=""></a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+                        <!-- Menu Close Button -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul id="nav">
+                                <li><a href="#">About</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/about/app">About APP</a></li>
+                                        <li><a href="/services">Our Services</a></li>
+                                        <li><a href="/about/iia">About Invest in Africa</a></li>
+                                    </ul>
+                                </li>
+                                <li> <a href="/how-it-works">Join Now</a></li>
+                                <li><a href="/meet-the-buyers">Buyers</a></li>
+                                <li><a href="/tenderspace">Tenders</a></li>
+                                <li><a href="/network-hub">Network Hub</a></li>
+                                <li><a href="/business-growth-hub">Business Growth Hub</a></li>
+                                <li><a href="/articles">News and Media</a></li>
+                            </ul>
+
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header Area End -->
+
+<!-- Welcome Area Start -->
+<section style="margin-bottom:5px;">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="https://www.mtnmessenger.com/login" >
+                    <img src="/uploads/ads/eagle.jpg" class="d-block w-100" alt="...">
+                </a>
+
+            </div>
+            <div class="carousel-item">
+                <a href="http://www.south-westernpacificinternational.com" target="_new"><img
+                            class="d-block w-100" src="/uploads/ads/swestern.jpg" alt="..." /></a>
+            </div>
+            <div class="carousel-item">
+                <a href="mailto:nesconadvertisement@gmail.com" target="_new"><img class="autofitdiv-image"
+                                                                                  src="/uploads/ads/nescon.jpg" alt="..." /></a>
+            </div>
+
+            <div class="carousel-item">
+                <a href="https://www.landmarksecurity.org" target="_new"><img class="autofitdiv-image"
+                                                                              src="/uploads/ads/xassist.jpg" alt="..." /></a>
+            </div>
+
+            <div class="carousel-item">
+                <a href="https://www.ad-presicion.net" target="_new"><img class="autofitdiv-image"
+                                                                          src="/uploads/ads/adpres.jpg" alt="..."/></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="welcome-area">
+    <div class="welcome-slides owl-carousel">
+        {%
+            set service_links = [
+            '/how-it-works',
+            '/meet-the-buyers',
+            '/services',
+            '/network-hub',
+            '/business-growth-hub'
+        ]
+        %}
+        <!-- Single Welcome Slide -->
+        {% for i in 0..4 %}
+            <div class="single-welcome-slide bg-img "
+                 style="background-image: url({{ asset('bundles/app/images/banners/app_web-banner-'~ (i + 1) ~'.jpg') }});"
+                 data-img-url="{{ asset('bundles/app/images/banners/app_web-banner-'~ (i + 1) ~'.jpg') }}">
+                <!-- Welcome Content -->
+                <div class="welcome-content h-100">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <!-- Welcome Text -->
+                            <div class="col-lg-5 col-sm-12 " style="padding-top: 270px;">
+                                <div class="welcome-text text-center ">
+
+                                    <a href="{{ service_links[i] }}" class="btn roberto-btn btn-primary " style="border-radius: 5px; margin-bottom: 10px;"
+                                       data-animation="fadeInLeft" data-delay="800ms">Learn More</a>
+                                    <a href="/get-started" class="btn roberto-btn btn-primary " style="border-radius: 5px; margin-bottom: 10px;"
+                                       data-animation="fadeInLeft" data-delay="800ms">Register</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-sm-12">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- Welcome Area End -->
+
+<section class="roberto-cta-area section-padding-100-0">
+    <div class="row berg-row">
+        <div class="col-lg-9 col-sm-12 ftco-animate">
+            {% if tenders|length > 0 %}
+                <div class="solu_title"
+                     style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; margin-right: 10px; margin-left: 10px; ">
+                    <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                    ><i aria-hidden="true" id="tender1" class="fa fa-exclamation">
+                        </i> LIVE TENDERS</h4>
+                    <hr>
+                </div>
+                {% for request in tenders %}
+
+                    <div class="solution_cards_box">
+                        <div class="solution_card">
+                            <div class="hover_color_bubble"></div>
+
+
+                            <div class="solu_title">
+                                <h1 class="text-primary" style="font-weight: 700; font-size: 18px;">
+                                    <b>{{ request.name }}</b>
+                                </h1>
+                            </div>
+                            <div class="solu_description">
+                                <p>{{ request.summary|split('</p>')|first|raw }}</p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span><i class="fa fa-calendar text-primary"></i> <span class="text-primary">Deadline:</span>
+                                            {{ request.deadline|date('F d, Y') }}
+                                        </span>
+                                        <hr>
+
+                                        <span class="text-primary"><i class="fa fa-list text-primary"></i> Category</span>
+                                    </div>
+
+                                    <div class="col-6 text-right">
+                                        <a class="btn btn-primary"
+                                           href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}"
+                                           title="{{ request.name }}">View Request
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+
+            {# By3 #}
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="solu_title"
+                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                        <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                        >NEWS AND EVENTS</h4>
+                        <hr>
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <div class="projects-slides owl-carousel" >
+                        <!-- Single Project Slide -->
+                        {% for item in articles %}
+                            <div class="single-project-slide {{  loop.index == 0 ? 'active' : '' }} bg-img"
+                                 style="background-image: url({{ item.media }});">
+                                <!-- Project Text -->
+                                <div class="project-content">
+                                    <div class="text">
+                                        <h6><b>{{ item.publishDate|date('F') }}
+                                                | {{ item.publishDate|date('d') }}
+                                                | {{ item.publishDate|date('Y') }}</b></h6>
+                                        <marquee behavior="scroll" direction="left"><span
+                                                    style="color: white; font-weight: bolder; "
+                                                    class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
+                                        </marquee>
+                                    </div>
+                                </div>
+                                <!-- Hover Effects -->
+                                <div class="hover-effects">
+                                    <div class="text">
+                                        <h6><b>{{ item.publishDate|date('F') }}
+                                                | {{ item.publishDate|date('d') }}
+                                                | {{ item.publishDate|date('Y') }}</b></h6>
+                                        <marquee behavior="scroll" direction="left"><span
+                                                    style="color: white; font-weight: bolder; "
+                                                    class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
+                                        </marquee>
+                                        <article class="evnt-box">
+                                            {{ item.summary|striptags }}
+                                        </article>
+                                    </div>
+                                    <a href="{{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}" class="btn project-btn">Read more <i class="fa fa-long-arrow-right"
+                                                                                                                                                                                     aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            {# By3 ends #}
+
+            {# By3 #}
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="solu_title"
+                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                        <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                        >STORIES AND STUDIES </h4>
+                        <hr>
+                    </div>
+                </div>
+
+                {% for testimonial in testimonies %}
+                    <!-- Single Post Area -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="300ms">
+                            <a href="{{ testimonial.externalLink ? 'target=_blank href='~ testimonial.externalLink : 'href=/articles/'~ testimonial.slug }}" class="post-thumbnail">
+                                <img src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
+                                     alt="">
+                            </a>
+                            <!-- Post Meta -->
+                            {# <div class="post-meta">
+                                <a href="#" class="post-date">Jan 02, 2019</a>
+                                <a href="#" class="post-catagory">Event</a>
+                            </div>#}
+                            <!-- Post Title -->
+                            <a href="#" class="post-title">
+                                <b>{{ testimonial.attribution }}</b>
+                                <br>
+                                <span class="text-primary">{{ testimonial.company }}</span>
+                            </a>
+                            <p class="show-read-more  evnt-box">
+                                {{ testimonial.testimony }}
+                            </p>
+                            <a href="index.html" class="btn continue-btn" data-toggle="modal"
+                               data-target="#flipFlop{{ testimonial.id }}">
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                Read More
+                            </a>
+
+
+                            <div class="modal fade" id="flipFlop{{ testimonial.id }}" tabindex="-1"
+                                 role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h2><b>{{ testimonial.attribution }}</b></h2>
+                                            <span class="text-primary">{{ testimonial.company }}</span>
+                                            <img style='width: 100%; object-fit: contain'
+                                                 src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
+                                                 class="img-responsive">
+
+                                            {{ testimonial.testimony }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+            {# By3 ends #}
+
+
+
+
+            {# By3 #}
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="solu_title"
+                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                        <h4 style="color: #fafbfc; height: 100%;  width: 100%; font-weight: bolder; font-family: Montserrat, Arial, sans-serif "
+                        >CURRENT BUYERS</h4>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="flat-clients slides owl-carousel">
+                            {% for buyer in buyers %}
+                                <div class="client-featured">
+                                    <img src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
+                                         alt="{{ buyer.name }}"/>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- /.flat-clients -->
+                    </div><!-- /.col-md-12 -->
+                </div>
+
+            </div>
+            {# By3 ends #}
+        </div>
+
+        <div class="col-lg-3 col-sm-12 mt-4">
+            <div class="container">
+                <iframe style="width: 100%; " class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/videoseries?list=PLe23eeD0_yjyaUUWjxrOKwSQeyclyPKxL"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer Area Start -->
+<footer class="footer-area section-padding-80-0">
+    <!-- Main Footer Area -->
+    <div class="main-footer-area">
+        <div class="container">
+            <div class="row align-items-baseline justify-content-between">
+                <!-- Single Footer Widget Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-footer-widget mb-80">
+                        <!-- Footer Logo -->
+                        <a href="#" class="footer-logo"><img src="{{ asset('bundles/app/images/app-logo.png') }}"
+                                                             style="width: 100px;" alt=""></a>
+
+                        <ul class="contact-info has-bg-image contain text-white">
+                            <li><i class="fa fa-map-marker"></i>
+                                <address>
+                                    2nd Floor, Mabani Plaza<br/>
+                                    4th Norla Street <br/>Peter Ala Adjetey Avenue <br> Labone, Accra
+                                </address>
+                            </li>
+                            <li class="text-white"><i class="fa fa-phone "></i>
+                                <a class="text-white" href="tel:+2330303938751">+233 (0) 303 938 751 </a>
+                            </li>
+                            <li class="text-white"><i class="fa fa-envelope"></i>
+                                <a class="text-white" href="mailto:app@investinafrica.com">app@investinafrica.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-sm-6 col-lg-2">
+                    <div class="single-footer-widget mb-80">
+                        <!-- Widget Title -->
+                        <h5 class="widget-title">Menu</h5>
+                        <!-- Footer Nav -->
+                        <ul class="footer-nav">
+                            <li><a href="/"><i class="fa fa-caret-right"></i> Home</a></li>
+                            <li><a href="/about/app"><i class="fa fa-caret-right" aria-hidden="true"></i> About APP</a>
+                            </li>
+                            <li><a href="/about/iia"><i class="fa fa-caret-right" aria-hidden="true"></i> About Invest
+                                    in Africa</a></li>
+                            <li><a href="/about/partners"><i class="fa fa-caret-right" aria-hidden="true"></i> Our
+                                    Partners</a></li>
+                            <li><a href="/how-it-works"><i class="fa fa-caret-right" aria-hidden="true"></i> Join
+                                    Now</a></li>
+                            <li><a href="/meet-the-buyers"><i class="fa fa-caret-right" aria-hidden="true"></i> Meet The
+                                    Buyers</a></li>
+                            <li><a href="/business-growth-hub"><i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    Business Growth Hub</a></li>
+                            <li><a href="/business-excellence-programme"><i class="fa fa-caret-right"
+                                                                            aria-hidden="true"></i> Business Excellence
+                                    Programme</a></li>
+                            <li><a href="/contact"><i class="fa fa-caret-right" aria-hidden="true"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget Area -->
+                <div class="col-12 col-sm-6 col-lg-2">
+                    <div class="single-footer-widget mb-80">
+                        <!-- Widget Title -->
+                        <h5 class="widget-title">Quick Links</h5>
+                        <!-- Footer Nav -->
+                        <ul class="footer-nav">
+                            <li><a href="/about/app"><i class="fa fa-caret-right" aria-hidden="true"></i> About APP</a>
+                            </li>
+                            <li><a href="/how-it-works"><i class="fa fa-caret-right" aria-hidden="true"></i> How it
+                                    Works</a></li>
+                            <li><a href="/meet-the-buyers"><i class="fa fa-caret-right" aria-hidden="true"></i> Meet the
+                                    Buyers</a></li>
+                            <li><a href="/business-growth-hub"><i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    Business Growth Hub</a></li>
+                            <li><a href="/articles"><i class="fa fa-caret-right" aria-hidden="true"></i> News and Media</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-footer-widget mb-80">
+                        <!-- Widget Title -->
+                        <h5 class="widget-title">CONNECT WITH US</h5>
+                        <span>Follow us online for latest news and updates.</span>
+
+                        <!-- Newsletter Form -->
+                        <div class="social-info ">
+                            <a href="https://www.facebook.com/investinafrica1/"><i
+                                        class="fa fa-facebook text-white bg-primary p-2 " aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/investin_africa"><i class="fa fa-twitter text-white  p-2"
+                                                                             aria-hidden="true"
+                                                                             style="background-color: #07c0f6;"></i></a>
+                            <a href="https://www.youtube.com/user/lnvestlnAfrica"><i
+                                        class="fa fa-youtube text-white bg-danger p-2" aria-hidden="true"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copywrite Area -->
+    <div class="container">
+        <div class="copywrite-content">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <!-- Copywrite Text -->
+
+                    <p class="text-white">
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved | Invest in Africa by | <a class="text-white" href="/privacy">Privacy
+                            Policy</a> | <a class="text-white" href="/terms">Terms &amp; Conditions</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</footer>
+<!-- Footer Area End -->
+
+<!-- **** All JS Files ***** -->
+<!-- jQuery 2.2.4 -->
+<script src="{{ asset('bundles/roberto/js/jquery.min.js') }}"></script>
+<!-- Popper -->
+<script src="{{ asset('bundles/roberto/js/popper.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('bundles/roberto/js/bootstrap.min.js') }}"></script>
+<!-- All Plugins -->
+<script src="{{ asset('bundles/roberto/js/roberto.bundle.js') }}"></script>
+<!-- Active -->
+<script src="{{ asset('bundles/roberto/js/default-assets/active.js') }}"></script>
+
+<script>
+    $(document).ready(function () {
+        var maxLength = 170;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
+</script>
+<script>
+    function blinker() {
+        $('#tender').fadeOut(500);
+        $('#tender').fadeIn(500);
+    }
+
+    setInterval(blinker, 2000);
+
+    function blinker1() {
+        $('#tender1').fadeOut(500);
+        $('#tender1').fadeIn(500);
+    }
+
+    setInterval(blinker1, 1000);
+
+    var $slider = $('#slider');
+    if ($slider.length > 0) {
+        $slider.carousel({interval: 4000, pause: 'null'});
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById("heart").onclick = function () {
+            document.querySelector(".fa-gratipay").style.color = "#E74C3C";
+        };
+    });
+</script>
+
+</body>
+
+</html>

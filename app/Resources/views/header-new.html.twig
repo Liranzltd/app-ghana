@@ -1,0 +1,104 @@
+
+<div class="box-shadow-for-ui">
+  <div class="uou-block-2b">
+    <div class="container">
+      <a href="/" class="logo"><img src="{{ asset('bundles/app/images/app-logo.png') }}" alt=""></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+      {# <a href="/" class="logo"><img src="{{ asset('bundles/app/images/iia-logo.png') }}" alt=""></a> #}
+      <nav class="nav">
+        <ul class="sf-menu">
+          <!-- <li class="active"><a href="/"><i class="fa  fa-home"></i></a></li> -->
+          <li> <a href="">About</a>
+            <ul>
+              <li><a href="/about/app">About APP</a></li>
+              <li><a href="/services">Our Services</a></li>
+              <li><a href="/about/iia">About Invest in Africa</a></li>
+              <!--<li><a href="/business-excellence-programme">Business Excellence Programme</a></li>-->
+            </ul>
+          </li>
+          <li> <a href="/how-it-works">Join Now</a></li>
+          <li><a href="/meet-the-buyers">Buyers</a></li>
+          <li><a href="/tenderspace">Tenders</a></li>
+          <li><a href="/network-hub">Network Hub</a></li>
+          <li><a href="/business-growth-hub">Business Growth Hub</a></li>
+          <li><a href="/articles">News and Media</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- end .uou-block-2b -->
+</div>
+
+
+<div class="wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="" style="background-color: #f1f1f1; color: black;">
+          <div class="row">
+            <div class="col-md-6 d-flex align-items-center">
+              <p class="mb-0 phone pl-md-2">
+                <a href="#" class="mr-2 text-dark"><span class="fa fa-phone mr-1 text-dark"></span> +00
+                  1234 567</a>
+                <a href="#" class="text-dark"><span class="fa fa-paper-plane mr-1 text-dark"></span>
+                  youremail@email.com</a>
+              </p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-md-end">
+              <p class="mb-0 d-flex">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <a href="#"
+                     class="d-flex align-items-center justify-content-center mr-2 text-dark "><span>Welcome {{ app.user.member.firstname }}</span></a>
+                  <a href="/portal" title="Dashboard"
+                     class="d-flex align-items-center justify-content-center mr-2 text-dark"><span>Dashboard</span></a>
+                  <a href="/portal/notifications" title="Notifications"
+                     class="d-flex align-items-center justify-content-center mr-2 text-dark "><span>{{ render(controller('AppBundle:Portal:notificationsMenu')) }}</span></a>
+                  <a href="/logout"
+                     class="d-flex align-items-center justify-content-center mr-2 text-dark"><span>Sign Out</span></a>
+                {% else %}
+                  <a href="/connect/azure"
+                     class="d-flex align-items-center justify-content-center mr-2 text-dark "><span>Login</span></a>
+                  <a href="/get-started"
+                     class="d-flex align-items-center justify-content-center mr-2 text-dark"><span>Join</span></a>
+                {% endif %}
+                <a href="/contact"
+                   class="d-flex align-items-center justify-content-center mr-2 text-text-dark"><span>Contact</span></a>
+              </p>
+              <div class="social-media">
+                <p class="mb-0 d-flex">
+                  <a href="https://www.facebook.com/investinafrica1/"
+                     class="d-flex align-items-center justify-content-center text-primary" target="_blank"><span
+                            class="fa fa-facebook text-primary"><i class="sr-only text-dark">Facebook</i></span></a>
+                  <a target="_blank" href="https://twitter.com/investin_africa" class="d-flex align-items-center justify-content-center"><span
+                            class="fa fa-twitter text-dark"><i class="sr-only text-dark">Twitter</i></span></a>
+                  <a target="_blank" href="https://www.youtube.com/user/lnvestlnAfrica" class="d-flex align-items-center justify-content-center text-dark"><span
+                            class="fa fa-youtube text-danger"><i class="sr-only text-dark">Youtube</i></span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="{{ asset('bundles/app/images/app-logo.png') }}">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span> Menu
+    </button>
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="cases.html" class="nav-link">Case Study</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
