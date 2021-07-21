@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    base_url: https://appghana.bitlogictech.com/
+    base_url: https://appghana.com/
     write_to: %kernel.root_dir%/../web/bundles/app
     documents_directory: '%kernel.root_dir%/../web/uploads/documents'
     requests_directory: '%kernel.root_dir%/../web/uploads/requests'

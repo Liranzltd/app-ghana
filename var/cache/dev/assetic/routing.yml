@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: 'G:\www\appghana/app/config/routing_dev.yml'

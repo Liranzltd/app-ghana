@@ -1,0 +1,16 @@
+language: php
+
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+
+matrix:
+    fast_finish: true
+    include:
+        - php: 7.2
+
+script:
+    - composer inst
+    - vendor/bin/phpcs src/
+    - vendor/bin/phpstan anal -l 7 src/
+    - vendor/bin/phpunit
