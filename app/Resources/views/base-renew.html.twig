@@ -606,8 +606,9 @@
                                             {{ request.deadline|date('F d, Y') }}
                                         </span>
                                         <hr>
-
-                                        <span class="text-primary"><i class="fa fa-list text-primary"></i> Category</span>
+                                        <span><i class="fa fa-list text-primary"></i> <span class="text-primary">Category:</span>
+                                            {{ request.requestType}}
+                                        </span>
                                     </div>
 
                                     <div class="col-6 text-right">

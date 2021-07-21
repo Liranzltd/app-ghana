@@ -38,10 +38,20 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+
         // replace this example code with whatever you need
         $em = $this->container->get('doctrine')->getManager();
         $t = $em->createQueryBuilder();
-        $t->select('t')->from('AppBundle:Request','t')->where('t.deadline > :now')->andWhere('t.isPublished = 1')->orderBy('t.tenderSource','ASC')->addOrderBy('t.createdAt','DESC')->setMaxResults(4);
+        $t->select('t')
+            ->from('AppBundle:Request','t')
+            ->where('t.deadline > :now')
+            ->andWhere('t.isPublished = 1')
+            ->orderBy('t.tenderSource','ASC')
+            ->addOrderBy('t.createdAt','DESC')
+            ->setMaxResults(4);
+
+
+
         $t->setParameter('now',new \DateTime());
         $tenders = $t->getQuery()->getResult();
 
@@ -54,9 +64,6 @@ class DefaultController extends Controller
 
 
         $viewVars['BergyUtils'] = new Utils();
-
-
-
 
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,'tenders' => $tenders, 'testimonies' => $testimonies, 'news' => $news,'articles' => $articles,'viewVars' => $viewVars, 'buyers' => $buyers, 'case' => $case
