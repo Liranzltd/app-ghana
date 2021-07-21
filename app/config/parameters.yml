@@ -3,8 +3,8 @@ parameters:
     database_host: localhost
     database_port: 3306
     database_name: appghana
-    database_user: dickson
-    database_password: xFTA3Rs697wCf47M
+    database_user: ourclient
+    database_password: 8bqr61FUEgMWgJ1x
     mailer_transport: expertcoder_swift_mailer.send_grid.transport
     mailer_host: 127.0.0.1
     mailer_user: null
