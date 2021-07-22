@@ -1,6 +1,5 @@
 /vendor/
-
 /appghana.zip
-
 /uploads/documents
 /uploads/testimonials
+/app/config/parameters.yml

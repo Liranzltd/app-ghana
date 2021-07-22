@@ -65,6 +65,15 @@ class DefaultController extends Controller
 
         $viewVars['BergyUtils'] = new Utils();
 
+
+     /*   $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT c FROM AppBundle:Buyer c  WHERE c.showOnWebsite = 1');
+        $buyers = $query->getArrayResult();
+        $response = new Response(json_encode($buyers));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;*/
+
+
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,'tenders' => $tenders, 'testimonies' => $testimonies, 'news' => $news,'articles' => $articles,'viewVars' => $viewVars, 'buyers' => $buyers, 'case' => $case
         ]);
