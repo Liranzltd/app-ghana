@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9ce616da-c0ce-4c58-9afe-1fcf1faa56eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base-renew.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base-renew.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/logs/prod-2021-07-23.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/logs/prod-2021-07-23.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/logs/prod.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/logs/prod.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" afterDir="false" />
@@ -203,7 +202,7 @@
       <workItem from="1626961820278" duration="20754000" />
       <workItem from="1626999984486" duration="570000" />
       <workItem from="1627002329295" duration="138000" />
-      <workItem from="1627059877008" duration="4714000" />
+      <workItem from="1627059877008" duration="5337000" />
     </task>
     <servers />
   </component>
