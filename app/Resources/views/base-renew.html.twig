@@ -186,7 +186,7 @@
             position: relative;
             z-index: 1;
             overflow: hidden;
-            min-height: 265px;
+            min-height: 190px;
             transition: 0.7s;
         }
 
@@ -211,7 +211,7 @@
             position: absolute;
             background: rgb(85 108 214 / 5%);
             width: 170px;
-            height: 400px;
+            height: 300px;
             z-index: -1;
             transform: rotate(42deg);
             right: -56px;
@@ -351,6 +351,7 @@
             -webkit-line-clamp: 7;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            font-size: 13px;
         }
 
         img {
@@ -390,6 +391,16 @@
           .instruct:hover .extra {
               display: inline-block;
           }*/
+
+        .continue-btn {
+            padding: 0;
+            line-height: 1;
+            color: #afb4bf;
+            font-size: 13px;
+            text-transform: capitalize;
+            text-decoration: underline;
+            font-weight: 500;
+        }
 
     </style>
     <style>
@@ -631,8 +642,6 @@
                     <div class="solution_cards_box">
                         <div class="solution_card">
                             <div class="hover_color_bubble"></div>
-
-
                             <div class="solu_title">
                                 <span class="text-primary" >
                                     {{ request.name }}
@@ -735,17 +744,13 @@
                     <!-- Single Post Area -->
                     {% if( loop.index < 4) %}
                         <div class="col-12 col-md-6 col-lg-4">
-                            <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="single-post-area mb-30 wow fadeInUp" data-wow-delay="300ms">
                                 <a href="{{ testimonial.externalLink ? 'target=_blank href='~ testimonial.externalLink : 'href=/articles/'~ testimonial.slug }}"
                                    class="post-thumbnail">
                                     <img src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
                                          alt="">
                                 </a>
-                                <!-- Post Meta -->
-                                {# <div class="post-meta">
-                                <a href="#" class="post-date">Jan 02, 2019</a>
-                                <a href="#" class="post-catagory">Event</a>
-                            </div> #}
+
                                 <!-- Post Title -->
                                 <a href="#" class="post-title">
                                     <span>{{ testimonial.attribution }}</span>
@@ -766,9 +771,9 @@
                                      role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-body">
+                                            <div class="modal-body" style="font-size: 12px;">
                                                 <h2><b>{{ testimonial.attribution }}</b></h2>
-                                                <span class="text-primary">{{ testimonial.company }}</span>
+                                                <span class="text-primary" style="font-size: 12px;" >{{ testimonial.company }}</span>
                                                 <img style='width: 100%; object-fit: contain'
                                                      src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
                                                      class="img-responsive">
@@ -799,7 +804,7 @@
                             CURRENT BUYERS </span>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 mb-30">
                     <div id="carousel" class="carousel slide" data-ride="carousel" >
                         <ol class="carousel-indicators">
                             <li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -896,7 +901,7 @@
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 1px" class="row">
+            <div style="margin-top: 300px" class="row">
                 <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
                     <!-- Carousel items -->
                     <div style="height: 800px" class="carousel-inner">
@@ -926,8 +931,8 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-footer-widget mb-80">
                         <!-- Footer Logo -->
-                        <a href="#" class="footer-logo"><img src="{{ asset('bundles/app/images/app-logo.png') }}"
-                                                             style="width: 100px;" alt=""></a>
+                        <a href="#" class="footer-logo">{#<img src="{{ asset('bundles/app/images/app-logo.png') }}"
+                                                             style="width: 100px; display: none " alt="">#}</a>
 
                         <ul class="contact-info has-bg-image contain text-white">
                             <li><i class="fa fa-map-marker"></i>
