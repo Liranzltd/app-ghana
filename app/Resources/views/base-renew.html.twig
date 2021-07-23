@@ -634,9 +634,9 @@
 
 
                             <div class="solu_title">
-                                <h1 class="text-primary" style="font-weight: 700; font-size: 18px;">
-                                    <b>{{ request.name }}</b>
-                                </h1>
+                                <span class="text-primary" >
+                                    {{ request.name }}
+                                </span>
                             </div>
                             <div class="solu_description">
                                 <p>{{ request.summary|split('</p>')|first|raw }}</p>
@@ -686,11 +686,11 @@
                                 <!-- Project Text -->
                                 <div class="project-content">
                                     <div class="text">
-                                        <h6><b>{{ item.publishDate|date('F') }}
+                                        <span class="text-white">{{ item.publishDate|date('F') }}
                                                 | {{ item.publishDate|date('d') }}
-                                                | {{ item.publishDate|date('Y') }}</b></h6>
+                                                | {{ item.publishDate|date('Y') }}</span>
                                         <marquee behavior="scroll" direction="left"><span
-                                                    style="color: white; font-weight: bolder; "
+                                                    style="color: white; "
                                                     class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
                                         </marquee>
                                     </div>
@@ -698,11 +698,11 @@
                                 <!-- Hover Effects -->
                                 <div class="hover-effects">
                                     <div class="text">
-                                        <h6><b>{{ item.publishDate|date('F') }}
+                                        <span class="text-white" >{{ item.publishDate|date('F') }}
                                                 | {{ item.publishDate|date('d') }}
-                                                | {{ item.publishDate|date('Y') }}</b></h6>
+                                                | {{ item.publishDate|date('Y') }}</span>
                                         <marquee behavior="scroll" direction="left"><span
-                                                    style="color: white; font-weight: bolder; "
+                                                    style="color: white; "
                                                     class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
                                         </marquee>
                                         <article class="evnt-box">
@@ -748,7 +748,7 @@
                             </div> #}
                                 <!-- Post Title -->
                                 <a href="#" class="post-title">
-                                    <b>{{ testimonial.attribution }}</b>
+                                    <span>{{ testimonial.attribution }}</span>
                                     <br>
                                     <span class="text-primary">{{ testimonial.company }}</span>
                                 </a>
