@@ -22,3 +22,16 @@ php -S localhost:3000 -t public
 
 https://www.quackit.com/bootstrap/bootstrap_3/tutorial/bootstrap_carousel.cfm
 
+
+1.	Please change the Color of the  Header bar, “live tenders”, “Stories & Studies”, “news & events” ,  “current buyers”, “view request button” and the “footer bar” to this color code 1d9bf6
+
+2.	Replicate the look and feel for “news & events” to “stories & studies”
+
+3.	Reduce the size of the app logo on the header bar; it looks stretched
+
+4.	On the banners to right of Stories & Studies”, “news & events” and “current buyers” there is a small banner at the bottom; please remove it.
+
+5.	The logos for the buyer are not consistent please resize them.
+
+6.	Let us have some animations for the “live tender” icon.
+

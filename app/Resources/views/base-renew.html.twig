@@ -512,7 +512,7 @@
 
                     <!-- Logo -->
                     <a class="nav-brand" href="index.html"><img src="{{ asset('bundles/app/images/app-logo.png') }}"
-                                                                style="height: 60px;" alt=""></a>
+                                                                style="height: 40px;" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -632,9 +632,9 @@
         <div class="col-lg-9 col-sm-12 ftco-animate">
             {% if tenders|length > 0 %}
                 <div class="solu_title"
-                     style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; margin-right: 10px; margin-left: 10px; ">
+                     style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 10px; margin-right: 10px; margin-left: 10px; ">
                     <span style="color: #fafbfc; height: 100%;  width: 100%;"
-                    ><i aria-hidden="true" id="tender1" class="fa fa-exclamation">
+                    ><i style="color: #06f106; font-weight: bold; font-size: 23px; " aria-hidden="true" id="tender1" class="fa fa-exclamation">
                         </i> LIVE TENDERS</span>
                 </div>
                 {% for request in tenders %}
@@ -679,7 +679,7 @@
             <div class="row">
                 <div class="col-12 mt-3">
                     <div class="solu_title"
-                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
+                         style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
                         <span style="color: #fafbfc; height: 100%;  width: 100%;"
                         >NEWS AND EVENTS</span>
                     </div>
@@ -734,72 +734,93 @@
             <div class="row">
                 <div class="col-12  mt-3">
                     <div class="solu_title"
-                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 5px; ">
+                         style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 5px; ">
                         <span style="color: #fafbfc; height: 100%;  width: 100%;">
                             STORIES AND STUDIES</span>
                     </div>
                 </div>
 
-                {% for testimonial in testimonies %}
-                    <!-- Single Post Area -->
+
+                <div class="col-12 mt-2 mb-2">
+                    {% for testimonial in testimonies %}
                     {% if( loop.index < 4) %}
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="single-post-area mb-30 wow fadeInUp" data-wow-delay="300ms">
-                                <a href="{{ testimonial.externalLink ? 'target=_blank href='~ testimonial.externalLink : 'href=/articles/'~ testimonial.slug }}"
-                                   class="post-thumbnail">
-                                    <img src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
-                                         alt="">
-                                </a>
+                    <div class="modal fade" id="flipFlop{{ testimonial.id }}" tabindex="-1"
+                         role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body" style="font-size: 12px;">
+                                    <h2><b>{{ testimonial.attribution }}</b></h2>
+                                    <span class="text-primary" style="font-size: 12px;" >{{ testimonial.company }}</span>
+                                    <img style='width: 100%; object-fit: contain'
+                                         src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
+                                         class="img-responsive">
 
-                                <!-- Post Title -->
-                                <a href="#" class="post-title">
-                                    <span>{{ testimonial.attribution }}</span>
-                                    <br>
-                                    <span class="text-primary">{{ testimonial.company }}</span>
-                                </a>
-                                <p class="show-read-more  evnt-box">
                                     {{ testimonial.testimony }}
-                                </p>
-                                <a href="index.html" class="btn continue-btn" data-toggle="modal"
-                                   data-target="#flipFlop{{ testimonial.id }}">
-                                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    Read More
-                                </a>
-
-
-                                <div class="modal fade" id="flipFlop{{ testimonial.id }}" tabindex="-1"
-                                     role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body" style="font-size: 12px;">
-                                                <h2><b>{{ testimonial.attribution }}</b></h2>
-                                                <span class="text-primary" style="font-size: 12px;" >{{ testimonial.company }}</span>
-                                                <img style='width: 100%; object-fit: contain'
-                                                     src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
-                                                     class="img-responsive">
-
-                                                {{ testimonial.testimony }}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     {% endif %}
-                {% endfor %}
+                    {% endfor %}
+                    <div class="projects-slides owl-carousel">
+                        <!-- Single Project Slide -->
+                        {% for testimonial in testimonies %}
+                            {% if( loop.index < 4) %}
+                            <div class="single-project-slide {{ loop.index == 0 ? 'active' : '' }} bg-img"
+                                 style="background-image: url('/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}');">
+                                <!-- Project Text -->
+                                <div class="project-content">
+                                    <div class="text">
+                                        <span class="text-white">{{ testimonial.company }}</span>
+                                        <marquee behavior="scroll" direction="left"><span
+                                                    style="color: white; "
+                                                    class="extra">{{ viewVars['BergyUtils'].limitText(testimonial.attribution, 70) }} </span>
+                                        </marquee>
+                                    </div>
+                                </div>
+                                <!-- Hover Effects -->
+                                <div class="hover-effects">
+                                    <div class="text">
+                                        <span class="text-white" ></span>
+                                        <marquee behavior="scroll" direction="left">{{ testimonial.company }}<span
+                                                    style="color: white; "
+                                                    class="extra"> ({{ viewVars['BergyUtils'].limitText(testimonial.attribution, 70) }})</span>
+                                        </marquee>
+                                        <article class="evnt-box">
+                                            {{ testimonial.testimony|striptags }}
+                                        </article>
+                                    </div>
+                                    <a href=""
+                                       class="btn project-btn" data-toggle="modal"
+                                       data-target="#flipFlop{{ testimonial.id }}">
+                                        Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+
+
+
+                                </div>
+
+                            </div>
+
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             {# By3 ends #}
 
             {# By3 #}
             <div class="row">
                 <div class="col-12 ">
+
+                    <!-- Modal -->
+
                     <div class="solu_title"
-                         style="background-color: #053a63; border-radius: 10px; padding: 5px; margin-bottom: 5px; ">
+                         style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 5px; ">
                         <span style="color: #fafbfc; height: 100%;  width: 100%;">
                             CURRENT BUYERS </span>
                     </div>
@@ -901,7 +922,7 @@
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 100px" class="row">
+            <div style="margin-top: 100px; display: none; " class="row">
                 <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
                     <!-- Carousel items -->
                     <div style="height: 800px" class="carousel-inner">
