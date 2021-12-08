@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9ce616da-c0ce-4c58-9afe-1fcf1faa56eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.len" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.values" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.values.at" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.values.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat_i" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat_i.len" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/bks/new-in.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/portal/dev-test.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/css/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/js/jquery-2.2.4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/js/multislider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/js/multislider.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/less/custom.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/license.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/base-new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base-new.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/base-renew.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base-renew.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/footer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PortalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PortalController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/logs/prod.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/logs/prod.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/sonata-project/user-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/sonata-project/user-bundle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/bundles/roberto/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/bundles/roberto/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,20 +191,29 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="PluginDummyText.Genre" value="latin" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/bundles/roberto/img/top-slider" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="HTML" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bit-invoice" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\www\appghana\web" />
       <recent name="G:\www\appghana\web\bundles\roberto\img\top-slider" />
       <recent name="G:\www\appghana\app\Resources\views" />
       <recent name="G:\www\appghana\web\bundles" />
       <recent name="G:\www\appghana\app\Resources\views\bks" />
-      <recent name="D:\www\appghana" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\www\appghana\web\bundles" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -205,7 +247,24 @@
       <workItem from="1626999984486" duration="570000" />
       <workItem from="1627002329295" duration="138000" />
       <workItem from="1627059877008" duration="6206000" />
-      <workItem from="1627317078229" duration="4579000" />
+      <workItem from="1627317078229" duration="4901000" />
+      <workItem from="1627367035726" duration="290000" />
+      <workItem from="1627563590922" duration="4728000" />
+      <workItem from="1627569793910" duration="309000" />
+      <workItem from="1628764144015" duration="2061000" />
+      <workItem from="1629286320783" duration="5535000" />
+      <workItem from="1633514282407" duration="6345000" />
+      <workItem from="1633608281508" duration="2903000" />
+      <workItem from="1633961746744" duration="388000" />
+      <workItem from="1634121062873" duration="2993000" />
+      <workItem from="1634997789502" duration="594000" />
+      <workItem from="1635202284789" duration="823000" />
+      <workItem from="1635204944541" duration="7634000" />
+      <workItem from="1635256086588" duration="1620000" />
+      <workItem from="1637107001965" duration="22795000" />
+      <workItem from="1637231676054" duration="747000" />
+      <workItem from="1637326463167" duration="4045000" />
+      <workItem from="1637676792563" duration="4567000" />
     </task>
     <servers />
   </component>

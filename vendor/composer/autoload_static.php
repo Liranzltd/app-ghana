@@ -7,7 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
 {
     public static $files = array (
-        '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -29,7 +28,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
-        'ef78f6d1f80089b75c657f122df49e6b' => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -41,7 +39,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         array (
             'Twig\\Extensions\\' => 16,
             'Twig\\' => 5,
-            'Tests\\' => 6,
         ),
         'S' => 
         array (
@@ -62,12 +59,10 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
             'Symfony\\Component\\' => 18,
             'Symfony\\Bundle\\SwiftmailerBundle\\' => 33,
             'Symfony\\Bundle\\MonologBundle\\' => 29,
-            'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\AsseticBundle\\' => 29,
             'Symfony\\Bundle\\' => 15,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\ProxyManager\\' => 28,
-            'Symfony\\Bridge\\PhpUnit\\' => 23,
             'Symfony\\Bridge\\Monolog\\' => 23,
             'Symfony\\Bridge\\Doctrine\\' => 24,
             'Sonata\\UserBundle\\' => 18,
@@ -84,7 +79,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
             'Sonata\\BlockBundle\\' => 19,
             'Sonata\\AdminBundle\\' => 19,
             'Snilius\\Twig\\' => 13,
-            'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
             'SensioLabs\\Security\\' => 20,
@@ -101,7 +95,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
-            'PhpParser\\' => 10,
             'Patchwork\\' => 10,
         ),
         'O' => 
@@ -199,10 +192,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
         ),
-        'Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
-        ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
@@ -271,10 +260,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         array (
             0 => __DIR__ . '/..' . '/symfony/monolog-bundle',
         ),
-        'Symfony\\Bundle\\MakerBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/maker-bundle/src',
-        ),
         'Symfony\\Bundle\\AsseticBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/assetic-bundle',
@@ -290,10 +275,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         'Symfony\\Bridge\\ProxyManager\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Bridge/ProxyManager',
-        ),
-        'Symfony\\Bridge\\PhpUnit\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/phpunit-bridge',
         ),
         'Symfony\\Bridge\\Monolog\\' => 
         array (
@@ -359,10 +340,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         array (
             0 => __DIR__ . '/..' . '/snilius/twig-sort-by-field/src',
         ),
-        'Sensio\\Bundle\\GeneratorBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sensio/generator-bundle',
-        ),
         'Sensio\\Bundle\\FrameworkExtraBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/sensio/framework-extra-bundle',
@@ -415,10 +392,6 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
-        ),
-        'PhpParser\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
         'Patchwork\\' => 
         array (
@@ -679,6 +652,7 @@ class ComposerStaticInitad5be7bd98f94b3e074e7a30cf933640
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Collator' => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs/Collator.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',

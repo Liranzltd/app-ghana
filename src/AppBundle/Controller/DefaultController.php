@@ -104,6 +104,8 @@ class DefaultController extends Controller
         return $this->render('default/partners.html.twig');
     }
 
+
+
     /**
      * @Route("/how-it-works", name="how-it-works")
      */

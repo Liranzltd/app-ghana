@@ -413,6 +413,7 @@
             justify-content: space-between;
         }
 
+
         @media (min-width: 576px) and (max-width: 767.98px) {
             .slide-box img {
                 -ms-flex: 0 0 50%;
@@ -444,6 +445,60 @@
         }
     </style>
 
+    <style>
+        .cards-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .card {
+            margin: 0 0.5em;
+            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+            border: none;
+            border-radius: 0;
+        }
+
+        .carousel-inner {
+            padding: 1em;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            background-color: #e1e1e1;
+            width: 5vh;
+            height: 5vh;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 768px) {
+            .card img {
+                height: 11em;
+            }
+        }
+    </style>
+    <style>
+        .slide-box img {
+            -ms-flex: 0 0 25% !important;
+            flex: 0 0 25% !important;
+            max-width: 25% !important;
+            border: 2px #ccc solid !important;
+            margin-right: 20px !important;
+        }
+    </style>
+
+    <style>
+        .single-project-slide .project-content {
+            background-color: rgb(61 186 235/69%) !important;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -472,9 +527,12 @@
 
                 <div class="col-4">
                     <div class="top-header-content">
-                        <a href="https://www.facebook.com/investinafrica1/" class="fa fa-facebook" target="_blank"></a>
-                        <a href="https://twitter.com/investin_africa" class="fa fa-twitter" target="_blank"></a>
-                        <a href="https://www.youtube.com/user/lnvestlnAfrica" class="fa fa-youtube" target="_blank"></a>
+                        <a href="https://www.facebook.com/investinafrica1/" class="fa fa-facebook"
+                           style="font-size: 20px;" target="_blank"></a>
+                        <a href="https://twitter.com/investin_africa" class="fa fa-twitter" style="font-size: 20px;"
+                           target="_blank"></a>
+                        <a href="https://www.youtube.com/user/lnvestlnAfrica" class="fa fa-youtube"
+                           style="font-size: 20px;" target="_blank"></a>
                     </div>
                 </div>
 
@@ -483,14 +541,14 @@
                         <!-- Top Social Area -->
                         <div class="top-social-area ml-auto">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <a href="#">Welcome {{ app.user.member.firstname }}</a>
+                                <a href="#">Welcome {{ app.user.member.firstname }}</a>|
                                 <a href="/portal" title="Dashboard">Dashboard</a>
                                 <a href="/portal/notifications"
                                    title="Notifications">{{ render(controller('AppBundle:Portal:notificationsMenu')) }}</a>
                                 <a href="/logout">Sign Out</a>
                             {% else %}
-                                <a href="/connect/azure">Login</a>
-                                <a href="/get-started">Join</a>
+                                <a href="/connect/azure">Login</a>|
+                                <a href="/get-started">Join</a>|
                             {% endif %}
                             <a href="/contact">Contact</a>
 
@@ -512,7 +570,7 @@
 
                     <!-- Logo -->
                     <a class="nav-brand" href="index.html"><img src="{{ asset('bundles/app/images/app-logo.png') }}"
-                                                                style="height: 40px;" alt=""></a>
+                                                                style="height: 60px; margin-top: 20px;" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -526,7 +584,7 @@
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
                         <!-- Nav Start -->
-                        <div class="classynav">
+                        <div class="classynav" style="font-size: 13px;">
                             <ul id="nav">
                                 <li><a href="#">About</a>
                                     <ul class="dropdown">
@@ -606,9 +664,8 @@
                             <!-- Welcome Text -->
                             <div class="col-lg-5 col-sm-12 " style="padding-top: 270px;">
                                 <div class="welcome-text text-center ">
-
                                     <a href="{{ service_links[i] }}" class="btn roberto-btn btn-primary "
-                                       style="border-radius: 5px; margin-bottom: 10px;"
+                                       style="border-radius: 5px; margin-bottom: 10px; margin-left: -100px"
                                        data-animation="fadeInLeft" data-delay="800ms">Learn More</a>
                                     <a href="/get-started" class="btn roberto-btn btn-primary "
                                        style="border-radius: 5px; margin-bottom: 10px;"
@@ -631,126 +688,140 @@
     <div class="row berg-row">
         <div class="col-lg-9 col-sm-12 ftco-animate">
             {% if tenders|length > 0 %}
-                <div class="solu_title"
-                     style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 10px; margin-right: 10px; margin-left: 10px; ">
-                    <span style="color: #fafbfc; height: 100%;  width: 100%;"
-                    ><i style="color: #06f106; font-weight: bold; font-size: 23px; " aria-hidden="true" id="tender1" class="fa fa-exclamation">
-                        </i> LIVE TENDERS</span>
-                </div>
-                {% for request in tenders %}
+            <div class="solu_title"
+                 style=" border-radius: 10px; padding: 5px; margin-bottom: 10px; margin-right: 10px; margin-left: 10px; ">
+                    <span style="background-color: #1d9bf6;color: #fafbfc; height: 100%;  width: 100%;">
+                    <div class="row" style="margin-left: 1px;">
+                        <div class="col-3" style="background-color: #1d9bf6; padding-top: 10px; padding-bottom: 10px;">
+                        <i style=" color: #06f106; font-weight: bold; font-size: 23px; " aria-hidden="true" id="tender1"
+                           class="fa fa-exclamation"></i> LIVE TENDERS </span></div>
 
-                    <div class="solution_cards_box">
-                        <div class="solution_card">
-                            <div class="hover_color_bubble"></div>
-                            <div class="solu_title">
-                                <span class="text-primary" >
+            <div class="col-9" style="border-top: 5px solid #1d9bf6; ">
+
+            </div>
+        </div>
+    </div>
+    {% for request in tenders %}
+
+        <div class="solution_cards_box">
+            <div class="solution_card">
+                <div class="hover_color_bubble"></div>
+                <div class="solu_title">
+                                <span class="text-primary">
                                     {{ request.name }}
                                 </span>
-                            </div>
-                            <div class="solu_description">
-                                <p>{{ request.summary|split('</p>')|first|raw }}</p>
+                </div>
+                <div class="solu_description">
+                    <p>{{ request.summary|split('</p>')|first|raw }}</p>
 
-                                <div class="row">
-                                    <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
                                         <span><i class="fa fa-calendar text-primary"></i> <span class="text-primary">Deadline:</span>
                                             {{ request.deadline|date('F d, Y') }}
                                         </span>
-                                        <hr>
-                                        <span><i class="fa fa-list text-primary"></i> <span class="text-primary">Category:</span>
+                            <hr>
+                            <span><i class="fa fa-list text-primary"></i> <span class="text-primary">Category:</span>
                                             {{ request.requestType }}
                                         </span>
-                                    </div>
+                        </div>
 
-                                    <div class="col-6 text-right">
-                                        <a class="btn btn-primary"
-                                           href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}"
-                                           title="{{ request.name }}">View Request
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-6 text-right">
+                            <a style="background-color: #1d9bf6;" class="btn "
+                               href="{{ request.publicUrl == null ? path('tenda',{'slug': request.slug }) : request.publicUrl }}"
+                               title="{{ request.name }}">View Request
+                            </a>
                         </div>
                     </div>
-
-                {% endfor %}
-            {% endif %}
-
-            {# By3 #}
-            <div class="row">
-                <div class="col-12 mt-3">
-                    <div class="solu_title"
-                         style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 10px; ">
-                        <span style="color: #fafbfc; height: 100%;  width: 100%;"
-                        >NEWS AND EVENTS</span>
-                    </div>
                 </div>
+            </div>
+        </div>
 
+    {% endfor %}
+    {% endif %}
 
-                <div class="col-12">
-                    <div class="projects-slides owl-carousel">
-                        <!-- Single Project Slide -->
-                        {% for item in articles %}
-                            <div class="single-project-slide {{ loop.index == 0 ? 'active' : '' }} bg-img"
-                                 style="background-image: url({{ item.media }});">
-                                <!-- Project Text -->
-                                <div class="project-content">
-                                    <div class="text">
+    {# By3 #}
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="solu_title">
+                <div class="row ml-1 mr-1">
+                    <div class="col-3"
+                         style="background-color: #1d9bf6; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px; ">
+                        <span style="color: #fafbfc; height: 100%;  width: 100%;">NEWS AND EVENTS</span>
+                    </div>
+                    <div class="col-9" style="border-top: 5px solid #1d9bf6; "></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="projects-slides owl-carousel">
+                <!-- Single Project Slide -->
+                {% for item in articles %}
+                    <div class="single-project-slide {{ loop.index == 0 ? 'active' : '' }} bg-img"
+                         style="background-image: url({{ item.media }});">
+                        <!-- Project Text -->
+                        <div class="project-content">
+                            <div class="text">
                                         <span class="text-white">{{ item.publishDate|date('F') }}
                                                 | {{ item.publishDate|date('d') }}
                                                 | {{ item.publishDate|date('Y') }}</span>
-                                        <marquee behavior="scroll" direction="left"><span
-                                                    style="color: white; "
-                                                    class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
-                                        </marquee>
-                                    </div>
-                                </div>
-                                <!-- Hover Effects -->
-                                <div class="hover-effects">
-                                    <div class="text">
-                                        <span class="text-white" >{{ item.publishDate|date('F') }}
-                                                | {{ item.publishDate|date('d') }}
-                                                | {{ item.publishDate|date('Y') }}</span>
-                                        <marquee behavior="scroll" direction="left"><span
-                                                    style="color: white; "
-                                                    class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
-                                        </marquee>
-                                        <article class="evnt-box">
-                                            {{ item.summary|striptags }}
-                                        </article>
-                                    </div>
-                                    <a href="{{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}"
-                                       class="btn project-btn">Read more <i class="fa fa-long-arrow-right"
-                                                                            aria-hidden="true"></i></a>
+                                <div behavior="scroll" direction="left"><span
+                                            style="color: white; "
+                                            class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
                                 </div>
                             </div>
-                        {% endfor %}
+                        </div>
+                        <!-- Hover Effects -->
+                        <div class="hover-effects">
+                            <div class="text">
+                                        <span class="text-white">{{ item.publishDate|date('F') }}
+                                                | {{ item.publishDate|date('d') }}
+                                                | {{ item.publishDate|date('Y') }}</span>
+                                <div behavior="scroll" direction="left"><span
+                                            style="color: white; "
+                                            class="extra">{{ viewVars['BergyUtils'].limitText(item.title, 70) }} </span>
+                                </div>
+                                <article class="evnt-box">
+                                    {{ item.summary|striptags }}
+                                </article>
+                            </div>
+                            <a href="{{ item.externalLink ? 'target=_blank href='~ item.externalLink : 'href=/articles/'~ item.slug }}"
+                               class="btn project-btn">Read More <i class="fa fa-long-arrow-right"
+                                                                    aria-hidden="true"></i></a>
+                        </div>
                     </div>
-                </div>
-
+                {% endfor %}
             </div>
-            {# By3 ends #}
+        </div>
 
-            {# By3 #}
-            <div class="row">
-                <div class="col-12  mt-3">
-                    <div class="solu_title"
-                         style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 5px; ">
-                        <span style="color: #fafbfc; height: 100%;  width: 100%;">
-                            STORIES AND STUDIES</span>
+    </div>
+    {# By3 ends #}
+
+    {# By3 #}
+    <div class="row">
+
+        <div class="col-12  mt-3">
+            <div class="solu_title">
+                <div class="row ml-1 mr-1">
+                    <div class="col-3"
+                         style="background-color: #1d9bf6; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px; ">
+                        <span style="color: #fafbfc; height: 100%;  width: 100%;">STORIES AND STUDIES</span>
                     </div>
+                    <div class="col-9" style="border-top: 5px solid #1d9bf6; "></div>
                 </div>
+            </div>
+        </div>
 
-
-                <div class="col-12 mt-2 mb-2">
-                    {% for testimonial in testimonies %}
-                    {% if( loop.index < 4) %}
+        <div class="col-12 mt-2 mb-2">
+            {% for testimonial in testimonies %}
+                {% if( loop.index < 4) %}
                     <div class="modal fade" id="flipFlop{{ testimonial.id }}" tabindex="-1"
                          role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body" style="font-size: 12px;">
                                     <h2><b>{{ testimonial.attribution }}</b></h2>
-                                    <span class="text-primary" style="font-size: 12px;" >{{ testimonial.company }}</span>
+                                    <span class="text-primary" style="font-size: 12px;">{{ testimonial.company }}</span>
                                     <img style='width: 100%; object-fit: contain'
                                          src="/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}"
                                          class="img-responsive">
@@ -765,180 +836,188 @@
                             </div>
                         </div>
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                    <div class="projects-slides owl-carousel">
-                        <!-- Single Project Slide -->
-                        {% for testimonial in testimonies %}
-                            {% if( loop.index < 4) %}
-                            <div class="single-project-slide {{ loop.index == 0 ? 'active' : '' }} bg-img"
-                                 style="background-image: url('/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}');">
-                                <!-- Project Text -->
-                                <div class="project-content">
-                                    <div class="text">
-                                        <span class="text-white">{{ testimonial.company }}</span>
-                                        <marquee behavior="scroll" direction="left"><span
-                                                    style="color: white; "
-                                                    class="extra">{{ viewVars['BergyUtils'].limitText(testimonial.attribution, 70) }} </span>
-                                        </marquee>
+                {% endif %}
+            {% endfor %}
+            <div class="projects-slides owl-carousel">
+                <!-- Single Project Slide -->
+                {% for testimonial in testimonies %}
+                    {% if( loop.index < 4) %}
+                        <div class="single-project-slide {{ loop.index == 0 ? 'active' : '' }} bg-img"
+                             style="background-image: url('/uploads/testimonials/{{ testimonial.company }}/{{ testimonial.photo }}');">
+                            <!-- Project Text -->
+                            <div class="project-content">
+                                <div class="text">
+                                    <span class="text-white">{{ testimonial.company }}</span>
+                                    <div behavior="scroll" direction="left"><span
+                                                style="color: white; "
+                                                class="extra">{{ viewVars['BergyUtils'].limitText(testimonial.attribution, 70) }} </span>
                                     </div>
                                 </div>
-                                <!-- Hover Effects -->
-                                <div class="hover-effects">
-                                    <div class="text">
-                                        <span class="text-white" ></span>
-                                        <marquee behavior="scroll" direction="left">{{ testimonial.company }}<span
-                                                    style="color: white; "
-                                                    class="extra"> ({{ viewVars['BergyUtils'].limitText(testimonial.attribution, 70) }})</span>
-                                        </marquee>
-                                        <article class="evnt-box">
-                                            {{ testimonial.testimony|striptags }}
-                                        </article>
+                            </div>
+                            <!-- Hover Effects -->
+                            <div class="hover-effects">
+                                <div class="text">
+                                    <span class="text-white"></span>
+                                    <div behavior="scroll" direction="left">{{ testimonial.company }}<span
+                                                style="color: white; "
+                                                class="extra"> ({{ viewVars['BergyUtils'].limitText(testimonial.attribution, 70) }})</span>
                                     </div>
-                                    <a href=""
-                                       class="btn project-btn" data-toggle="modal"
-                                       data-target="#flipFlop{{ testimonial.id }}">
-                                        Read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-
-
-
+                                    <article class="evnt-box">
+                                        {{ testimonial.testimony|striptags }}
+                                    </article>
                                 </div>
+                                <a href=""
+                                   class="btn project-btn" data-toggle="modal"
+                                   data-target="#flipFlop{{ testimonial.id }}">
+                                    Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+
 
                             </div>
 
-                            {% endif %}
-                        {% endfor %}
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {# By3 ends #}
+
+    {# By3 #}
+    <div class="row">
+        <div class="col-12  mt-3">
+            <div class="solu_title">
+                <div class="row ml-1 mr-1">
+                    <div class="col-3"
+                         style="background-color: #1d9bf6; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px; ">
+                        <span style="color: #fafbfc; height: 100%;  width: 100%;">CURRENT BUYERS</span>
                     </div>
+                    <div class="col-9" style="border-top: 5px solid #1d9bf6; "></div>
                 </div>
             </div>
-            {# By3 ends #}
+        </div>
+        <div class="col-12 mb-30">
 
-            {# By3 #}
-            <div class="row">
-                <div class="col-12 ">
 
-                    <!-- Modal -->
 
-                    <div class="solu_title"
-                         style="background-color: #1d9bf6; border-radius: 10px; padding: 5px; margin-bottom: 5px; ">
-                        <span style="color: #fafbfc; height: 100%;  width: 100%;">
-                            CURRENT BUYERS </span>
-                    </div>
-                </div>
-                <div class="col-12 mb-30">
-                    <div id="carousel" class="carousel slide" data-ride="carousel" >
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel" data-slide-to="1"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            {% for row in buyers|batch(4, 'No item') %}
-                            <div class="carousel-item {{ loop.index < 2?'active':'' }}">
-                                <div class="d-none d-lg-block">
-                                    <div class="slide-box">
-                                        {% for buyer in row %}
-                                            <img style="margin: 1px; /*border-right: 0.01em solid #1e5e80;*/ " src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
-                                                 alt="{{ buyer.name }}" >
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <div class="d-none d-md-block d-lg-none">
-                                    <div class="slide-box">
-                                        {% for buyer in row %}
-                                            {% if(loop.index <= 3) %}
-                                                 <img style="margin: 1px; /*border-right: 0.01em solid #1e5e80;*/ " src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
-                                                     alt="{{ buyer.name }}" >
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <div class="d-none d-sm-block d-md-none">
-                                    <div class="slide-box">
-                                        {% for buyer in row %}
-                                            {% if(loop.index <= 2) %}
-                                                 <img style="margin: 1px; /*border-right: 0.01em solid #1e5e80;*/ " src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
-                                                     alt="{{ buyer.name }}" >
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <div class="d-block d-sm-none">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    {% for row in buyers|batch(4, 'No item') %}
+                        <div class="carousel-item {{ loop.index < 2?'active':'' }}">
+                            <div class="d-none d-lg-block">
+                                <div class="slide-box">
                                     {% for buyer in row %}
-                                        {% if(loop.index <= 1) %}
-                                            <img style="margin: 1px; /*border-right: 0.01em solid #1e5e80;*/ " src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
-                                                 alt="{{ buyer.name }}" >
+                                        <img class="card-img-top"
+                                             src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
+                                             alt="{{ buyer.name }}">
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="d-none d-md-block d-lg-none">
+                                <div class="slide-box">
+                                    {% for buyer in row %}
+                                        {% if(loop.index <= 3) %}
+                                            <img class="card-img-top"
+                                                 src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
+                                                 alt="{{ buyer.name }}">
                                         {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
-                            {% endfor %}
+                            <div class="d-none d-sm-block d-md-none">
+                                <div class="slide-box">
+                                    {% for buyer in row %}
+                                        {% if(loop.index <= 2) %}
+                                            <img class="card-img-top"
+                                                 src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
+                                                 alt="{{ buyer.name }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="d-block d-sm-none">
+                                {% for buyer in row %}
+                                    {% if(loop.index <= 1) %}
+                                        <img class="card-img-top"
+                                             src="/uploads/documents/{{ buyer.name }}/{{ buyer.logo }}"
+                                             alt="{{ buyer.name }}">
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            {# By3 ends #}
         </div>
 
-        <div class="col-lg-3 col-sm-12">
-            <div class="container">
-                <iframe style="width: 100%; " class="embed-responsive-item"
-                        src="https://www.youtube.com/embed/videoseries?list=PLe23eeD0_yjyaUUWjxrOKwSQeyclyPKxL"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-            </div>
+    </div>
+    {# By3 ends #}
+    </div>
 
-            <div class="row">
-                <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
-                    <!-- Carousel items -->
-                    <div style="height: 700px" class="carousel-inner">
-                        <div class="active item">
-                            <a href="http://phoenixtad.com/" target="_new"><img src="/uploads/ads/phoenix.jpg"
-                                                                                class=" img-responsive"></a>
-                        </div>
-                        <div class="item">
-                            <a href="http://www.digicraft.gh.com" target="_new"><img
-                                        src="/uploads/ads/digicraft.jpg" class=" img-responsive"></a>
-                        </div>
-                        <div class="item">
-                            <a href="http://www.solartail.com" target="_new"><img src="/uploads/ads/solartail_b.jpg"
-                                                                                  class=" img-responsive"></a>
-                        </div>
-                        <div class="item">
-                            <a href="http://www.landmarksecurity.org" target="_new"><img
-                                        src="/uploads/ads/landmark2.jpg" class=" img-responsive"></a>
-                        </div>
-                        <div class="item">
-                            <a href="http://www.landmarksecurity.org" target="_new"><img
-                                        src="/uploads/ads/eagle-event-2.jpg" class=" img-responsive"></a>
-                        </div>
+    <div class="col-lg-3 col-sm-12">
+        <div class="container">
+            <iframe style="width: 100%; " class="embed-responsive-item"
+                    src="https://www.youtube.com/embed/videoseries?list=PLe23eeD0_yjyaUUWjxrOKwSQeyclyPKxL"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+
+        <div class="row">
+            <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+                <!-- Carousel items -->
+                <div style="height: 700px" class="carousel-inner">
+                    <div class="active item">
+                        <a href="http://phoenixtad.com/" target="_new"><img src="/uploads/ads/phoenix.jpg"
+                                                                            class=" img-responsive"></a>
+                    </div>
+                    <div class="item">
+                        <a href="http://www.digicraft.gh.com" target="_new"><img
+                                    src="/uploads/ads/digicraft.jpg" class=" img-responsive"></a>
+                    </div>
+                    <div class="item">
+                        <a href="http://www.solartail.com" target="_new"><img src="/uploads/ads/solartail_b.jpg"
+                                                                              class=" img-responsive"></a>
+                    </div>
+                    <div class="item">
+                        <a href="http://www.landmarksecurity.org" target="_new"><img
+                                    src="/uploads/ads/landmark2.jpg" class=" img-responsive"></a>
+                    </div>
+                    <div class="item">
+                        <a href="http://www.landmarksecurity.org" target="_new"><img
+                                    src="/uploads/ads/eagle-event-2.jpg" class=" img-responsive"></a>
                     </div>
                 </div>
             </div>
-            <div style="margin-top: 100px; display: none; " class="row">
-                <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
-                    <!-- Carousel items -->
-                    <div style="height: 800px" class="carousel-inner">
-                        <div class="active item">
-                            <a href="#" target="_new"><img src="/uploads/ads/1.jpg"
-                                                           class=" img-responsive"></a>
-                        </div>
-                        <div class="item">
+        </div>
+        <div style="margin-top: 100px; " class="row">
+            <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+                <!-- Carousel items -->
+                <div style="height: 800px " class="carousel-inner">
+                    <div class="active item">
+                        <a href="#" target="_new"><img src="/uploads/ads/1.jpg"
+                                                       class=" img-responsive"></a>
+                    </div>
+                    {# <div class="item">
                             <a href="https://hrbureaugh.com/" target="_new"><img
                                         src="/uploads/ads/2.jpg" class=" img-responsive"></a>
-                        </div>
+                        </div> #}
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 </section>
@@ -952,8 +1031,8 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-footer-widget mb-80">
                         <!-- Footer Logo -->
-                        <a href="#" class="footer-logo">{#<img src="{{ asset('bundles/app/images/app-logo.png') }}"
-                                                             style="width: 100px; display: none " alt="">#}</a>
+                        <a href="#" class="footer-logo">{# <img src="{{ asset('bundles/app/images/app-logo.png') }}"
+                                                             style="width: 100px; display: none " alt=""> #}</a>
 
                         <ul class="contact-info has-bg-image contain text-white">
                             <li><i class="fa fa-map-marker"></i>
@@ -1073,10 +1152,36 @@
 <script src="{{ asset('bundles/roberto/js/popper.min.js') }}"></script>
 <!-- Bootstrap -->
 <script src="{{ asset('bundles/roberto/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('bundles/multislider/js/multislider.min.js') }}"></script>
 <!-- All Plugins -->
 <script src="{{ asset('bundles/roberto/js/roberto.bundle.js') }}"></script>
 <!-- Active -->
 <script src="{{ asset('bundles/roberto/js/default-assets/active.js') }}"></script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/57a083730ec984f54f80b3f7/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 
 <script>
     $(document).ready(function () {
@@ -1126,7 +1231,19 @@
     });
 </script>
 
+<script>
+    $('#exampleSlider').multislider({
+        interval: 4000,
+        slideAll: true,
+        duration: 1500
+    });
 
+    $('#current_buyers').multislider({
+        interval: 4000,
+        slideAll: true,
+        duration: 1500
+    });
+</script>
 </body>
 
 </html>

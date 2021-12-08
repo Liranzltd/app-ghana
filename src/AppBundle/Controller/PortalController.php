@@ -112,6 +112,15 @@ class PortalController extends Controller
     }
   }
 
+    /**
+     * @Route("/dev/test", name="/dev/our-dev")
+     */
+    public function ourDevAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('portal/dev-test.html.twig');
+    }
+
   /**
    * @Route("/buyer/{slug}", name="buyer-dashboard", methods={"GET"})
    */
