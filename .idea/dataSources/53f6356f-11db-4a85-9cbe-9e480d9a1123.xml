@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="admin_appghana@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.31">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.32">
     <root id="1"/>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
@@ -710,557 +710,557 @@
       <Charset>utf8mb4</Charset>
     </collation>
     <schema id="224" parent="1" name="ablog">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="225" parent="1" name="abworlddb">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="226" parent="1" name="admin_appghana">
-      <Collation>utf8_general_ci</Collation>
       <Current>1</Current>
+      <CollationName>utf8_general_ci</CollationName>
     </schema>
     <schema id="227" parent="1" name="amovies">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="228" parent="1" name="ango">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="229" parent="1" name="anybooking">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="230" parent="1" name="api_gateway">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="231" parent="1" name="appghana">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="232" parent="1" name="askeycrm">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="233" parent="1" name="ayarisa_health_box">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="234" parent="1" name="ayarisa_health_box_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="235" parent="1" name="berg_vue">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="236" parent="1" name="bergshop">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="237" parent="1" name="betorbi">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="238" parent="1" name="betorbi_bk">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="239" parent="1" name="bicart">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="240" parent="1" name="biostar">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="241" parent="1" name="biostar2_ac">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="242" parent="1" name="bit-muit-store">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="243" parent="1" name="bit_blog">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="244" parent="1" name="bit_crm">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="245" parent="1" name="bit_invoice">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="246" parent="1" name="bit_restau">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="247" parent="1" name="bitauthors">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="248" parent="1" name="bitbooks">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="249" parent="1" name="bitbroker">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="250" parent="1" name="bitclassy">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="251" parent="1" name="bitedit">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="252" parent="1" name="biteduc">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="253" parent="1" name="bitemart">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="254" parent="1" name="biterrand">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="255" parent="1" name="bithome">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="256" parent="1" name="bitjobclass">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="257" parent="1" name="bitjobs">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="258" parent="1" name="bitlogictech">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="259" parent="1" name="bitreal">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="260" parent="1" name="bitschoolmgt">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="261" parent="1" name="bitsend">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="262" parent="1" name="bitshop">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="263" parent="1" name="bitstream">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="264" parent="1" name="bittech">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="265" parent="1" name="bittech_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="266" parent="1" name="bitvideo">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="267" parent="1" name="bitvoice">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="268" parent="1" name="bitwallet">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="269" parent="1" name="bitwallet2">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="270" parent="1" name="bitwatch">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="271" parent="1" name="bmovie">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="272" parent="1" name="boiler">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="273" parent="1" name="botorbi">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="274" parent="1" name="bpaygh_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="275" parent="1" name="cake-test">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="276" parent="1" name="catholic">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="277" parent="1" name="charity">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="278" parent="1" name="checkout-engine">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="279" parent="1" name="checkout_engine">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="280" parent="1" name="cinmax">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="281" parent="1" name="cron-runner">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="282" parent="1" name="csv_import">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="283" parent="1" name="db_dashboard">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="284" parent="1" name="digital-teacher">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="285" parent="1" name="e_mart">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="286" parent="1" name="ecart">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="287" parent="1" name="ecom">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="288" parent="1" name="ecommerce">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="educ">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="elite-ryde">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="elite_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="elite_ryde">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="elite_ryde_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="294" parent="1" name="email_service">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="295" parent="1" name="enterprise_desky">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="296" parent="1" name="enterprise_omni">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="297" parent="1" name="event_voter">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="298" parent="1" name="fighter">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="299" parent="1" name="fleet_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="300" parent="1" name="freelance">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="301" parent="1" name="granduno">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="302" parent="1" name="granduno-landing">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="303" parent="1" name="granduno_v2">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="304" parent="1" name="healthbox">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="305" parent="1" name="healthbox_v1">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="306" parent="1" name="heaven">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="307" parent="1" name="hermes-web">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="308" parent="1" name="hermesia">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="309" parent="1" name="hermesia-main">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="310" parent="1" name="information_schema">
-      <Collation>utf8_general_ci</Collation>
+      <CollationName>utf8_general_ci</CollationName>
     </schema>
     <schema id="311" parent="1" name="infoservo">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="312" parent="1" name="insura">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="313" parent="1" name="invoninja">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="314" parent="1" name="jobfair">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="315" parent="1" name="jobsplus">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="316" parent="1" name="jobsportal_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="317" parent="1" name="journals">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="318" parent="1" name="kalkun">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="319" parent="1" name="kannel_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="320" parent="1" name="ken_pos">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="321" parent="1" name="kwik-foods">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="322" parent="1" name="kwik_gh_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="323" parent="1" name="lara_cms">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="324" parent="1" name="lara_social">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="325" parent="1" name="learn_programming">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="326" parent="1" name="library">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="327" parent="1" name="mealpl_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="328" parent="1" name="media_portal">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="329" parent="1" name="media_portal1">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="330" parent="1" name="mint">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="331" parent="1" name="missions">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="332" parent="1" name="my-counselor">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="333" parent="1" name="my_app">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="334" parent="1" name="myads">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="335" parent="1" name="mylandconnect">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="336" parent="1" name="mysql">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="337" parent="1" name="netsol">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="338" parent="1" name="netsol_website">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="339" parent="1" name="netsolbk">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="340" parent="1" name="new_app_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="341" parent="1" name="new_fleet">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="342" parent="1" name="new_granduno_v2">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="343" parent="1" name="new_jobsdotgo">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="344" parent="1" name="new_pos">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="345" parent="1" name="new_sms_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="346" parent="1" name="newberg">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="347" parent="1" name="newcom">
-      <Collation>utf8_general_ci</Collation>
+      <CollationName>utf8_general_ci</CollationName>
     </schema>
     <schema id="348" parent="1" name="news_blog">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="349" parent="1" name="ngo2">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="350" parent="1" name="ngo_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="351" parent="1" name="nivea_qr">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="352" parent="1" name="okwant">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="353" parent="1" name="okwantufo">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="354" parent="1" name="okwantufo_v1">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="355" parent="1" name="okwantuni">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="356" parent="1" name="old_txt_connect">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="357" parent="1" name="orderservice">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="358" parent="1" name="ot">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="359" parent="1" name="ot_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="360" parent="1" name="ot_web">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="361" parent="1" name="pay-gate">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="362" parent="1" name="payment_checkout_engine">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="363" parent="1" name="performance_schema">
-      <Collation>utf8_general_ci</Collation>
+      <CollationName>utf8_general_ci</CollationName>
     </schema>
     <schema id="364" parent="1" name="phpmyadmin">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="365" parent="1" name="pipsdaddy">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="366" parent="1" name="playsms">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="367" parent="1" name="plusagency_3.0">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="368" parent="1" name="polls">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="369" parent="1" name="posdb">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="370" parent="1" name="productservice">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="371" parent="1" name="qsms">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="372" parent="1" name="reactphp-users">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="373" parent="1" name="rejoice">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="374" parent="1" name="sdp">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="375" parent="1" name="sdp-engine">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="376" parent="1" name="security">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="377" parent="1" name="servdb">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="378" parent="1" name="sevo_pixel">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="379" parent="1" name="sevopixel">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="380" parent="1" name="sevotransact">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="381" parent="1" name="sevotransact_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="382" parent="1" name="smpp-server">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="383" parent="1" name="sms_service">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="384" parent="1" name="splynx_payments">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="385" parent="1" name="starter-dashboard">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="386" parent="1" name="support11">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="387" parent="1" name="sys">
-      <Collation>utf8_general_ci</Collation>
+      <CollationName>utf8_general_ci</CollationName>
     </schema>
     <schema id="388" parent="1" name="thetraveller">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="389" parent="1" name="timekiller">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="390" parent="1" name="trivia">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="391" parent="1" name="tu_realestate">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="392" parent="1" name="txt_connect_v3">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="393" parent="1" name="txt_pay_new">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="394" parent="1" name="txt_sevopixel">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="395" parent="1" name="txt_time_killer">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="396" parent="1" name="txtconnect-socket">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="397" parent="1" name="txtgh_pay">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="398" parent="1" name="txtgh_sms_gate_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="399" parent="1" name="txtgh_txtconnect_v3">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="400" parent="1" name="ultimate-fighter">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="401" parent="1" name="video_subscribe">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="402" parent="1" name="vueapp">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="403" parent="1" name="web_ussd">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="404" parent="1" name="winvest_db">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="405" parent="1" name="wordpress">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="406" parent="1" name="worksuite">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="407" parent="1" name="zcart">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <user id="408" parent="1" name="mysql.session">
       <Host>localhost</Host>
@@ -1272,229 +1272,229 @@
       <Host>localhost</Host>
     </user>
     <table id="411" parent="226" name="access_tokens">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="412" parent="226" name="acl_classes">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="413" parent="226" name="acl_entries">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="414" parent="226" name="acl_object_identities">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="415" parent="226" name="acl_object_identity_ancestors">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="416" parent="226" name="acl_security_identities">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="417" parent="226" name="articles">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="418" parent="226" name="articles_categories">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="419" parent="226" name="authentication_codes">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="420" parent="226" name="business_growth_hub">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="421" parent="226" name="buyer_categories">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="422" parent="226" name="buyer_membership">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="423" parent="226" name="buyer_pool_suppliers">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="424" parent="226" name="buyer_regions">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="425" parent="226" name="buyer_supplier_pool">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="426" parent="226" name="buyers">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="427" parent="226" name="categories">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="428" parent="226" name="clients">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="429" parent="226" name="companies">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="430" parent="226" name="companies_directors">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="431" parent="226" name="companies_gross_annual_turnover">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="432" parent="226" name="companies_shareholders">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="433" parent="226" name="companies_subscription">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="434" parent="226" name="company_addresses">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="435" parent="226" name="company_categories">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="436" parent="226" name="company_contacts">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="437" parent="226" name="company_documentation">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="438" parent="226" name="company_membership">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="439" parent="226" name="company_provinces">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="440" parent="226" name="company_references">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="441" parent="226" name="company_request_documents">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="442" parent="226" name="company_requests">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="443" parent="226" name="company_special_groups">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="444" parent="226" name="company_type_documentation">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="445" parent="226" name="company_types">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="446" parent="226" name="company_verification">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="447" parent="226" name="content_categories">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="448" parent="226" name="counties">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="449" parent="226" name="crb_checks">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="450" parent="226" name="designations">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="451" parent="226" name="document_types">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="452" parent="226" name="fos_user">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="453" parent="226" name="fos_user_group">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="454" parent="226" name="fos_user_user">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="455" parent="226" name="fos_user_user_group">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="456" parent="226" name="id_entries">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="457" parent="226" name="members">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="458" parent="226" name="notifications">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="459" parent="226" name="payment_modes">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="460" parent="226" name="payments">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="461" parent="226" name="photos">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="462" parent="226" name="promo_codes">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="463" parent="226" name="provinces">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="464" parent="226" name="refresh_tokens">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="465" parent="226" name="renewal_reminders">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="466" parent="226" name="request_category">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="467" parent="226" name="request_documents">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="468" parent="226" name="request_stats">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="469" parent="226" name="request_types">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="470" parent="226" name="request_updates">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="471" parent="226" name="requests">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="472" parent="226" name="sourcedogg_sso">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="473" parent="226" name="special_groups">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="474" parent="226" name="staff">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="475" parent="226" name="tasks">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="476" parent="226" name="testimonials">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="477" parent="226" name="tier_benefits">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="478" parent="226" name="tiers">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="479" parent="226" name="transactions">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="480" parent="226" name="ujuzi_hub_categories">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="481" parent="226" name="user_activities">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="482" parent="226" name="user_guide_topics">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="483" parent="226" name="user_guides">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="484" parent="226" name="verification_stages">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <table id="485" parent="226" name="verification_steps">
-      <Collation>utf8_unicode_ci</Collation>
+      <CollationName>utf8_unicode_ci</CollationName>
     </table>
     <column id="486" parent="411" name="id">
       <DataType>int(11)|0s</DataType>

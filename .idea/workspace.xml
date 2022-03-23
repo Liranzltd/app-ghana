@@ -5,43 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ce616da-c0ce-4c58-9afe-1fcf1faa56eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.values" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat.values.s" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123/entities/entities.dat_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/bks/new-in.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/portal/dev-test.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/css/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/js/jquery-2.2.4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/js/multislider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/js/multislider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/less/custom.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bundles/multislider/license.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53f6356f-11db-4a85-9cbe-9e480d9a1123.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base-new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base-new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base-renew.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base-renew.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PortalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PortalController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/logs/prod.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/logs/prod.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/sonata-project/user-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/sonata-project/user-bundle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bundles/roberto/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/bundles/roberto/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +30,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -196,7 +168,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="HTML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bit-invoice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dsp" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -265,6 +237,8 @@
       <workItem from="1637231676054" duration="747000" />
       <workItem from="1637326463167" duration="4045000" />
       <workItem from="1637676792563" duration="4567000" />
+      <workItem from="1638929819709" duration="399000" />
+      <workItem from="1638972509210" duration="1731000" />
     </task>
     <servers />
   </component>
@@ -281,6 +255,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
