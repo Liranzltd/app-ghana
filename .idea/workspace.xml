@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9ce616da-c0ce-4c58-9afe-1fcf1faa56eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/logs/prod.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/logs/prod.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egeloen/ckeditor-bundle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/sonata-project/user-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/sonata-project/user-bundle" afterDir="false" />
     </list>
@@ -33,6 +32,12 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="i18n Ally: Laravel/PHP source" pattern="file[appghana]:app//*&amp;&amp;!file[appghana]:app/Broadcasting//*&amp;&amp;!file[appghana]:app/Console//*&amp;&amp;!file[appghana]:app/Events//*&amp;&amp;!file[appghana]:app/Exceptions//*&amp;&amp;!file[appghana]:app/Models//*&amp;&amp;!file[appghana]:app/Providers//*" />
+    <scope name="i18n Ally: Laravel/Blade templates" pattern="file[appghana]:resources/views//*" />
+    <scope name="i18n Ally: Symfony/PHP source" pattern="file[appghana]:src//*&amp;&amp;!file[appghana]:src/DataFixtures//*" />
+    <scope name="i18n Ally: Symfony/Twig templates" pattern="file[appghana]:templates//*" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -153,6 +158,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1kuW9njFZmh4A50FQFpe2tLQ2D6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -168,7 +174,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="HTML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dsp" />
+    <property name="exceleditor.install" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -239,6 +246,9 @@
       <workItem from="1637676792563" duration="4567000" />
       <workItem from="1638929819709" duration="399000" />
       <workItem from="1638972509210" duration="1731000" />
+      <workItem from="1648016149332" duration="407000" />
+      <workItem from="1649402710309" duration="2195000" />
+      <workItem from="1649418744811" duration="1035000" />
     </task>
     <servers />
   </component>
